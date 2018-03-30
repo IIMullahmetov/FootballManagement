@@ -8,9 +8,10 @@ namespace FootballManagementApi.DAL
 	{
 		static Context() => Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
 
+		//TODO Disable ChangeTracker
 		public Context() : base("FM")
 		{
-			var t =this.Database.Connection.ConnectionString;
+			string t = Database.Connection.ConnectionString;
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)

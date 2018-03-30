@@ -60,11 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\Role.cs" />
     <Compile Include="Enums\UserState.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IGenericRepository.cs" />
+    <Compile Include="Implementations.cs" />
     <Compile Include="ISpecification.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IUnitOfWorkFactory.cs" />
     <Compile Include="Migrations\201803241243552_Init.cs" />
     <Compile Include="Migrations\201803241243552_Init.Designer.cs">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
@@ -72,7 +77,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories.cs" />
     <Compile Include="Specification.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="UnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

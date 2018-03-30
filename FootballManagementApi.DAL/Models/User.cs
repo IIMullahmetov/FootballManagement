@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FootballManagementApi.DAL.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FootballManagementApi.DAL.Models
@@ -7,6 +8,20 @@ namespace FootballManagementApi.DAL.Models
 	{
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
+
+		public UserState State { get; set; }
+
+		public Role Role { get; set; }
+
+		public Gender Gender { get; set; } = Gender.Nobody;
+
+		public string FirstName { get; set; }
+
+		public string LastName { get; set; }
+
+		public byte[] Password { get; set; }
+
+		public byte[] Hash { get; set; }
 
 
 	}
