@@ -17,9 +17,7 @@ namespace FootballManagementApi.Controllers
 		{
 
 		}
-
-		public AuthController() : base(null) { }
-
+		
 		[Route("login")]
 		public async Task<IHttpActionResult> LoginAsync()
 		{
