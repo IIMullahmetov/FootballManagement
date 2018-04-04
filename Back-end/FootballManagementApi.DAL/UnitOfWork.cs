@@ -1,18 +1,17 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using FootballManagementApi.DAL.Implementations;
 using FootballManagementApi.DAL.Repositories;
 
 namespace FootballManagementApi.DAL
 {
-	internal class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext, new()
+	public class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext, new()
 	{
 		private bool _isDisposed = false;
 
 		private TContext Context { get; set; }
 
-		internal UnitOfWork() => Context = new TContext();
+		public UnitOfWork() => Context = new TContext();
 
 		public void Dispose()
 		{

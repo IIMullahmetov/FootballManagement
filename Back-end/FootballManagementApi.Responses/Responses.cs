@@ -16,7 +16,9 @@ namespace FootballManagementApi.Responses
 	public class PagingResponse : ResponseBase
 	{
 		[JsonProperty("paging")]
-		public Paging Paging { get; set; }
+		public Paging Paging { get; private set; }
+
+		protected PagingResponse(Paging paging) => Paging = paging;
 	}
 
 	public class ErrorResponse : IHttpActionResult
@@ -41,10 +43,13 @@ namespace FootballManagementApi.Responses
 
 	public class Paging
 	{
+		[JsonProperty("count")]
 		public int Count { get; private set; }
 
+		[JsonProperty("page")]
 		public int Page { get; private set; }
 
+		[JsonProperty("size")]
 		public int Size { get; private set; }
 
 		public Paging(int count, int page, int size)

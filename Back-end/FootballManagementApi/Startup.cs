@@ -17,6 +17,7 @@ namespace FootballManagementApi
 	public class Startup
 	{
 		private static Container Container { get; set; }
+
 		public void Configuration(IAppBuilder app)
 		{
 			Container = new Container();
@@ -34,9 +35,8 @@ namespace FootballManagementApi
 
 		private void RegisterInstances()
 		{
-			Container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(lifestyle: Lifestyle.Singleton);
-
-			System.Type[] types = Assembly.GetAssembly(type: typeof(IUnitOfWorkFactory)).GetTypes();
+			Container.Register<IUnitOfWork, UnitOfWork<Context>>(lifestyle: Lifestyle.Scoped);
+			System.Type[] types = Assembly.GetAssembly(type: typeof(IUnitOfWork)).GetTypes();
 
 			foreach(System.Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))
 			{
