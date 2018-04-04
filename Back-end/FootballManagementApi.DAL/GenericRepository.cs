@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FootballManagementApi.DAL
@@ -12,9 +11,9 @@ namespace FootballManagementApi.DAL
 	{
 		protected DbSet<TEntity> Entities { get; private set; }
 
-		protected Context Context { get; private set; }
+		protected DbContext Context { get; private set; }
 
-		public GenericRepository(Context context)
+		public GenericRepository(DbContext context)
 		{
 			Context = context;
 			Entities = context.Set<TEntity>();

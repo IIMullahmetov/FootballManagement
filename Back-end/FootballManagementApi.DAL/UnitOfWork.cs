@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using FootballManagementApi.DAL.Implementations;
+using FootballManagementApi.DAL.Repositories;
 
 namespace FootballManagementApi.DAL
 {
@@ -28,5 +30,27 @@ namespace FootballManagementApi.DAL
 			Context.ChangeTracker.DetectChanges();
 			return Context.SaveChangesAsync();
 		}
+
+		public IUserRepository GetUserRepository() => new UserRepository(Context);
+
+		public ICommentRepository GetCommentRepository() => new CommentRepository(Context);
+
+		public IGoalRepository GetGoalRepository() => new GoalRepository(Context);
+
+		public ILeagueRepository GetLeagueRepository() => new LeagueRepository(Context);
+
+		public ILeagueTeamRepository GetLeagueTeamRepository() => new LeagueTeamRepository(Context);
+
+		public IMatchRepository GetMatchRepository() => new MatchRepository(Context);
+
+		public IPlayerRepository GetPlayerRepository() => new PlayerRepository(Context);
+
+		public IPostRepository GetPostRepository() => new PostRepository(Context);
+
+		public ITeamRepository GetTeamRepository() => new TeamRepository(Context);
+
+		public ITourneyRepository GetTourneyRepository() => new TourneyRepository(Context);
+
+		public ITourneyTeamRepository GetTourneyTeamRepository() => new TourneyTeamRepository(Context);
 	}
 }

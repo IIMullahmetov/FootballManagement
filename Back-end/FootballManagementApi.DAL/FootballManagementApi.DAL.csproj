@@ -72,6 +72,7 @@
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\LeagueTeam.cs" />
