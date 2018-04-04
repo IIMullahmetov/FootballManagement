@@ -1,6 +1,7 @@
 ﻿using FootballManagementApi.DAL.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
+using System.Diagnostics;
 
 namespace FootballManagementApi.DAL
 {
@@ -12,6 +13,10 @@ namespace FootballManagementApi.DAL
 		public Context() : base("FM")
 		{
 			//string t = Database.Connection.ConnectionString;
+			for (int i = 0; i < 1000; i++)
+			{
+				Trace.TraceInformation(Database.Connection.ConnectionString);
+			}
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
