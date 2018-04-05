@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Configuration;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Http;
 using FootballManagementApi.DAL;
@@ -18,6 +19,9 @@ namespace FootballManagementApi.Controllers
 		{
 			DAL.Repositories.IUserRepository repo = UnitOfWork.GetUserRepository();
 			return Ok(repo.Context.Database.Connection.ConnectionString);
+			string name = ConfigurationManager.AppSettings["name"];
+
+			return Ok(name);
 		}
 
 		[HttpGet]
