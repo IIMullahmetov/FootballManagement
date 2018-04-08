@@ -1,35 +1,58 @@
 package ru.kpfu.itis.android.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ru.kpfu.itis.android.R;
-import ru.kpfu.itis.android.fragments.ChampionshipsFragment;
-import ru.kpfu.itis.android.fragments.FeedFragment;
-import ru.kpfu.itis.android.fragments.MatchesFragment;
+import ru.kpfu.itis.android.adapters.MatchesStatsAdapter;
+import ru.kpfu.itis.android.adapters.NewsAdapter;
+import ru.kpfu.itis.android.models.Match;
+import ru.kpfu.itis.android.models.News;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class FeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private RecyclerView rvNews;
+    private RecyclerView rvMatches;
+    private TextView tvAllNews;
+    private TextView tvAllMatches;
     private Toolbar toolbar;
+    private NewsAdapter newsAdapter;
+    private MatchesStatsAdapter matchesStatsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
         bind();
-        Fragment fragment = FeedFragment.newInstance(MainActivity.this);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
+        rvNews.setLayoutManager(new LinearLayoutManager(this));
+        newsAdapter = new NewsAdapter(FeedActivity.this);
+        //TODO подгрузка с сервера
+        List<News> news = new ArrayList();
+        news.add(new News("url", "SAME TITLE", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "SAME TITLE 2", "TEXT TEST TEXT TEST"));
+        newsAdapter.setmNewsList(news);
+        rvNews.setAdapter(newsAdapter);
+
+        rvMatches.setLayoutManager(new LinearLayoutManager(this));
+        matchesStatsAdapter = new MatchesStatsAdapter(this);
+        //TODO подгрузка с сервера
+        List<Match> matches = new ArrayList<>();
+        matches.add(new Match("Tottanham", "Real", "2", "3", "Evro", "06.04.2018"));
+        matchesStatsAdapter.setMatchList(matches);
+        rvMatches.setAdapter(matchesStatsAdapter);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -39,10 +62,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-// Inflate the header view at runtime
     }
 
-    private void bind() {
+    private void bind(){
+        rvNews = findViewById(R.id.rv_news);
+        rvMatches = findViewById(R.id.rv_stats_match);
+        tvAllNews = findViewById(R.id.tv_all_news);
+        tvAllMatches = findViewById(R.id.tv_all_matches);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.feed);
         setSupportActionBar(toolbar);
@@ -77,32 +103,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment = null;
         // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
-            case R.id.nav_feed:
-                fragment = FeedFragment.newInstance(MainActivity.this);
-                toolbar.setTitle(R.string.feed);
-                break;
-            case R.id.nav_matches:
-                fragment = MatchesFragment.newInstance(MainActivity.this);
-                toolbar.setTitle(R.string.matches);
-                break;
-            case R.id.nav_championships:
-                fragment = ChampionshipsFragment.newInstance(MainActivity.this);
-                toolbar.setTitle(R.string.championships);
-                break;
-            case R.id.nav_settings:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                fragment = FeedFragment.newInstance(MainActivity.this);
-                toolbar.setTitle(R.string.feed);
-        }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        int id = item.getItemId();
 
+//        if (id == R.id.nav_camera) {
+//            Intent intent = new Intent(this, MatchesActivity.class);
+//            startActivity(intent);
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
