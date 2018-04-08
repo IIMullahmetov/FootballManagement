@@ -1,4 +1,4 @@
-package ru.kpfu.itis.android;
+package ru.kpfu.itis.android.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import ru.kpfu.itis.android.R;
 
 /**
  * Created by hlopu on 03.04.2018.
