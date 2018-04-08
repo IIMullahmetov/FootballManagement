@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
 
-        </activity>
+
+
         <activity
-            android:name=".FeedActivity"
+            android:name=".activities.FeedActivity"
             android:label="@string/title_activity_feed"
             android:theme="@style/AppTheme.NoActionBar">
-
-        <activity android:name=".activities.MainActivity">
+        </activity>
+        <activity android:name=".activities.AuthActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.AuthActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MatchesActivity" />
+
+
     </application>
 
 </manifest>
