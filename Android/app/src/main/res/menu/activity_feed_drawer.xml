@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_feed"
+            android:title="Лента" />
+        <item
+            android:id="@+id/nav_matches"
+            android:title="Матчи" />
+        <item
+            android:id="@+id/nav_championships"
+            android:title="Чемпионаты" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Настройки" />
+    </group>
+
+</menu>
