@@ -1,12 +1,8 @@
 package ru.kpfu.itis.android.activities;
 
+
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +17,10 @@ import ru.kpfu.itis.android.adapters.MatchesStatsAdapter;
 import ru.kpfu.itis.android.adapters.NewsAdapter;
 import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.News;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+
+import ru.kpfu.itis.android.R;
 
 public class FeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView rvNews;
@@ -31,10 +31,12 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
     private NewsAdapter newsAdapter;
     private MatchesStatsAdapter matchesStatsAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+
         bind();
 
         rvNews.setLayoutManager(new LinearLayoutManager(this));
@@ -55,10 +57,21 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         rvMatches.setAdapter(matchesStatsAdapter);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.feed);
+        setSupportActionBar(toolbar);
+
+
+
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -74,9 +87,12 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
+  
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -106,6 +122,7 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
 //        if (id == R.id.nav_camera) {
 //            Intent intent = new Intent(this, MatchesActivity.class);
 //            startActivity(intent);
@@ -121,7 +138,23 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
 //
 //        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
