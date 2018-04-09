@@ -161,9 +161,17 @@
       <Project>{CFAB5239-9D5E-4A51-95D0-0504E73FC634}</Project>
       <Name>FootballManagementApi.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.Enums\FootballManagementApi.Enums.csproj">
+      <Project>{59072831-8e9a-491c-ad60-64984b80026c}</Project>
+      <Name>FootballManagementApi.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.GlobalExceptionHandler\FootballManagementApi.GlobalExceptionHandler.csproj">
       <Project>{ba0b8dcd-cc38-4923-835d-fead7451f448}</Project>
       <Name>FootballManagementApi.GlobalExceptionHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.Requests\FootballManagementApi.Requests.csproj">
+      <Project>{D6D09122-D237-47FC-AC03-A66E40FE047C}</Project>
+      <Name>FootballManagementApi.Requests</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.Responses\FootballManagementApi.Responses.csproj">
       <Project>{011B8BAB-5C1B-4931-88F2-8D1339AF4388}</Project>

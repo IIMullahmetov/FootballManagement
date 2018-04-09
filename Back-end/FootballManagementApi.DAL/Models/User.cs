@@ -11,6 +11,7 @@ namespace FootballManagementApi.DAL.Models
 		public User()
 		{
 			Comments = new HashSet<Comment>();
+			Posts = new HashSet<Post>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,7 +21,7 @@ namespace FootballManagementApi.DAL.Models
 
 		public Role Role { get; set; }
 
-		public Gender Gender { get; set; } = Gender.Nobody;
+		public Gender? Gender { get; set; }
 
 		public string FirstName { get; set; }
 
@@ -30,8 +31,10 @@ namespace FootballManagementApi.DAL.Models
 
 		public byte[] Salt { get; set; }
 
-		public Guid Image { get; set; }
+		public Guid? Image { get; set; }
 
 		public virtual ICollection<Comment> Comments { get; set; }
+
+		public virtual ICollection<Post> Posts { get; set; }
 	}
 }

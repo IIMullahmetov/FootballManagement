@@ -67,5 +67,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FootballManagementApi.Enums\FootballManagementApi.Enums.csproj">
+      <Project>{59072831-8E9A-491C-AD60-64984B80026C}</Project>
+      <Name>FootballManagementApi.Enums</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

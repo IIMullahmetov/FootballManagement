@@ -54,6 +54,7 @@
     <Compile Include="Gender.cs" />
     <Compile Include="MatchStatus.cs" />
     <Compile Include="PlayerStatus.cs" />
+    <Compile Include="PostItemType.cs" />
     <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />

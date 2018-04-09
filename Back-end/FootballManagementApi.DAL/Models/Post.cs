@@ -11,6 +11,7 @@ namespace FootballManagementApi.DAL.Models
 		public Post()
 		{
 			Comments = new HashSet<Comment>();
+			Items = new HashSet<PostItem>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,12 +19,21 @@ namespace FootballManagementApi.DAL.Models
 
 		public string Title { get; set; }
 
-		public string Body { get; set; }
+		public string Intro { get; set; }
+
+		public Guid? Image { get; set; }
 
 		public DateTimeOffset CreateDt { get; set; }
 
 		public PostStatus Status { get; set; }
 
+		public int UserId { get; set; }
+
+		[ForeignKey(nameof(UserId))]
+		public virtual User User { get; set; }
+
 		public virtual ICollection<Comment> Comments { get; set; }
+
+		public virtual ICollection<PostItem> Items { get; set; }
 	}
 }

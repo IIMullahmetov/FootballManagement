@@ -79,6 +79,7 @@
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostItem.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />
     <Compile Include="Models\User.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="SelectOptions.cs" />
     <Compile Include="Specification.cs" />
     <Compile Include="Models\Tourney.cs" />
+    <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
