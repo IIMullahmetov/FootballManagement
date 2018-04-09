@@ -65,7 +65,7 @@ public class FeedFragment extends Fragment {
         matchesStatsAdapter = new MatchesStatsAdapter(context);
         //TODO подгрузка с сервера
         List<Match> matches = new ArrayList<>();
-        matches.add(new Match("Tottanham", "Real", "2", "3", "Evro", "06.04.2018"));
+        matches.add(new Match("Tottenham Hotspur", "Real Madrid", "2", "3", "European Champions Cup", "06.04.2018"));
         matchesStatsAdapter.setMatchList(matches);
         rvMatches.setAdapter(matchesStatsAdapter);
 
