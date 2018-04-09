@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201803241243552_Init.Designer.cs">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.cs" />
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.Designer.cs">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Goal.cs" />
@@ -113,6 +117,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803241243552_Init.resx">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804092041477_ChangedPostStruct.resx">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
