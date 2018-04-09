@@ -51,7 +51,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_signIn:
-                Intent intent = new Intent(context, FeedActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;

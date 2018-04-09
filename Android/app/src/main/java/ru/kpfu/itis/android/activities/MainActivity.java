@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
+        setContentView(R.layout.activity_main);
         bind();
         Fragment fragment = FeedFragment.newInstance(MainActivity.this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void bind() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.feed);
         setSupportActionBar(toolbar);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -99,8 +99,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 fragment = FeedFragment.newInstance(MainActivity.this);
                 toolbar.setTitle(R.string.feed);
+                break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (fragment!=null)
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
 

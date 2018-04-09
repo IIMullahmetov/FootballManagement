@@ -33,6 +33,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     public void setmNewsList(List<News> mNewsList) {
         this.mNewsList = mNewsList;
+        notifyDataSetChanged();
     }
 
     @NonNull
