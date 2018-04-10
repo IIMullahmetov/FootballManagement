@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FootballManagementApi.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FootballManagementApi.DAL.Models
@@ -13,6 +14,8 @@ namespace FootballManagementApi.DAL.Models
 		public int Likes { get; set; }
 
 		public int Dislikes { get; set; }
+
+		public CommentStatus Status { get; set; }
 
 		public int UserId { get; set; }
 

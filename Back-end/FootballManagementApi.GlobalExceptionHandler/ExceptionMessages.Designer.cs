@@ -61,6 +61,15 @@ namespace FootballManagementApi.GlobalExceptionHandler {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment with the specified identifier does not exist.
+        /// </summary>
+        public static string CommentNotFound {
+            get {
+                return ResourceManager.GetString("CommentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post with the specified identifier does not exist.
         /// </summary>
         public static string PostNotFound {

@@ -1,7 +1,6 @@
 ﻿using FootballManagementApi.DAL.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
-using System.Diagnostics;
 
 namespace FootballManagementApi.DAL
 {

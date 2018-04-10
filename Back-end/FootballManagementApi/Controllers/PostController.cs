@@ -113,7 +113,7 @@ namespace FootballManagementApi.Controllers
 			});
 		}
 
-		[HttpPost] 
+		[HttpPost]
 		[Route("edit")]
 		public async Task<IHttpActionResult> EditAsync([FromBody]EditRequest request)
 		{

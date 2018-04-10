@@ -75,6 +75,10 @@
     <Compile Include="Migrations\201804092041477_ChangedPostStruct.Designer.cs">
       <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.cs" />
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.Designer.cs">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Goal.cs" />
@@ -92,6 +96,7 @@
     <Compile Include="SelectOptions.cs" />
     <Compile Include="Specification.cs" />
     <Compile Include="Models\Tourney.cs" />
+    <Compile Include="Specifications\CommentSpecifications.cs" />
     <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
@@ -120,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804092041477_ChangedPostStruct.resx">
       <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804101932419_ChangedCommentsStruct.resx">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
