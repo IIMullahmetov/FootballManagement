@@ -1,0 +1,89 @@
+.menu
+{
+	background-color : #252629;
+}
+.navbar
+{
+	padding :0px;
+	min-height: 54px;
+}
+.navbar-nav>li>a
+{
+	font-family: Lato , sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+	text-align:right; 
+	color: #FFF;
+	cursor: pointer;
+}
+
+.navbar-collapse
+{
+	margin-right: 33px; 
+
+}
+.navbar-nav>li>a:hover 
+{
+	color: rgb(245,245,245);
+	text-shadow: 0 -1px rgba(0,0,0,.1);
+  -webkit-animation: pulsate 1.2s ;
+  animation: pulsate 1.2s ;
+}
+
+.ml-auto>a:hover
+{
+	color : rgb(245,245,245);
+	text-shadow: 0 -1px rgba(0,0,0,.1);
+  -webkit-animation: pulsate 1.2s ;
+  animation: pulsate 1.2s ;
+}
+li
+{
+	padding-top: 0;
+	text-transform: capitalize;
+	
+}
+
+.ml-auto>a
+{
+	font-family: Lato , sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+	text-align:right; 
+	color: #FFF;
+	cursor: pointer;
+	padding-top:0;
+}
+
+
+.navbar-brand
+{
+	
+	font-family: Oswald;
+	font-style: all;  
+	font-weight: bold;
+	line-height: normal;
+	font-size: 36px;
+	text-transform: uppercase;
+	color: #F0E9E9;
+	margin-left: 33px;
+	padding-bottom: 10px;
+	padding-top:0; 
+	margin-bottom: 0;
+	height: 54px;
+
+
+
+}
+@-webkit-keyframes pulsate {
+ 50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff; }
+}
+@keyframes pulsate {
+ 50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff; }
+}
