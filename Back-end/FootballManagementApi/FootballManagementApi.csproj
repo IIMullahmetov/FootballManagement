@@ -134,8 +134,11 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PostCommentController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\TourneyController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -173,6 +176,10 @@
     <ProjectReference Include="..\FootballManagementApi.Requests\FootballManagementApi.Requests.csproj">
       <Project>{D6D09122-D237-47FC-AC03-A66E40FE047C}</Project>
       <Name>FootballManagementApi.Requests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.Resources\FootballManagementApi.Resources.csproj">
+      <Project>{E7537669-784F-4039-B3F8-9C50A7D6AD4A}</Project>
+      <Name>FootballManagementApi.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.Responses\FootballManagementApi.Responses.csproj">
       <Project>{011B8BAB-5C1B-4931-88F2-8D1339AF4388}</Project>

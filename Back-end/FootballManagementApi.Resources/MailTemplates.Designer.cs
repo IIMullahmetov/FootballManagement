@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballManagementApi.GlobalExceptionHandler {
+namespace FootballManagementApi.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FootballManagementApi.GlobalExceptionHandler {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ExceptionMessages {
+    public class MailTemplates {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public ExceptionMessages() {
+        internal MailTemplates() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FootballManagementApi.GlobalExceptionHandler {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FootballManagementApi.GlobalExceptionHandler.ExceptionMessages", typeof(ExceptionMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FootballManagementApi.Resources.MailTemplates", typeof(MailTemplates).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,11 @@ namespace FootballManagementApi.GlobalExceptionHandler {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comment with the specified identifier does not exist.
+        ///   Looks up a localized string similar to Blabla.
         /// </summary>
-        public static string CommentNotFound {
+        public static string Registration {
             get {
-                return ResourceManager.GetString("CommentNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Post with the specified identifier does not exist.
-        /// </summary>
-        public static string PostNotFound {
-            get {
-                return ResourceManager.GetString("PostNotFound", resourceCulture);
+                return ResourceManager.GetString("Registration", resourceCulture);
             }
         }
     }

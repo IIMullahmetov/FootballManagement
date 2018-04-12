@@ -120,6 +120,9 @@
   <data name="CommentNotFound" xml:space="preserve">
     <value>Comment with the specified identifier does not exist</value>
   </data>
+  <data name="MatchNotFound" xml:space="preserve">
+    <value>Match with the specified identifier does not exist</value>
+  </data>
   <data name="PostNotFound" xml:space="preserve">
     <value>Post with the specified identifier does not exist</value>
   </data>

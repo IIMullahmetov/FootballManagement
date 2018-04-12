@@ -10,6 +10,7 @@ using FootballManagementApi.DAL.Specifications.Posts;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.PostResponses;
 using FootballManagementApi.Requests.PostRequests;
+using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
 
 namespace FootballManagementApi.Controllers
@@ -27,7 +28,7 @@ namespace FootballManagementApi.Controllers
 		{
 			SelectOptions<Post> options = new SelectOptions<Post>
 			{
-				OrderBy = p => p.OrderBy(t => t.Id),
+				OrderBy = p => p.OrderByDescending(t => t.Id),
 				Take = size,
 				Skip = page * size
 			};
@@ -60,7 +61,7 @@ namespace FootballManagementApi.Controllers
 		public async Task<IHttpActionResult> GetAsync(int id)
 		{
 			Post post = await UnitOfWork.GetPostRepository().SelectByIdAsync(id)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 			GetResponse response = new GetResponse
 			{
 				Id = post.Id,
@@ -117,7 +118,7 @@ namespace FootballManagementApi.Controllers
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
 			Post post = await UnitOfWork.GetPostRepository().SelectByIdAsync(request.Id)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 			post.Title = request.Title;
 			post.Intro = request.Intro;
 			post.Image = request.Image;
@@ -139,7 +140,7 @@ namespace FootballManagementApi.Controllers
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
 			Post post = await UnitOfWork.GetPostRepository().SelectByIdAsync(request.Id)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 			post.Status = Enums.PostStatus.Removed;
 			await UnitOfWork.SaveChangesAsync();
 			return Ok();

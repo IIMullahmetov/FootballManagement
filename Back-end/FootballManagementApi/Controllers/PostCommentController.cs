@@ -9,6 +9,7 @@ using FootballManagementApi.DAL.Specifications.Comments;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.PostCommentResponses;
 using FootballManagementApi.Requests.PostCommentRequests;
+using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
 
 namespace FootballManagementApi.Controllers
@@ -24,10 +25,10 @@ namespace FootballManagementApi.Controllers
 		public async Task<IHttpActionResult> GetListAsync([FromUri]int id, [FromUri]int page = 0, [FromUri]int size = 10)
 		{
 			Post post = await UnitOfWork.GetPostRepository().SelectFirstOrDefaultAsync(p => p.Id == id && p.Status == Enums.PostStatus.Published)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 			SelectOptions<Comment> options = new SelectOptions<Comment>
 			{
-				OrderBy = p => p.OrderBy(t => t.Id),
+				OrderBy = p => p.OrderByDescending(t => t.Id),
 				Take = size,
 				Skip = page * size
 			};
@@ -60,7 +61,7 @@ namespace FootballManagementApi.Controllers
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
 			Post post = await UnitOfWork.GetPostRepository().SelectFirstOrDefaultAsync(p => p.Id == id && p.Status == Enums.PostStatus.Published)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 
 			Comment comment = new Comment
 			{
@@ -83,10 +84,10 @@ namespace FootballManagementApi.Controllers
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
 
 			Post post = await UnitOfWork.GetPostRepository().SelectFirstOrDefaultAsync(p => p.Id == id && p.Status == Enums.PostStatus.Published)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.PostNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 
 			Comment comment = post.Comments.FirstOrDefault(c => c.Id == request.Id)
-				?? throw new ActionCannotBeExecutedException(GlobalExceptionHandler.ExceptionMessages.CommentNotFound);
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.CommentNotFound);
 
 			comment.Status = Enums.CommentStatus.Removed;
 			await UnitOfWork.SaveChangesAsync();

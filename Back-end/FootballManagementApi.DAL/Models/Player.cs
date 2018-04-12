@@ -23,6 +23,8 @@ namespace FootballManagementApi.DAL.Models
 
 		public DateTime BirthDt { get; set; }
 
+		public int Number { get; set; }
+
 		//TODO Пока хз для чего нужен, но должен понадобится
 		public PlayerStatus Status { get; set; }
 

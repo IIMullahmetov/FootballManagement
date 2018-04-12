@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,8 @@ namespace FootballManagementApi.DAL.Models
 		public string City { get; set; }
 
 		public string County { get; set; }
+
+		public Guid Logotype { get; set; }
 
 		public virtual ICollection<Player> Players { get; set; }
 
