@@ -17,7 +17,7 @@ namespace FootballManagementApi.Controllers
 		private IUnitOfWork _unitOfWork;
 
 		protected IUnitOfWork UnitOfWork => _unitOfWork;
-
+		
 		protected BaseController(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;

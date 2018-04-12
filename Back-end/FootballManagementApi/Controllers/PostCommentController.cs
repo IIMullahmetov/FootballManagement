@@ -36,9 +36,7 @@ namespace FootballManagementApi.Controllers
 			IEnumerable<Comment> list = await repo.SelectAsync(specification, options);
 			int resultsCount = await repo.CountAsync(specification);
 
-			int pageCount = resultsCount / 10 + 1;
-
-			Paging paging = new Paging(page: page, count: pageCount, size: size);
+			Paging paging = new Paging(page: page, count: resultsCount, size: size);
 
 			GetListResponse response = new GetListResponse(paging)
 			{
