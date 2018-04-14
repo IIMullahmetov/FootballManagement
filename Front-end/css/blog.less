@@ -1,0 +1,122 @@
+@import "base.less";
+
+/*  =========================     MAIN         =================*/
+
+main {	
+	margin-bottom: 40px;
+	.blog_info {
+		margin-right: 40px;	
+		margin-top: 20px;
+		margin-left: 20px;
+		background-color: @gray;
+		border-radius: 10px;
+		h3 {		
+			float: left;
+			font-weight: bold;
+		}
+		p {
+			float: left;
+			margin-top: 50px;
+			margin-left: -180px;
+			color: @dark-gray;
+		}
+
+		button {
+			float: right;
+			margin-right: 20px;
+			margin-top: 20px;
+			background-color: black;
+			color: @white;
+		}
+	}
+
+	.post {
+
+		.post_name {
+			text-align: center;
+			font-weight: bold;
+			margin-right: 70px;
+		}
+	}
+
+	.comments_block {
+		.comments_h4 {
+			float: left;
+			font-weight: bold;
+		}
+
+		h5 {
+			float: right;
+			font-weight: bold;
+			color: @green;
+		}
+
+		.cmnt_txt_area {
+			margin-top: 40px;
+		}
+
+		.send_cmnt_btn {
+			margin-top: 20px;
+			background-color: @green;
+			color: @white;
+		}
+
+		.comments_list {
+			margin-top: 20px;
+
+			li {
+				margin-top: 50px;
+				.comment_ava {					
+					float: left;
+
+				}
+
+				h4 {
+				
+					margin-left: 100px;
+					font-weight: bold;
+				}
+
+				p {
+					margin-left: 100px;
+				}
+
+				.comment_time {
+					float: right;
+					margin-top: -30px;
+					color: gray;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+
+	.blogs {
+		margin-top: 120px;
+		button {
+			background-color: @green;
+			color: @white;
+			border-radius: 0;
+			margin-bottom: 30px;
+
+		}
+
+		h3 {
+			font-weight: bold;
+		}
+
+		ul {
+			margin-left: 15px;
+			li {
+				margin-top: 30px;
+
+				.blog_link {
+					font-size: 16px;
+				}
+
+			}
+		}
+
+		
+	}
+}
