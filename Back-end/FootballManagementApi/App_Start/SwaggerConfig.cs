@@ -279,7 +279,7 @@ namespace FootballManagementApi
 					description = "The authorization token",
 					@in = "header",
 					name = "Authorization",
-					required = true,
+					required = false,
 					type = "string"
 				};
 
