@@ -170,9 +170,17 @@
       <Project>{59072831-8e9a-491c-ad60-64984b80026c}</Project>
       <Name>FootballManagementApi.Enums</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.FileStorage\FootballManagementApi.FileStorage.csproj">
+      <Project>{70C6E548-6887-4C14-9FE5-5940ABFE3309}</Project>
+      <Name>FootballManagementApi.FileStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.GlobalExceptionHandler\FootballManagementApi.GlobalExceptionHandler.csproj">
       <Project>{ba0b8dcd-cc38-4923-835d-fead7451f448}</Project>
       <Name>FootballManagementApi.GlobalExceptionHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.Helpers\FootballManagementApi.Helpers.csproj">
+      <Project>{8A2706FF-9768-40D1-8A56-CA0A493976AA}</Project>
+      <Name>FootballManagementApi.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.Requests\FootballManagementApi.Requests.csproj">
       <Project>{D6D09122-D237-47FC-AC03-A66E40FE047C}</Project>

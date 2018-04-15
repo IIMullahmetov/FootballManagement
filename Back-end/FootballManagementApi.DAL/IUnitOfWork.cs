@@ -28,6 +28,8 @@ namespace FootballManagementApi.DAL
 
 		ITourneyTeamRepository GetTourneyTeamRepository();
 
+		IFileRepository GetFileRepository();
+
 		Task SaveChangesAsync();
 	}
 }

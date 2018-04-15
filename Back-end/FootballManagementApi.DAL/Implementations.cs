@@ -58,4 +58,9 @@ namespace FootballManagementApi.DAL.Implementations
 	{
 		internal TourneyTeamRepository(DbContext context) : base(context) { }
 	}
+
+	internal class FileRepository : GenericRepository<File>, IFileRepository
+	{
+		internal FileRepository(DbContext context) : base(context) { }
+	}
 }

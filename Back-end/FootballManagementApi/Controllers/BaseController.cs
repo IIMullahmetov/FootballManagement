@@ -63,9 +63,10 @@ namespace FootballManagementApi.Controllers
 		}
 
 		//TODO Доделать 
-		protected Task<User> GetCurrentUserAsync()
+		protected async Task<User> GetCurrentUserAsync()
 		{
-			return null;
+			User user = null;
+			return user;
 		}
 	}
 }

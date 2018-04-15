@@ -23,4 +23,6 @@ namespace FootballManagementApi.DAL.Repositories
 	public interface ITourneyRepository : IGenericRepository<Tourney> { }
 
 	public interface ITourneyTeamRepository : IGenericRepository<TourneyTeam> { }
+
+	public interface IFileRepository : IGenericRepository<File> { }
 }

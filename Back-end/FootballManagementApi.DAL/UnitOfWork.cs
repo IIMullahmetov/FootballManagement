@@ -51,5 +51,7 @@ namespace FootballManagementApi.DAL
 		public ITourneyRepository GetTourneyRepository() => new TourneyRepository(Context);
 
 		public ITourneyTeamRepository GetTourneyTeamRepository() => new TourneyTeamRepository(Context);
+
+		public IFileRepository GetFileRepository() => new FileRepository(Context);
 	}
 }

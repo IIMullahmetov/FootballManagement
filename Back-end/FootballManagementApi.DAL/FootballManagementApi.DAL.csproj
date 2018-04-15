@@ -83,8 +83,13 @@
     <Compile Include="Migrations\201804151154240_Updating.Designer.cs">
       <DependentUpon>201804151154240_Updating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804151852485_AddedFiles.cs" />
+    <Compile Include="Migrations\201804151852485_AddedFiles.Designer.cs">
+      <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\LeagueTeam.cs" />
@@ -136,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804151154240_Updating.resx">
       <DependentUpon>201804151154240_Updating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151852485_AddedFiles.resx">
+      <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

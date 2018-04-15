@@ -1,9 +1,11 @@
 ﻿using FootballManagementApi.DAL;
+using FootballManagementApi.FileStorage;
 using Microsoft.Owin;
 using Owin;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using SimpleInjector.Lifestyles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -36,23 +38,24 @@ namespace FootballManagementApi
 		private void RegisterInstances()
 		{
 			Container.Register<IUnitOfWork, UnitOfWork<Context>>(lifestyle: Lifestyle.Scoped);
-			System.Type[] types = Assembly.GetAssembly(type: typeof(IUnitOfWork)).GetTypes();
+			Container.Register<IFileManager, FileManager>(lifestyle: Lifestyle.Scoped);
+			//IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
 
-			foreach(System.Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))
-			{
-				System.Type clss = types
-					.FirstOrDefault(t => t.IsClass && t.IsPublic && t.GetInterfaces()
-					.Contains(intrfc) && !t.IsAbstract && types.Count(t1 => t1.GetInterfaces()
-					.Contains(intrfc)) == 1);
-				if (clss != null)
-				{
-					try
-					{
-						Container.Register(intrfc, clss, Lifestyle.Scoped);
-					}
-					catch { }
-				}
-			}
+			//foreach (Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))
+			//{
+			//	Type clss = types
+			//		.FirstOrDefault(t => t.IsClass && t.IsPublic && t.GetInterfaces()
+			//		.Contains(intrfc) && !t.IsAbstract && types.Count(t1 => t1.GetInterfaces()
+			//		.Contains(intrfc)) == 1);
+			//	if (clss != null)
+			//	{
+			//		try
+			//		{
+			//			Container.Register(intrfc, clss, Lifestyle.Scoped);
+			//		}
+			//		catch { }
+			//	}
+			//}
 		}
 	}
 }
