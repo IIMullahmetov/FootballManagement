@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,27 +67,43 @@
     <Compile Include="Implementations.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="IUnitOfWorkFactory.cs" />
     <Compile Include="Migrations\201803241243552_Init.cs" />
     <Compile Include="Migrations\201803241243552_Init.Designer.cs">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.cs" />
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.Designer.cs">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.cs" />
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.Designer.cs">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804151154240_Updating.cs" />
+    <Compile Include="Migrations\201804151154240_Updating.Designer.cs">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\LeagueTeam.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostItem.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories.cs" />
+    <Compile Include="SelectOptions.cs" />
     <Compile Include="Specification.cs" />
     <Compile Include="Models\Tourney.cs" />
+    <Compile Include="Specifications\CommentSpecifications.cs" />
+    <Compile Include="Specifications\MatchSpecifications.cs" />
+    <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -110,6 +127,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803241243552_Init.resx">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804092041477_ChangedPostStruct.resx">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804101932419_ChangedCommentsStruct.resx">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151154240_Updating.resx">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

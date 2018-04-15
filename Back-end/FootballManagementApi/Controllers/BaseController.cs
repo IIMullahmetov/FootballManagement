@@ -1,4 +1,5 @@
 ﻿using FootballManagementApi.DAL;
+using FootballManagementApi.DAL.Models;
 using FootballManagementApi.Responses;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,13 @@ namespace FootballManagementApi.Controllers
 		private IUnitOfWork _unitOfWork;
 
 		protected IUnitOfWork UnitOfWork => _unitOfWork;
-
+		
 		protected BaseController(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
 		}
 
-		protected IHttpActionResult Ok()
+		protected new IHttpActionResult Ok()
 		{
 			return base.Ok();
 		}
@@ -59,6 +60,12 @@ namespace FootballManagementApi.Controllers
 			}
 
 			return files;
+		}
+
+		//TODO Доделать 
+		protected Task<User> GetCurrentUserAsync()
+		{
+			return null;
 		}
 	}
 }
