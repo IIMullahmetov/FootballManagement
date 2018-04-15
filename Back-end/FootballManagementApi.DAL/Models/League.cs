@@ -10,6 +10,7 @@ namespace FootballManagementApi.DAL.Models
 		public League()
 		{
 			Matches = new HashSet<Match>();
+			Teams = new HashSet<LeagueTeam>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,5 +21,7 @@ namespace FootballManagementApi.DAL.Models
 		public DateTime StartDt { get; set; }
 
 		public virtual ICollection<Match> Matches { get; set; }
+
+		public virtual ICollection<LeagueTeam> Teams { get; set; }
 	}
 }

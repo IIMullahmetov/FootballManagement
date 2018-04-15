@@ -16,7 +16,9 @@ namespace FootballManagementApi.Responses
 	public class PagingResponse : ResponseBase
 	{
 		[JsonProperty("paging")]
-		public Paging Paging { get; set; }
+		public Paging Paging { get; private set; }
+
+		protected PagingResponse(Paging paging) => Paging = paging;
 	}
 
 	public class ErrorResponse : IHttpActionResult
@@ -25,13 +27,13 @@ namespace FootballManagementApi.Responses
 		private readonly string _reason;
 		private readonly HttpStatusCode _statusCode;
 
-		public ErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode,string reason)
+		public ErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, string reason)
 		{
 			_request = request;
 			_reason = reason;
 			_statusCode = statusCode;
 		}
-		
+
 		public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
 		{
 			HttpResponseMessage response = _request.CreateResponse(_statusCode, _reason);
@@ -39,17 +41,26 @@ namespace FootballManagementApi.Responses
 		}
 	}
 
-	public class Paging
+	public sealed class Paging
 	{
+		[JsonProperty("count")]
 		public int Count { get; private set; }
 
+		[JsonProperty("page")]
 		public int Page { get; private set; }
 
+		[JsonProperty("size")]
 		public int Size { get; private set; }
 
+		/// <summary>
+		/// Подсчет страниц будет выполнятся в конструкторе
+		/// </summary>
+		/// <param name="count">Количество результатов</param>
+		/// <param name="page">Номер страницы</param>
+		/// <param name="size">Количество элементов на странице</param>
 		public Paging(int count, int page, int size)
 		{
-			Count = count;
+			Count = count / size + 1;
 			Page = page;
 			Size = size;
 		}

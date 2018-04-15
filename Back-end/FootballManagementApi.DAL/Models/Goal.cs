@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FootballManagementApi.DAL.Models
@@ -7,6 +8,8 @@ namespace FootballManagementApi.DAL.Models
 	{
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
+
+		public DateTimeOffset GoalDt { get; set; }
 
 		public int MatchId { get; set; }
 

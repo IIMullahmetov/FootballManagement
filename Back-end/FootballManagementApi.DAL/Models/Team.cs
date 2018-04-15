@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,9 @@ namespace FootballManagementApi.DAL.Models
 			Players = new HashSet<Player>();
 			Tourneys = new HashSet<TourneyTeam>();
 			Leagues = new HashSet<LeagueTeam>();
+			Goals = new HashSet<Goal>();
+			HomeMathces = new HashSet<Match>();
+			GuestMatches = new HashSet<Match>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,10 +26,18 @@ namespace FootballManagementApi.DAL.Models
 
 		public string County { get; set; }
 
+		public Guid Logotype { get; set; }
+
 		public virtual ICollection<Player> Players { get; set; }
 
 		public virtual ICollection<TourneyTeam> Tourneys { get; set; }
 
 		public virtual ICollection<LeagueTeam> Leagues { get; set; }
+
+		public virtual ICollection<Goal> Goals { get; set; }
+
+		public virtual ICollection<Match> HomeMathces { get; set; }
+
+		public virtual ICollection<Match> GuestMatches { get; set; }
 	}
 }

@@ -9,8 +9,5 @@ namespace FootballManagementApi.Enums
 
 		[EnumMember(Value = "man")]
 		Man = 1,
-
-		[EnumMember(Value = "nobody")]
-		Nobody = 2
 	}
 }
