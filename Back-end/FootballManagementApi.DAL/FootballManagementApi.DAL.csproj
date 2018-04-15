@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.Designer.cs">
       <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804151154240_Updating.cs" />
+    <Compile Include="Migrations\201804151154240_Updating.Designer.cs">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Goal.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804101932419_ChangedCommentsStruct.resx">
       <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151154240_Updating.resx">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
