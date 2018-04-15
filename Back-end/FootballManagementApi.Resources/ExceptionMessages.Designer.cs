@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballManagementApi.MailSender.Resources {
+namespace FootballManagementApi.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace FootballManagementApi.MailSender.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Templates {
+    public class ExceptionMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Templates() {
+        internal ExceptionMessages() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FootballManagementApi.MailSender.Resources.Templates", typeof(Templates).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FootballManagementApi.Resources.ExceptionMessages", typeof(ExceptionMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace FootballManagementApi.MailSender.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,11 +61,29 @@ namespace FootballManagementApi.MailSender.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Blabla.
+        ///   Looks up a localized string similar to Comment with the specified identifier does not exist.
         /// </summary>
-        internal static string Registration {
+        public static string CommentNotFound {
             get {
-                return ResourceManager.GetString("Registration", resourceCulture);
+                return ResourceManager.GetString("CommentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match with the specified identifier does not exist.
+        /// </summary>
+        public static string MatchNotFound {
+            get {
+                return ResourceManager.GetString("MatchNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post with the specified identifier does not exist.
+        /// </summary>
+        public static string PostNotFound {
+            get {
+                return ResourceManager.GetString("PostNotFound", resourceCulture);
             }
         }
     }
