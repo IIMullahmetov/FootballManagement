@@ -1,0 +1,142 @@
+@import "base.less";
+
+/*  =========================     MAIN         =================*/
+
+main {
+	margin-top: 50px;	
+	margin-bottom: 50px;
+	
+
+	.f_team_logo {
+
+	}	
+
+	.gols_count {
+		font-size: 64px;
+		font-weight: bold;
+		text-align: center;
+	
+	}
+
+	.match_time {
+		color: @dark-gray;
+		text-align: center;
+	}
+
+	.match_info_block {
+		.defis {
+			margin-top: -30px;
+			text-align: center;
+			font-size: 64px;
+			font-weight: bold;
+			color: black;
+		}
+
+		.liga_name {
+			margin-top: 50px;
+			color: @dark-gray;
+			text-align: center;
+		}
+
+		.stadium_name {
+			color: @dark-gray;
+			text-align: center;
+			margin-top: -10px;
+		}
+	}
+	
+	li {
+		color: #114B99;
+	}
+
+	.match_stat_block {
+		border-top: 2px solid @dark-gray;	
+		padding-top: 	20px;
+		.match_tabs {
+
+			li {
+				background-color: black;
+				
+				margin: -1px;
+				
+				a {
+					color: white;
+					padding: 5px 25px;
+					padding-left: 25px;
+					padding-right: 25px;
+					border-radius: 0;
+				}
+
+				a:hover {
+					background-color: black;
+					color: white;
+				}
+
+			}
+
+			li:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+
+			li:last-child {
+				border-radius: 0 5px 5px 0;
+			}
+
+			li.active {
+				
+				a {
+					background-color: @dark-green;
+					color: white;
+				}
+			}
+			
+		}
+
+		#stat_table {
+			margin-top: 30px;
+			border: none;
+
+			thead, tr,td,th {
+				border: none;
+			}
+
+			thead {
+				tr {
+					th {
+						text-align: center;
+					}
+				}
+			}
+
+			tr {
+				td {
+					text-align: center;
+				}
+			}
+		}
+
+		#teams_table {
+			margin-top: 30px;
+			border: none;
+
+			thead, tr,td,th {
+				border: none;
+			}
+
+			thead {
+				tr {
+					th {
+						text-align: center;
+					}
+				}
+			}
+
+			tr {
+				td {
+					text-align: center;
+				}
+			}
+		}
+	}
+
+}
