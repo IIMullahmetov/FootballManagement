@@ -56,8 +56,8 @@ public class FeedFragment extends Fragment {
         newsAdapter = new NewsAdapter(context);
         //TODO подгрузка с сервера
         List<News> news = new ArrayList();
-        news.add(new News("url", "SAME TITLE", "TEXT TEST TEXT TEST"));
-        news.add(new News("url", "SAME TITLE 2", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "Делаем ставки, господа!", "TEXT TEST TEXT TEST"));
         newsAdapter.setmNewsList(news);
         rvNews.setAdapter(newsAdapter);
 

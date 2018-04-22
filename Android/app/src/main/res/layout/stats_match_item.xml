@@ -9,10 +9,9 @@
 
     <TextView
         android:id="@+id/goal_first_team"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:textSize="30sp"
@@ -23,10 +22,10 @@
 
     <TextView
         android:id="@+id/goal_second_team"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:textSize="30sp"
@@ -43,9 +42,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -56,7 +55,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="BULAT - NURIK"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_name_champshps"
@@ -65,7 +64,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="UNIVER"
-            android:textSize="15sp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/goal_second_team"
             app:layout_constraintTop_toBottomOf="@+id/tv_teams" />
