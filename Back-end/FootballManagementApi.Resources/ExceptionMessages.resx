@@ -120,6 +120,18 @@
   <data name="CommentNotFound" xml:space="preserve">
     <value>Comment with the specified identifier does not exist</value>
   </data>
+  <data name="EmailAlreadyUse" xml:space="preserve">
+    <value>Email already use</value>
+  </data>
+  <data name="InvalidEmailFormat" xml:space="preserve">
+    <value>Invalid email format</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Some message about invalid password</value>
+  </data>
+  <data name="InvalidRegistrationGuid" xml:space="preserve">
+    <value>Invalid registration guid</value>
+  </data>
   <data name="MatchNotFound" xml:space="preserve">
     <value>Match with the specified identifier does not exist</value>
   </data>

@@ -70,6 +70,42 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email already use.
+        /// </summary>
+        public static string EmailAlreadyUse {
+            get {
+                return ResourceManager.GetString("EmailAlreadyUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email format.
+        /// </summary>
+        public static string InvalidEmailFormat {
+            get {
+                return ResourceManager.GetString("InvalidEmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some message about invalid password.
+        /// </summary>
+        public static string InvalidPassword {
+            get {
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid registration guid.
+        /// </summary>
+        public static string InvalidRegistrationGuid {
+            get {
+                return ResourceManager.GetString("InvalidRegistrationGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match with the specified identifier does not exist.
         /// </summary>
         public static string MatchNotFound {

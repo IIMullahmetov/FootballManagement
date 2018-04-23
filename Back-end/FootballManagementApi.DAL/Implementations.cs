@@ -63,4 +63,9 @@ namespace FootballManagementApi.DAL.Implementations
 	{
 		internal FileRepository(DbContext context) : base(context) { }
 	}
+
+    internal class RegistrationRepository : GenericRepository<Registration>, IRegistrationRepository
+    {
+        internal RegistrationRepository(DbContext context) : base(context) { }
+    }
 }

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagementApi.Enums
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagementApi.Resources", "FootballManagementApi.Resources\FootballManagementApi.Resources.csproj", "{E7537669-784F-4039-B3F8-9C50A7D6AD4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagementApi.Services", "FootballManagementApi.Services\FootballManagementApi.Services.csproj", "{5FEAB473-E583-4EE0-A6B7-AF267D39A599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,12 @@ Global
 		{E7537669-784F-4039-B3F8-9C50A7D6AD4A}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{E7537669-784F-4039-B3F8-9C50A7D6AD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7537669-784F-4039-B3F8-9C50A7D6AD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

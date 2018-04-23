@@ -30,6 +30,8 @@ namespace FootballManagementApi.DAL
 
 		IFileRepository GetFileRepository();
 
+        IRegistrationRepository GetRegistrationRepository();
+
 		Task SaveChangesAsync();
 	}
 }

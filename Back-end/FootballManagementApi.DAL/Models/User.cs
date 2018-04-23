@@ -28,11 +28,15 @@ namespace FootballManagementApi.DAL.Models
 
 		public string LastName { get; set; }
 
+        public string Email { get; set; }
+
 		public byte[] Password { get; set; }
 
 		public byte[] Salt { get; set; }
 
 		public Guid? Image { get; set; }
+
+        public virtual Registration Registration { get; set; }
 
 		public virtual ICollection<Comment> Comments { get; set; }
 

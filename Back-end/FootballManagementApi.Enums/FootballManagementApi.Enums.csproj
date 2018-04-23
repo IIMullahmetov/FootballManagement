@@ -59,6 +59,8 @@
     <Compile Include="PostItemType.cs" />
     <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationStatus.cs" />
+    <Compile Include="RegistrationType.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="TourneyStatus.cs" />
     <Compile Include="TourneyTeamStatus.cs" />

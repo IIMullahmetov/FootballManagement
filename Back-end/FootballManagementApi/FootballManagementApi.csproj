@@ -139,6 +139,7 @@
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PostCommentController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\TourneyController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -182,6 +183,10 @@
       <Project>{8A2706FF-9768-40D1-8A56-CA0A493976AA}</Project>
       <Name>FootballManagementApi.Helpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.MailSender\FootballManagementApi.MailSender.csproj">
+      <Project>{E13D8B7A-5478-48B7-81EF-1E8703C8872F}</Project>
+      <Name>FootballManagementApi.MailSender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.Requests\FootballManagementApi.Requests.csproj">
       <Project>{D6D09122-D237-47FC-AC03-A66E40FE047C}</Project>
       <Name>FootballManagementApi.Requests</Name>
@@ -193,6 +198,10 @@
     <ProjectReference Include="..\FootballManagementApi.Responses\FootballManagementApi.Responses.csproj">
       <Project>{011B8BAB-5C1B-4931-88F2-8D1339AF4388}</Project>
       <Name>FootballManagementApi.Responses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.Services\FootballManagementApi.Services.csproj">
+      <Project>{5FEAB473-E583-4EE0-A6B7-AF267D39A599}</Project>
+      <Name>FootballManagementApi.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,8 @@
 ﻿using FootballManagementApi.DAL;
 using FootballManagementApi.FileStorage;
+using FootballManagementApi.MailSender;
+using FootballManagementApi.Services;
+using FootballManagementApi.Services.Implementations;
 using Microsoft.Owin;
 using Owin;
 using SimpleInjector;
@@ -39,6 +42,11 @@ namespace FootballManagementApi
 		{
 			Container.Register<IUnitOfWork, UnitOfWork<Context>>(lifestyle: Lifestyle.Scoped);
 			Container.Register<IFileManager, FileManager>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IRegistrationService, RegistrationService>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IEmailValidator, EmailValidator>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IPasswordValidator, PasswordValidator>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IMailSender, MailSender.MailSender>(lifestyle: Lifestyle.Scoped);
+
 			//IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
 
 			//foreach (Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))
