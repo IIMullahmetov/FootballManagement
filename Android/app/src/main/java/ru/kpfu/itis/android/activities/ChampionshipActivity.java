@@ -1,7 +1,8 @@
 package ru.kpfu.itis.android.activities;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,17 +12,27 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import org.w3c.dom.Text;
+
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.fragments.NewsChampionshipFragment;
+import ru.kpfu.itis.android.models.Championship;
 
-public class ChampionshipsActivity extends AppCompatActivity {
-
+public class ChampionshipActivity extends AppCompatActivity {
+    private AppBarLayout appBarLayout;
+    private ImageView imgToolbar;
+    private TextView tvNameChampionship;
+    private Toolbar toolbar;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -41,9 +52,23 @@ public class ChampionshipsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_championships);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        bind();
+        Championship championship = (Championship) getIntent().getSerializableExtra("CHAMPIONSHIP");
+//        appBarLayout.setBackgroundResource(R.drawable.uefa);
+        TextView text = new TextView(this);
+        text.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
+        text.setText("Турнир");
+        toolbar.addView(text);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Glide.with(ChampionshipActivity.this)
+                .load(R.drawable.uefa)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgToolbar);
+        tvNameChampionship.setText(championship.getName());
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -52,40 +77,14 @@ public class ChampionshipsActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_championships, menu);
-        return true;
+    private void bind(){
+        appBarLayout = findViewById(R.id.appbar);
+        imgToolbar = findViewById(R.id.imgToolbar);
+        tvNameChampionship = findViewById(R.id.tv_toolbar_name_championship);
+        toolbar = findViewById(R.id.toolbar);
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -133,15 +132,32 @@ public class ChampionshipsActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return NewsChampionshipFragment.newInstance(ChampionshipActivity.this);
+                case 1:
+                    return PlaceholderFragment.newInstance(position + 1);
+                case 2:
+                    return PlaceholderFragment.newInstance(position + 1);
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
