@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.activities.MatchActivity;
 import ru.kpfu.itis.android.adapters.MatchesAdapter;
+import ru.kpfu.itis.android.models.Goal;
 import ru.kpfu.itis.android.models.Match;
 
 /**
@@ -47,9 +50,20 @@ public class MatchesFragment extends Fragment {
         rvMatches.setLayoutManager(new LinearLayoutManager(context));
         matchesAdapter = new MatchesAdapter(context);
         List<Match> matches = new ArrayList<>();
-        matches.add(new Match("Tottanham", "Real", "2", "3", "Evro", "06.04.2018"));
-        matches.add(new Match("Tottanham", "PSG", "5", "0", "Evro", "06.04.2018"));
+        List<Goal> goals = new ArrayList<>();
+        goals.add(new Goal("NURIK", "TOLYA", "56'"));
+        goals.add(new Goal("NURIK", "TOLYA", "56'"));
+        goals.add(new Goal("NURIK", "TOLYA", "56'"));
+        matches.add(new Match("Tottanham", "Real", "2", "3", "Evro", "06.04.2018",
+                "Bulat Mot",goals,goals));
+        matches.add(new Match("Tottanham", "PSG", "5", "0", "Evro", "06.04.2018",
+                "Timerkhanov Timurzan",goals,goals));
         matchesAdapter.setMatchList(matches);
+        matchesAdapter.setMatchListener(match ->  {
+            Intent intent = new Intent(context, MatchActivity.class);
+            intent.putExtra("MATCH",match);
+            startActivity(intent);
+        });
         rvMatches.setAdapter(matchesAdapter);
 
     }
