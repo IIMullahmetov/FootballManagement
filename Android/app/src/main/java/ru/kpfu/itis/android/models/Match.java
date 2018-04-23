@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by hlopu on 08.04.2018.
@@ -13,14 +14,20 @@ public class Match implements Serializable {
     private String score2;
     private String nameChampionships;
     private String date;
+    private String referee;
+    private List<Goal> goalsTeam1;
+    private List<Goal> goalsTeam2;
 
-    public Match(String team1, String team2, String score1, String score2, String nameChampionships, String date) {
+    public Match(String team1, String team2, String score1, String score2, String nameChampionships, String date, String referee, List<Goal> goalsTeam1, List<Goal> goalsTeam2) {
         this.team1 = team1;
         this.team2 = team2;
         this.score1 = score1;
         this.score2 = score2;
         this.nameChampionships = nameChampionships;
         this.date = date;
+        this.referee = referee;
+        this.goalsTeam1 = goalsTeam1;
+        this.goalsTeam2 = goalsTeam2;
     }
 
     public String getDate() {
@@ -69,5 +76,29 @@ public class Match implements Serializable {
 
     public void setNameChampionships(String nameChampionships) {
         this.nameChampionships = nameChampionships;
+    }
+
+    public String getReferee() {
+        return referee;
+    }
+
+    public void setReferee(String referee) {
+        this.referee = referee;
+    }
+
+    public List<Goal> getGoalsTeam1() {
+        return goalsTeam1;
+    }
+
+    public void setGoalsTeam1(List<Goal> goalsTeam1) {
+        this.goalsTeam1 = goalsTeam1;
+    }
+
+    public List<Goal> getGoalsTeam2() {
+        return goalsTeam2;
+    }
+
+    public void setGoalsTeam2(List<Goal> goalsTeam2) {
+        this.goalsTeam2 = goalsTeam2;
     }
 }

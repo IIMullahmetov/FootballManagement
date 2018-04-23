@@ -19,6 +19,7 @@ import java.util.List;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.adapters.MatchesStatsAdapter;
 import ru.kpfu.itis.android.adapters.NewsAdapter;
+import ru.kpfu.itis.android.models.Goal;
 import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.News;
 
@@ -56,8 +57,8 @@ public class FeedFragment extends Fragment {
         newsAdapter = new NewsAdapter(context);
         //TODO подгрузка с сервера
         List<News> news = new ArrayList();
-        news.add(new News("url", "SAME TITLE", "TEXT TEST TEXT TEST"));
-        news.add(new News("url", "SAME TITLE 2", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "Делаем ставки, господа!", "TEXT TEST TEXT TEST"));
         newsAdapter.setmNewsList(news);
         rvNews.setAdapter(newsAdapter);
 
@@ -65,7 +66,11 @@ public class FeedFragment extends Fragment {
         matchesStatsAdapter = new MatchesStatsAdapter(context);
         //TODO подгрузка с сервера
         List<Match> matches = new ArrayList<>();
-        matches.add(new Match("Tottenham Hotspur", "Real Madrid", "2", "3", "European Champions Cup", "06.04.2018"));
+        List<Goal> goals = new ArrayList<>();
+        goals.add(new Goal("NURIK", "TOLYA", "56'"));
+        goals.add(new Goal("NURIK", "TOLYA", "56'"));
+        matches.add(new Match("Tottenham Hotspur", "Real Madrid", "2", "3", "European Champions Cup", "06.04.2018",
+                "Bulat Mot",goals,goals));
         matchesStatsAdapter.setMatchList(matches);
         rvMatches.setAdapter(matchesStatsAdapter);
 

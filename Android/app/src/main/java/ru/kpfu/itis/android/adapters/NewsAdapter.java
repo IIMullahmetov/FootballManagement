@@ -47,7 +47,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         final News news = mNewsList.get(position);
         Glide.with(context)
-                .load(news.getPhoto())
+                //TODO раскоментить когда с сервака будет приходить
+//                .load(news.getPhoto())
+                .load(R.drawable.real)
                 .apply(RequestOptions.fitCenterTransform())
                 .into(holder.imgNews);
         holder.tvTitleNews.setText(news.getTitle());

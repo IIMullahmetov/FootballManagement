@@ -6,10 +6,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    
+
     <string name="feed">Лента</string>
     <string name="all_news">Все новости</string>
     <string name="all_matchs">Все матчи</string>
     <string name="matches">Матчи</string>
     <string name="championships">Чемпионаты</string>
+    <string name="title_activity_match">MatchActivity</string>
+    <string name="title_activity_championships">ChampionshipsActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

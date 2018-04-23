@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.activities.MatchActivity;
 import ru.kpfu.itis.android.models.Match;
 
 /**
@@ -21,6 +23,7 @@ import ru.kpfu.itis.android.models.Match;
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesViewHolder> {
     private Context context;
     private List<Match> matchList;
+    private MatchListener matchListener;
 
     public MatchesAdapter(Context context) {
         this.context = context;
@@ -28,6 +31,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     }
 
     @NonNull
+
     @Override
     public MatchesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.match_item, parent, false);
@@ -41,6 +45,12 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         holder.tvNameTeam2.setText(match.getTeam2());
         holder.tvDate.setText(match.getDate());
         holder.tvNameChmpshps.setText(match.getNameChampionships());
+
+        holder.itemView.setOnClickListener(view -> {
+            if(matchListener!=null){
+                matchListener.onMatchClick(match);
+            }
+        });
     }
 
     @Override
@@ -50,6 +60,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
 
     public void setMatchList(List<Match> matchList) {
         this.matchList = matchList;
+    }
+
+    public void setMatchListener(MatchListener matchListener) {
+        this.matchListener = matchListener;
     }
 
     public class MatchesViewHolder extends RecyclerView.ViewHolder {
@@ -65,5 +79,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
             tvNameTeam2 = itemView.findViewById(R.id.match_team2);
             tvNameChmpshps = itemView.findViewById(R.id.name_championships);
         }
+    }
+    public interface MatchListener{
+        void onMatchClick(Match match);
     }
 }
