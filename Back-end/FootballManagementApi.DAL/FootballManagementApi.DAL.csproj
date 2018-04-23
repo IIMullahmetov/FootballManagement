@@ -101,6 +101,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostItem.cs" />
+    <Compile Include="Models\RefreshToken.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />

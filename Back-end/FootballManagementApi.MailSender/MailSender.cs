@@ -40,9 +40,9 @@ namespace FootballManagementApi.MailSender
                     {
                         await smtp.SendMailAsync(message);
                     }
-                    catch(Exception e)
+                    catch
                     {
-
+                        //TODO Attach Logger
                     }
                 }
             }

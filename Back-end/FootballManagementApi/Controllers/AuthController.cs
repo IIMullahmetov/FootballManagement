@@ -2,21 +2,32 @@
 using System.Web.Http;
 using FootballManagementApi.DAL;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
+using FootballManagementApi.Services;
 
 namespace FootballManagementApi.Controllers
 {
 	[RoutePrefix("auth")]
 	public class AuthController : BaseController
 	{
-		public AuthController(IUnitOfWork unitOfWork) : base(unitOfWork)
-		{
+        private ILoginService _loginService;
 
+        public AuthController(IUnitOfWork unitOfWork, ILoginService loginService) : base(unitOfWork)
+		{
+            _loginService = loginService;
 		}
 		
+        [HttpPost]
 		[Route("login")]
 		public async Task<IHttpActionResult> LoginAsync()
 		{
-			throw new ActionCannotBeExecutedException("");
+            return Ok();
 		}
-	}
+
+        [HttpPost]
+        [Route("refresh_token")]
+        public async Task<IHttpActionResult> RefreshTokenAsync()
+        {
+            return Ok();
+        }
+    }
 }

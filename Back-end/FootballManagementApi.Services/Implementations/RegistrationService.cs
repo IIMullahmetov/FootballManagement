@@ -53,7 +53,7 @@ namespace FootballManagementApi.Services.Implementations
                     Email = email
                 };
 
-                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = "sdsda" });
+                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = registration.Guid.ToString() });
                 return registration;
             }
 

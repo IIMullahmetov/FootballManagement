@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="IEmailValidator.cs" />
     <Compile Include="Implementations\EmailValidator.cs" />
+    <Compile Include="Implementations\LoginService.cs" />
     <Compile Include="Implementations\PasswordValidator.cs" />
     <Compile Include="Implementations\RegistrationService.cs" />
     <Compile Include="IPasswordValidator.cs" />
     <Compile Include="IRegistrationService.cs" />
+    <Compile Include="ILoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
