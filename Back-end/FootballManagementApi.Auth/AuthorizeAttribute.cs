@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using FootballManagementApi.Enums;
+using System.Net.Http;
+using Microsoft.Owin;
 
 namespace FootballManagementApi.Auth
 {
-    public class AuthorizeAttribute : ActionFilterAttribute
+	public class AuthorizeAttribute : ActionFilterAttribute
     {
         private Role? _role;
 
@@ -16,10 +18,12 @@ namespace FootballManagementApi.Auth
         {
             _role = role;
         }
+	
+		public override async Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
+		{
+			IOwinContext context = actionContext.Request.GetOwinContext();
 
-        public override async Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
-        {
-            actionContext.RequestContext.GetOwinContext();
+			
         }
         
     }
