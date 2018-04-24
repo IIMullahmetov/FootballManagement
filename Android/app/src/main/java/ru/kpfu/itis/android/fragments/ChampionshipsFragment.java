@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,8 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.activities.ChampionshipActivity;
 import ru.kpfu.itis.android.adapters.ChampionshipAdapter;
 import ru.kpfu.itis.android.models.Championship;
+import ru.kpfu.itis.android.models.News;
 
 /**
  * Created by hlopu on 08.04.2018.
@@ -47,10 +50,18 @@ public class ChampionshipsFragment extends Fragment{
         rvChampionships.setLayoutManager(new LinearLayoutManager(context));
         championshipAdapter = new ChampionshipAdapter(context);
         List<Championship> chmpshps = new ArrayList<>();
-        chmpshps.add(new Championship("РФПЛ"));
-        chmpshps.add(new Championship("UEFA"));
-        chmpshps.add(new Championship("Evro"));
+        List<News> news = new ArrayList<>();
+        news.add(new News("url", "Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST"));
+        news.add(new News("url", "Делаем ставки, господа!", "TEXT TEST TEXT TEST"));
+        chmpshps.add(new Championship("РФПЛ", news));
+        chmpshps.add(new Championship("UEFA", news));
+        chmpshps.add(new Championship("Evro", news));
         championshipAdapter.setChampionships(chmpshps);
+        championshipAdapter.setChampionshipListener(championship -> {
+            Intent intent = new Intent(context, ChampionshipActivity.class);
+            intent.putExtra("CHAMPIONSHIP", championship);
+            startActivity(intent);
+        });
         rvChampionships.setAdapter(championshipAdapter);
 
     }

@@ -21,6 +21,7 @@ import ru.kpfu.itis.android.models.Championship;
 public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapter.ChampionshipViewHolder> {
     private Context context;
     private List<Championship> championships;
+    private ChampionshipListener championshipListener;
 
     public ChampionshipAdapter(Context context) {
         this.context = context;
@@ -38,6 +39,9 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
     public void onBindViewHolder(@NonNull ChampionshipViewHolder holder, int position) {
         final Championship championship = championships.get(position);
         holder.tvName.setText(championship.getName());
+        holder.itemView.setOnClickListener(v -> {
+            championshipListener.onClickListener(championship);
+        });
     }
 
     @Override
@@ -57,5 +61,13 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
 
     public void setChampionships(List<Championship> championships) {
         this.championships = championships;
+    }
+
+    public interface ChampionshipListener {
+        void onClickListener(Championship championship);
+    }
+
+    public void setChampionshipListener(ChampionshipListener championshipListener) {
+        this.championshipListener = championshipListener;
     }
 }
