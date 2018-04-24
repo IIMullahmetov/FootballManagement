@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.activities;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import org.w3c.dom.Text;
 
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.fragments.NewsChampionshipFragment;
+import ru.kpfu.itis.android.fragments.StatsChampionshipFragment;
 import ru.kpfu.itis.android.models.Championship;
 
 public class ChampionshipActivity extends AppCompatActivity {
@@ -79,12 +81,13 @@ public class ChampionshipActivity extends AppCompatActivity {
 
     }
 
-    private void bind(){
+    private void bind() {
         appBarLayout = findViewById(R.id.appbar);
         imgToolbar = findViewById(R.id.imgToolbar);
         tvNameChampionship = findViewById(R.id.tv_toolbar_name_championship);
         toolbar = findViewById(R.id.toolbar);
     }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -125,6 +128,9 @@ public class ChampionshipActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private int COUNT_ITEMS = 3;
+        private String tabTitles[] = new String[] { "Лента", "Таблица", "Статистика" };
+
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -138,15 +144,21 @@ public class ChampionshipActivity extends AppCompatActivity {
                 case 1:
                     return PlaceholderFragment.newInstance(position + 1);
                 case 2:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return StatsChampionshipFragment.newInstansce(ChampionshipActivity.this);
                 default:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return NewsChampionshipFragment.newInstance(ChampionshipActivity.this);
             }
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return COUNT_ITEMS;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
         }
     }
 
