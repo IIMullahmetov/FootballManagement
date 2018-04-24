@@ -20,6 +20,11 @@
             android:name=".activities.SettingsActivity"
             android:parentActivityName=".activities.MainActivity" />
         <activity android:name=".activities.MainActivity" />
+
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+
         <activity
             android:name=".activities.MatchActivity"
             android:label="@string/title_activity_match"
