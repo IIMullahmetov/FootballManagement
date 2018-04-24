@@ -23,8 +23,9 @@
 
 
         <ImageView
+
             android:layout_gravity="top"
-            android:id="@+id/profile_photo"
+            android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_avatar" />
