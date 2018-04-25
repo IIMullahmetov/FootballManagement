@@ -20,7 +20,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress>
     </Use64BitIISExpress>
-    <IISExpressSSLPort>44326</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -194,9 +195,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="client_secrets.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\PublishProfiles\FootBallManagement - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -289,7 +287,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60593</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44326/</IISUrl>
+          <IISUrl>http://localhost:60593/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -4,23 +4,27 @@ using Newtonsoft.Json;
 
 namespace FootballManagementApi.RegistrationRequests
 {
-    public class RegisterRequest
-    {
-        [JsonProperty("email")]
-        [JsonRequired]
-        public string Email { get; set; }
+	public class RegisterRequest
+	{
+		[JsonProperty("email")]
+		[JsonRequired]
+		public string Email { get; set; }
 
-        [JsonProperty("firstName")]
-        [JsonRequired]
-        public string FirstName { get; set; }
+		[JsonProperty("firstName")]
+		[JsonRequired]
+		public string FirstName { get; set; }
 
-        [JsonProperty("lastName")]
-        [JsonRequired]
-        public string LastName { get; set; }
+		[JsonProperty("lastName")]
+		[JsonRequired]
+		public string LastName { get; set; }
 
-        [JsonProperty("password")]
-        [JsonRequired]
-        public string Password { get; set; }
+		[JsonProperty("password")]
+		[JsonRequired]
+		public string Password { get; set; }
+
+		[JsonProperty("confirmPassword")]
+		[JsonRequired]
+		public string ConfirmPassword { get; set; }
 
         [JsonProperty("birthDay")]
         [JsonRequired]

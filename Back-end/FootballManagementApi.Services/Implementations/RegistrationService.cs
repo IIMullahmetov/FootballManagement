@@ -55,17 +55,15 @@ namespace FootballManagementApi.Services.Implementations
                     LastName = lastName,
                     Role = Role.User,
                     Gender = gender,
-                    //Registration = registration,
+                    Registration = registration,
                     Status = UserStatus.Pending,
                     Email = email,
                     Salt = salt,
                     Password = bytePassword
                 };
-                registration.User = user;
-              
-
+	
                 //TODO отпралять сверстанную страницу
-                //await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
+                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
                 return registration;
             }
 

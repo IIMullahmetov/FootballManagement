@@ -33,7 +33,8 @@ namespace FootballManagementApi.Controllers
             return Ok();
         }
 
-        [HttpPost]
+		//TODO Change to post
+        [HttpGet]
         [Route("confirm")]
         public async Task<IHttpActionResult> ConfirmAsync([FromUri]Guid guid)
         {
