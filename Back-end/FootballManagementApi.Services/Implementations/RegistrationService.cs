@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
@@ -16,6 +17,12 @@ namespace FootballManagementApi.Services.Implementations
         private IPasswordValidator _passwordValidator;
         private IUnitOfWork _unitOfWork;
         private IMailSender _mailSender;
+        private static readonly string _currentHost;
+
+        static RegistrationService()
+        {
+            _currentHost = ConfigurationManager.AppSettings["Host"];
+        }
 
         public RegistrationService(IEmailValidator emailValidator, IPasswordValidator passwordValidator, IUnitOfWork unitOfWork, IMailSender mailSender)
         {
@@ -48,12 +55,17 @@ namespace FootballManagementApi.Services.Implementations
                     LastName = lastName,
                     Role = Role.User,
                     Gender = gender,
-                    Registration = registration,
+                    //Registration = registration,
                     Status = UserStatus.Pending,
-                    Email = email
+                    Email = email,
+                    Salt = salt,
+                    Password = bytePassword
                 };
+                registration.User = user;
+              
 
-                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = registration.Guid.ToString() });
+                //TODO отпралять сверстанную страницу
+                //await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
                 return registration;
             }
 
@@ -62,7 +74,7 @@ namespace FootballManagementApi.Services.Implementations
 
         public async Task<User> ConfirmAsync(Guid guid)
         {
-            Registration registration = await _unitOfWork.GetRegistrationRepository().SelectFirstOrDefaultAsync(r => r.Guid == guid)
+            Registration registration = await _unitOfWork.GetRegistrationRepository().SelectFirstOrDefaultAsync(r => r.Guid == guid && r.Status == RegistrationStatus.Pending)
                 ?? throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidRegistrationGuid);
 
             registration.User.Status = UserStatus.Active;

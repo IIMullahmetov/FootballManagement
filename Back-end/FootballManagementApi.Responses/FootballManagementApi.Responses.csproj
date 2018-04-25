@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthResponse.cs" />
     <Compile Include="MatchResponses.cs" />
     <Compile Include="PostCommentResponses.cs" />
     <Compile Include="PostResponses.cs" />

@@ -8,9 +8,9 @@ namespace FootballManagementApi
 {
     public class AuthOption : IAuthOption
     {
-        public int RefreshTokenLife => 100;
+        public int RefreshTokenLife => 100000;
 
-        public int TokenLife => 100;
+        public int TokenLife => 100000;
 
         public string Secret => "Somefuckinsecreteptablya";
     }

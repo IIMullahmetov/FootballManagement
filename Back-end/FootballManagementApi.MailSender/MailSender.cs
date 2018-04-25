@@ -26,9 +26,9 @@ namespace FootballManagementApi.MailSender
 
             using (SmtpClient smtp = new SmtpClient(host, port))
             {
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(_login, _password);
-                smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential(_login, _password);
+                //smtp.EnableSsl = true;
                 foreach (string email in letter.Email)
                 {
                     MailMessage message = new MailMessage(new MailAddress(_from), new MailAddress(email))
@@ -42,7 +42,7 @@ namespace FootballManagementApi.MailSender
                     }
                     catch
                     {
-                        //TODO Attach Logger
+                        //TODO  Delete 
                     }
                 }
             }

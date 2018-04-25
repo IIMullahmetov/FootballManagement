@@ -1,10 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using FootballManagementApi.Auth;
 using FootballManagementApi.AuthRequests;
+using FootballManagementApi.AuthResponse;
 using FootballManagementApi.DAL;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Services;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Util.Store;
 
 namespace FootballManagementApi.Controllers
 {
@@ -20,24 +25,29 @@ namespace FootballManagementApi.Controllers
 		
         [HttpPost]
 		[Route("login")]
-		public async Task<IHttpActionResult> LoginAsync()
+		public async Task<IHttpActionResult> LoginAsync([FromBody]LoginRequest request)
 		{
-            IAuthOption option = new AuthOption();
-            Jwt jwt = new Jwt
+            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(request.Email, request.Password);
+            LoginResposne response = new LoginResposne
             {
-                Email = "imullahmetov@gmail.com",
-                Id = 1,
-                ExpireAt = 100,
-                Role = Enums.Role.User,
-                LoginType = Enums.LoginType.Email
+                AccessToken = accessToken,
+                RefreshToken = guid
             };
-            string t = JsonWebToken.Encode(jwt, option.Secret, JwtHashAlgorithm.RS256);
-            return Ok(t);
+            await UnitOfWork.SaveChangesAsync();
+            return Ok(response);
 		}
 
+        //TODO Доделать
         [HttpPost]
         [Route("refresh_token")]
         public async Task<IHttpActionResult> RefreshTokenAsync()
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("google")]
+        public async Task<IHttpActionResult> GoogleAsync()
         {
             return Ok();
         }

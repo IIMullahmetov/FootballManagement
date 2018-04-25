@@ -55,7 +55,13 @@ namespace FootballManagementApi.DAL
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<User>());
 			modelBuilder.Entity<User>().HasMany(u => u.Posts).WithRequired(p => p.User).WillCascadeOnDelete(false);
 			modelBuilder.Entity<User>().HasMany(u => u.Comments).WithRequired(c => c.User).WillCascadeOnDelete(false);
-            modelBuilder.Entity<User>().HasRequired(u => u.Registration).WithOptional(r => r.User).WillCascadeOnDelete(false);
-		}
+            //modelBuilder.Entity<User>().HasOptional(u => u.Registration).WithOptionalPrincipal(r => r.User);
+            
+
+            modelBuilder.Configurations.Add(new EntityTypeConfiguration<Registration>());
+            modelBuilder.Entity<Registration>().HasOptional(u => u.User).WithOptionalDependent(r => r.Registration);
+            //modelBuilder.Entity<Registration>().HasRequired(r => r.User).WithOptional()
+            //modelBuilder.Entity<Registration>().HasRequired(r => r.User).WithOptional(u => u.Registration);
+        }
 	}
 }

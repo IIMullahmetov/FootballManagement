@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FootballManagementApi.Auth\FootballManagementApi.Auth.csproj">
+      <Project>{C128DD7F-0204-46EC-BAE7-D6E14884DF38}</Project>
+      <Name>FootballManagementApi.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.DAL\FootballManagementApi.DAL.csproj">
       <Project>{CFAB5239-9D5E-4A51-95D0-0504E73FC634}</Project>
       <Name>FootballManagementApi.DAL</Name>
