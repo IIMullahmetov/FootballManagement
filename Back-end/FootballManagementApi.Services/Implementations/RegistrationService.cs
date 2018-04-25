@@ -61,7 +61,8 @@ namespace FootballManagementApi.Services.Implementations
                     Salt = salt,
                     Password = bytePassword
                 };
-	
+
+				_unitOfWork.GetUserRepository().Insert(user);
                 //TODO отпралять сверстанную страницу
                 await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
                 return registration;
