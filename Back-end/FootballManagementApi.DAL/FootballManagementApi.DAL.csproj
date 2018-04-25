@@ -87,6 +87,18 @@
     <Compile Include="Migrations\201804151852485_AddedFiles.Designer.cs">
       <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804230942287_ExtendingUserAddedRegistration.cs" />
+    <Compile Include="Migrations\201804230942287_ExtendingUserAddedRegistration.Designer.cs">
+      <DependentUpon>201804230942287_ExtendingUserAddedRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250953307_SomeUpdating.cs" />
+    <Compile Include="Migrations\201804250953307_SomeUpdating.Designer.cs">
+      <DependentUpon>201804250953307_SomeUpdating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.cs" />
+    <Compile Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.Designer.cs">
+      <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -97,6 +109,8 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostItem.cs" />
+    <Compile Include="Models\RefreshToken.cs" />
+    <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />
     <Compile Include="Models\User.cs" />
@@ -144,6 +158,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804151852485_AddedFiles.resx">
       <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804230942287_ExtendingUserAddedRegistration.resx">
+      <DependentUpon>201804230942287_ExtendingUserAddedRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250953307_SomeUpdating.resx">
+      <DependentUpon>201804250953307_SomeUpdating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.resx">
+      <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

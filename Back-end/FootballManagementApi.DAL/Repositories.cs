@@ -2,27 +2,29 @@
 
 namespace FootballManagementApi.DAL.Repositories
 {
-	public interface IUserRepository : IGenericRepository<User> { }
+    public interface IUserRepository : IGenericRepository<User> { }
 
-	public interface ICommentRepository : IGenericRepository<Comment> { }
+    public interface ICommentRepository : IGenericRepository<Comment> { }
 
-	public interface IGoalRepository : IGenericRepository<Goal> { }
+    public interface IGoalRepository : IGenericRepository<Goal> { }
 
-	public interface ILeagueRepository : IGenericRepository<League> { }
+    public interface ILeagueRepository : IGenericRepository<League> { }
 
-	public interface ILeagueTeamRepository : IGenericRepository<LeagueTeam> { }
+    public interface ILeagueTeamRepository : IGenericRepository<LeagueTeam> { }
 
-	public interface IMatchRepository : IGenericRepository<Match> { }
+    public interface IMatchRepository : IGenericRepository<Match> { }
 
-	public interface IPlayerRepository : IGenericRepository<Player> { }
+    public interface IPlayerRepository : IGenericRepository<Player> { }
 
-	public interface IPostRepository : IGenericRepository<Post> { }
+    public interface IPostRepository : IGenericRepository<Post> { }
 
-	public interface ITeamRepository : IGenericRepository<Team> { }
+    public interface ITeamRepository : IGenericRepository<Team> { }
 
-	public interface ITourneyRepository : IGenericRepository<Tourney> { }
+    public interface ITourneyRepository : IGenericRepository<Tourney> { }
 
-	public interface ITourneyTeamRepository : IGenericRepository<TourneyTeam> { }
+    public interface ITourneyTeamRepository : IGenericRepository<TourneyTeam> { }
 
-	public interface IFileRepository : IGenericRepository<File> { }
+    public interface IFileRepository : IGenericRepository<File> { }
+
+    public interface IRegistrationRepository : IGenericRepository<Registration> { }
 }

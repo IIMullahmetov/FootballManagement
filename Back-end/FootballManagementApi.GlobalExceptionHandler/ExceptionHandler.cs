@@ -21,7 +21,7 @@ namespace FootballManagementApi.GlobalExceptionHandler
 			if (context.Exception is ActionForbiddenException)
 			{
 				ActionCannotBeExecutedException exception = context.Exception as ActionCannotBeExecutedException;
-				context.Result = new ErrorResponse(request: context.Request, statusCode: HttpStatusCode.Forbidden, reason: exception.Message);
+				context.Result = new ErrorResponse(request: context.Request, statusCode: HttpStatusCode.Forbidden, reason: exception?.Message);
 				return context.Result.ExecuteAsync(cancellationToken);
 			}
 
