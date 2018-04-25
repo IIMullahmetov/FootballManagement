@@ -28,6 +28,7 @@ import org.w3c.dom.Text;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.fragments.NewsChampionshipFragment;
 import ru.kpfu.itis.android.fragments.StatsChampionshipFragment;
+import ru.kpfu.itis.android.fragments.TableChampionshipFragment;
 import ru.kpfu.itis.android.models.Championship;
 
 public class ChampionshipActivity extends AppCompatActivity {
@@ -142,7 +143,7 @@ public class ChampionshipActivity extends AppCompatActivity {
                 case 0:
                     return NewsChampionshipFragment.newInstance(ChampionshipActivity.this);
                 case 1:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return TableChampionshipFragment.newInstance(ChampionshipActivity.this);
                 case 2:
                     return StatsChampionshipFragment.newInstansce(ChampionshipActivity.this);
                 default:
