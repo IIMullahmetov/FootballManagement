@@ -1,4 +1,5 @@
-﻿using FootballManagementApi.DAL;
+﻿using FootballManagementApi.Auth;
+using FootballManagementApi.DAL;
 using FootballManagementApi.FileStorage;
 using FootballManagementApi.MailSender;
 using FootballManagementApi.Services;
@@ -35,6 +36,7 @@ namespace FootballManagementApi
 			SwaggerConfig.Register(configuration);
 			Container.RegisterWebApiControllers(configuration);
 			configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container);
+            app.Use<AuthMiddleware>(new AuthManager(new AuthOption()));
 			app.UseWebApi(configuration);
 		}
 
@@ -46,6 +48,8 @@ namespace FootballManagementApi
             Container.Register<IEmailValidator, EmailValidator>(lifestyle: Lifestyle.Scoped);
             Container.Register<IPasswordValidator, PasswordValidator>(lifestyle: Lifestyle.Scoped);
             Container.Register<IMailSender, MailSender.MailSender>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IAuthOption, AuthOption>(lifestyle: Lifestyle.Singleton);
+            Container.Register<ILoginService, LoginService>(lifestyle: Lifestyle.Scoped);
 
 			//IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
 

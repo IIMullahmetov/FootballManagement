@@ -16,6 +16,7 @@ using FootballManagementApi.Responses;
 namespace FootballManagementApi.Controllers
 {
 	[RoutePrefix("post")]
+    [Auth.Authorize]
 	public class PostController : BaseController
 	{
 		public PostController(IUnitOfWork unitOfWork) : base(unitOfWork)

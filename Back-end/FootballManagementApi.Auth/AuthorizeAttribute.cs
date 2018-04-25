@@ -23,8 +23,15 @@ namespace FootballManagementApi.Auth
 		{
 			IOwinContext context = actionContext.Request.GetOwinContext();
 
-			
+            Principal principal = context.Request.User as Principal;
+
+            if (principal == null)
+            {
+                actionContext.Response = new HttpResponseMessage
+                {
+                    StatusCode = System.Net.HttpStatusCode.Unauthorized,
+                };
+            }
         }
-        
     }
 }

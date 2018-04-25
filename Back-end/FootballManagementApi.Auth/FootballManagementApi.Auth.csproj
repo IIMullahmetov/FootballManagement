@@ -59,6 +59,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.2.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -78,10 +81,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthOptions.cs" />
+    <Compile Include="AuthManager.cs" />
+    <Compile Include="AuthMiddleware.cs" />
     <Compile Include="AuthorizeAttribute.cs" />
+    <Compile Include="IAuthManager.cs" />
+    <Compile Include="IAuthOption.cs" />
+    <Compile Include="Identity.cs" />
     <Compile Include="IIdentity.cs" />
     <Compile Include="IPrincipal.cs" />
+    <Compile Include="JsonWebToken.cs" />
+    <Compile Include="Jwt.cs" />
+    <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

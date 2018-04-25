@@ -6,6 +6,8 @@ namespace FootballManagementApi.Auth
     {
         int Id { get; set; }
 
+        string Email { get; set; }
+
         Role Role { get; set; }        
     }
 }
