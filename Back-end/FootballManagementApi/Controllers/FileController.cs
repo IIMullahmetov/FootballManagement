@@ -28,7 +28,7 @@ namespace FootballManagementApi.Controllers
 		[Route("upload")]
 		public async Task<IHttpActionResult> UploadFilesAsync()
 		{
-			User user = await GetCurrentUserAsync(); //?? throw new ActionForbiddenException();
+			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
 			Dictionary<string, byte[]> files = await ReadAsMultipartAsync();
 			IFileRepository repo = UnitOfWork.GetFileRepository();
 			foreach (KeyValuePair<string, byte[]> keyValuePair in files)
