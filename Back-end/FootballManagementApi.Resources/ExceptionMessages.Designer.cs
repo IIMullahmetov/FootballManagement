@@ -79,6 +79,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It is forbidden to change the email.
+        /// </summary>
+        public static string ForbiddenToChangeEmail {
+            get {
+                return ResourceManager.GetString("ForbiddenToChangeEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email format.
         /// </summary>
         public static string InvalidEmailFormat {
@@ -111,6 +120,15 @@ namespace FootballManagementApi.Resources {
         public static string MatchNotFound {
             get {
                 return ResourceManager.GetString("MatchNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords do not match.
+        /// </summary>
+        public static string PasswordsNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordsNotMatch", resourceCulture);
             }
         }
         

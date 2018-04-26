@@ -12,10 +12,5 @@ namespace FootballManagementApi.Enums
 
 		[EnumMember(Value = "finished")]
 		Finished = 2,
-
-		//TODO something
-		//[EnumMember(Value = "timeout")]
-		//Timeout = 3,
-
 	}
 }

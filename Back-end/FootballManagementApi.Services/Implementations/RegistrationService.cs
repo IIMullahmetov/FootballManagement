@@ -17,6 +17,7 @@ namespace FootballManagementApi.Services.Implementations
         private IPasswordValidator _passwordValidator;
         private IUnitOfWork _unitOfWork;
         private IMailSender _mailSender;
+        private IPasswordSetter _passwordSetter;
         private static readonly string _currentHost;
 
         static RegistrationService()
@@ -24,12 +25,13 @@ namespace FootballManagementApi.Services.Implementations
             _currentHost = ConfigurationManager.AppSettings["Host"];
         }
 
-        public RegistrationService(IEmailValidator emailValidator, IPasswordValidator passwordValidator, IUnitOfWork unitOfWork, IMailSender mailSender)
+        public RegistrationService(IEmailValidator emailValidator, IPasswordValidator passwordValidator, IUnitOfWork unitOfWork, IMailSender mailSender, IPasswordSetter passwordSetter)
         {
             _emailValidator = emailValidator;
             _passwordValidator = passwordValidator;
             _unitOfWork = unitOfWork;
             _mailSender = mailSender;
+            _passwordSetter = passwordSetter;
         }
 
         public async Task<Registration> RegisterAsync(RegistrationType registrationType, string email = null, string password = null, string firstName = null,

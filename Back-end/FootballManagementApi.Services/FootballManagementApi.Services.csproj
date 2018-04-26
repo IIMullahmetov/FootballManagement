@@ -43,10 +43,14 @@
   <ItemGroup>
     <Compile Include="IEmailValidator.cs" />
     <Compile Include="Implementations\EmailValidator.cs" />
+    <Compile Include="Implementations\PasswordSetter.cs" />
+    <Compile Include="Implementations\ProfileService.cs" />
     <Compile Include="Implementations\LoginService.cs" />
     <Compile Include="Implementations\PasswordValidator.cs" />
     <Compile Include="Implementations\RegistrationService.cs" />
+    <Compile Include="IPasswordSetter.cs" />
     <Compile Include="IPasswordValidator.cs" />
+    <Compile Include="IProfileService.cs" />
     <Compile Include="IRegistrationService.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +67,10 @@
     <ProjectReference Include="..\FootballManagementApi.Enums\FootballManagementApi.Enums.csproj">
       <Project>{59072831-8E9A-491C-AD60-64984B80026C}</Project>
       <Name>FootballManagementApi.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootballManagementApi.FileStorage\FootballManagementApi.FileStorage.csproj">
+      <Project>{70C6E548-6887-4C14-9FE5-5940ABFE3309}</Project>
+      <Name>FootballManagementApi.FileStorage</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootballManagementApi.GlobalExceptionHandler\FootballManagementApi.GlobalExceptionHandler.csproj">
       <Project>{BA0B8DCD-CC38-4923-835D-FEAD7451F448}</Project>
