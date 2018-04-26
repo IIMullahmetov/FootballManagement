@@ -37,6 +37,8 @@ namespace FootballManagementApi.DAL.Models
 
 		public Guid? Image { get; set; }
 
+        public string GoogleToken { get; set; }
+
         public virtual Registration Registration { get; set; }
 
 		public virtual ICollection<Comment> Comments { get; set; }
