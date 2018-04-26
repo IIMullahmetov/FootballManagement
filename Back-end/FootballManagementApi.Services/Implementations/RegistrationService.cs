@@ -37,18 +37,20 @@ namespace FootballManagementApi.Services.Implementations
         {
             Registration registration = null;
 
+            registration = new Registration
+            {
+                CreateDt = DateTimeOffset.Now,
+                Guid = Guid.NewGuid(),
+                Status = RegistrationStatus.Pending,
+                Type = registrationType
+            };
+
             if (registrationType == RegistrationType.Email)
             {
                 //TODO Реализовать отдельно в методе и проверить валидность всех входящих параметров
                 byte[] salt = PasswordHelper.GenerateSalt();
                 byte[] bytePassword = PasswordHelper.HashPassword(password, salt);
 
-                registration = new Registration
-                {
-                    CreateDt = DateTimeOffset.Now,
-                    Guid = Guid.NewGuid(),
-                    Status = RegistrationStatus.Pending
-                };
                 User user = new User
                 {
                     FirstName = firstName,
@@ -65,7 +67,26 @@ namespace FootballManagementApi.Services.Implementations
 				_unitOfWork.GetUserRepository().Insert(user);
                 //TODO отпралять сверстанную страницу
                 await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
-                return registration;
+            }
+
+            if (registrationType == RegistrationType.Google)
+            {
+                //TODO Реализовать отдельно в методе и проверить валидность всех входящих параметров
+
+                User user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Role = Role.User,
+                    Gender = gender,
+                    Registration = registration,
+                    Status = UserStatus.Pending,
+                    Email = email,
+                };
+
+                _unitOfWork.GetUserRepository().Insert(user);
+                //TODO отпралять сверстанную страницу
+                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" + registration.Guid });
             }
 
             return registration;

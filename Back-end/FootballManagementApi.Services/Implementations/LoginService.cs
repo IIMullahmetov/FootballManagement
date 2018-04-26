@@ -23,27 +23,6 @@ namespace FootballManagementApi.Services.Implementations
             _authOption = authOption;
         }
 
-        public async Task<(string accessToken, Guid guid)> LoginAsync(string email, string password)
-        {
-            ValidateData(email, password);
-            User user = await _unitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == email && u.Status == UserStatus.Active) ?? throw new ActionForbiddenException();
-            byte[] pass = PasswordHelper.HashPassword(password, user.Salt);
-
-            if (user.Password.SequenceEqual(pass))
-            {
-                string jwt = GetJwt(user, LoginType.Email);
-                RefreshToken refreshToken = new RefreshToken
-                {
-                    ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.RefreshTokenLife),
-                    CreateDt = DateTimeOffset.Now,
-                    User = user,
-                    Guid = Guid.NewGuid()
-                };
-                return (jwt, refreshToken.Guid);
-            }
-            throw new ActionForbiddenException();
-        }
-
         public async Task<(string accessToken, Guid guid)> LoginAsync(LoginType loginType, string email, string password = null)
         {
             ValidateData(email, password);

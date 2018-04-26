@@ -33,7 +33,7 @@ namespace FootballManagementApi.Controllers
 		[Route("login")]
 		public async Task<IHttpActionResult> LoginAsync([FromBody]LoginRequest request)
 		{
-            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(request.Email, request.Password);
+            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(LoginType.Email ,request.Email, request.Password);
             LoginResposne response = new LoginResposne
             {
                 AccessToken = accessToken,
@@ -62,13 +62,13 @@ namespace FootballManagementApi.Controllers
                 Registration registration = await _registrationService.RegisterAsync(RegistrationType.Google, request.Email, null, request.FirstName, request.LastName, request.BirthDay, request.Gender);
                 user = registration.User;
             }
-            else if (user.Password != null)
+            else if (user.Registration.Type.Equals(RegistrationType.Email))
                 throw new ActionCannotBeExecutedException(ExceptionMessages.WrongRegistrationType);    
 
             if (!user.GoogleToken.Equals(request.GoogleToken))
                 user.GoogleToken = request.GoogleToken;
 
-            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(LoginType.Google, request.Email, null);
+            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(LoginType.Google, request.Email);
             LoginResposne response = new LoginResposne
             {
                 AccessToken = accessToken,
