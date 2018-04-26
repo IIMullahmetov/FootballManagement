@@ -38,7 +38,7 @@ namespace FootballManagementApi.Services.Implementations
 
         public async Task ChangeImageAsync(User user, byte[] image)
         {
-            //TODO Change messag
+            //TODO Change message
             if (image == null) throw new ActionCannotBeExecutedException("HZ");
 
             Guid guid = Guid.NewGuid();

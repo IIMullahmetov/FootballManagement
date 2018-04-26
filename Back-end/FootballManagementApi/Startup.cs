@@ -53,11 +53,12 @@ namespace FootballManagementApi
             Container.Register<IFileManager, FileManager>(lifestyle: Lifestyle.Scoped);
             Container.Register<IRegistrationService, RegistrationService>(lifestyle: Lifestyle.Scoped);
             Container.Register<IEmailValidator, EmailValidator>(lifestyle: Lifestyle.Scoped);
-            Container.Register<IPasswordValidator, PasswordValidator>(lifestyle: Lifestyle.Scoped);
             Container.Register<IMailSender, MailSender.MailSender>(lifestyle: Lifestyle.Scoped);
             Container.Register<IAuthOption, AuthOption>(lifestyle: Lifestyle.Singleton);
             Container.Register<ILoginService, LoginService>(lifestyle: Lifestyle.Scoped);
-
+            Container.Register<IPasswordSetter, PasswordSetter>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IProfileService, ProfileService>(lifestyle: Lifestyle.Scoped);
+            
             //IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
 
             //foreach (Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))

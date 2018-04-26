@@ -65,6 +65,10 @@ namespace FootballManagementApi.Controllers
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
             byte[] image = (await ReadAsMultipartAsync()).FirstOrDefault().Value;
+            string g = "";
+
+            var dict = g.GroupBy(c => c)
+
             await _profileService.ChangeImageAsync(user, image);
             await UnitOfWork.SaveChangesAsync();
             return Ok();

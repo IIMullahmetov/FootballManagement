@@ -99,6 +99,10 @@
     <Compile Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.Designer.cs">
       <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804261431398_AddedRegistrarionType.cs" />
+    <Compile Include="Migrations\201804261431398_AddedRegistrarionType.Designer.cs">
+      <DependentUpon>201804261431398_AddedRegistrarionType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.resx">
       <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261431398_AddedRegistrarionType.resx">
+      <DependentUpon>201804261431398_AddedRegistrarionType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
