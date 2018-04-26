@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthRequests.cs" />
+    <Compile Include="GoogleRequest.cs" />
     <Compile Include="ProfileRequests.cs" />
     <Compile Include="PostCommentRequests.cs" />
     <Compile Include="PostRequests.cs" />

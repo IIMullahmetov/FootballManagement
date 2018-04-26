@@ -121,7 +121,7 @@
     <value>Comment with the specified identifier does not exist</value>
   </data>
   <data name="EmailAlreadyUse" xml:space="preserve">
-    <value>Email already use</value>
+    <value>Email already in use</value>
   </data>
   <data name="InvalidEmailFormat" xml:space="preserve">
     <value>Invalid email format</value>
@@ -137,5 +137,8 @@
   </data>
   <data name="PostNotFound" xml:space="preserve">
     <value>Post with the specified identifier does not exist</value>
+  </data>
+  <data name="WrongRegistrationType" xml:space="preserve">
+    <value>This email already in use with different registration type</value>
   </data>
 </root>

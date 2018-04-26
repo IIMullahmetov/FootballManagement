@@ -23,15 +23,14 @@ namespace FootballManagementApi.Services.Implementations
             _authOption = authOption;
         }
 
-        public async Task<(string accessToken, Guid guid)> LoginAsync(string email, string password)
+        public async Task<(string accessToken, Guid guid)> LoginAsync(LoginType loginType, string email, string password = null)
         {
             ValidateData(email, password);
             User user = await _unitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == email && u.Status == UserStatus.Active) ?? throw new ActionForbiddenException();
-            byte[] pass = PasswordHelper.HashPassword(password, user.Salt);
-
-            if (user.Password.SequenceEqual(pass))
+            
+            if (loginType == LoginType.Google)
             {
-                string jwt = GetJwt(user, LoginType.Email);
+                string jwt = GetJwt(user, LoginType.Google);
                 RefreshToken refreshToken = new RefreshToken
                 {
                     ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.RefreshTokenLife),
@@ -41,13 +40,32 @@ namespace FootballManagementApi.Services.Implementations
                 };
                 return (jwt, refreshToken.Guid);
             }
+
+            if (loginType == LoginType.Email)
+            {
+                byte[] pass = PasswordHelper.HashPassword(password, user.Salt);
+
+                if (user.Password.SequenceEqual(pass))
+                {
+                    string jwt = GetJwt(user, LoginType.Email);
+                    RefreshToken refreshToken = new RefreshToken
+                    {
+                        ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.RefreshTokenLife),
+                        CreateDt = DateTimeOffset.Now,
+                        User = user,
+                        Guid = Guid.NewGuid()
+                    };
+                    return (jwt, refreshToken.Guid);
+                }
+            }
+
             throw new ActionForbiddenException();
         }
 
         public Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid) => throw new NotImplementedException();
 
         //TODO Implement
-        private void ValidateData(string email, string password)
+        private void ValidateData(string email, string password = null)
         {
 
         }

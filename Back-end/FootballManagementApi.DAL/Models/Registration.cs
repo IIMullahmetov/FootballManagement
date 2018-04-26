@@ -18,5 +18,7 @@ namespace FootballManagementApi.DAL.Models
         public Guid Guid { get; set; }
 
         public RegistrationStatus Status { get; set; }
+
+        public RegistrationType Type { get; set; }
     }
 }
