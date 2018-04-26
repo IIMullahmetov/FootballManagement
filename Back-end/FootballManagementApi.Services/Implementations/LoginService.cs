@@ -62,7 +62,7 @@ namespace FootballManagementApi.Services.Implementations
                 return (jwt, refreshToken.Guid);
             }
 
-            if (loginType == LoginType.Google)
+            if (loginType == LoginType.Email)
             {
                 byte[] pass = PasswordHelper.HashPassword(password, user.Salt);
 

@@ -70,7 +70,7 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email already use.
+        ///   Looks up a localized string similar to Email already in use.
         /// </summary>
         public static string EmailAlreadyUse {
             get {
@@ -120,6 +120,15 @@ namespace FootballManagementApi.Resources {
         public static string PostNotFound {
             get {
                 return ResourceManager.GetString("PostNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This email already in use with different registration type.
+        /// </summary>
+        public static string WrongRegistrationType {
+            get {
+                return ResourceManager.GetString("WrongRegistrationType", resourceCulture);
             }
         }
     }

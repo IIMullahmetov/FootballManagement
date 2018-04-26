@@ -10,6 +10,7 @@ using FootballManagementApi.DAL.Models;
 using FootballManagementApi.Enums;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.RegistrationRequests;
+using FootballManagementApi.Resources;
 using FootballManagementApi.Services;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util.Store;
@@ -58,15 +59,11 @@ namespace FootballManagementApi.Controllers
             user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(r => r.Email == request.Email);
             if (user == null)
             {
-                await _registrationService.RegisterAsync(RegistrationType.Google, request.Email, null, request.FirstName, request.LastName, request.BirthDay, request.Gender);
-                user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(r => r.Email == request.Email);
+                Registration registration = await _registrationService.RegisterAsync(RegistrationType.Google, request.Email, null, request.FirstName, request.LastName, request.BirthDay, request.Gender);
+                user = registration.User;
             }
-
-            /*Registration registration = await _registrationService.RegisterAsync(Enums.RegistrationType.Google, request.Email, null, request.FirstName, request.LastName, request.BirthDay, request.Gender);
-            if (registration == null)
-                user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(r => r.Email == request.Email);
-            else
-                user = registration.User;*/
+            else if (user.Password != null)
+                throw new ActionCannotBeExecutedException(ExceptionMessages.WrongRegistrationType);    
 
             if (!user.GoogleToken.Equals(request.GoogleToken))
                 user.GoogleToken = request.GoogleToken;
