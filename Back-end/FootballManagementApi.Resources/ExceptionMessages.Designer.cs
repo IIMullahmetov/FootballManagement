@@ -79,6 +79,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File not found.
+        /// </summary>
+        public static string FileNotFound {
+            get {
+                return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It is forbidden to change the email.
         /// </summary>
         public static string ForbiddenToChangeEmail {

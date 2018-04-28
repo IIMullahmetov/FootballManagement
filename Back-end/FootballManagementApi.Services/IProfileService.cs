@@ -8,8 +8,10 @@ namespace FootballManagementApi.Services
     {
         Task ChangeEmailAsync(User user, string email);
 
-        Task EditAsync(User user, string firstName, string lastName, Gender? gender);
+        void Edit(User user, string firstName, string lastName, Gender? gender);
 
-        Task ChangeImageAsync(User user, byte[] image);
+        Task ChangeImageAsync(User user, int id);
+
+        void ChangePassword(User user, string password, string confirm);
     }
 }

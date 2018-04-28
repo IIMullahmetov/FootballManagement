@@ -29,4 +29,10 @@ namespace FootballManagementApi.ProfileRequests
         [JsonProperty("confirmPassword")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class ChangeImageRequest
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+    }
 }

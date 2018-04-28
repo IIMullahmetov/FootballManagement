@@ -123,6 +123,9 @@
   <data name="EmailAlreadyUse" xml:space="preserve">
     <value>Email already in use</value>
   </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+  </data>
   <data name="ForbiddenToChangeEmail" xml:space="preserve">
     <value>It is forbidden to change the email</value>
   </data>

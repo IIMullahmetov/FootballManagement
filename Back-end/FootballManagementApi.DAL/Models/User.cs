@@ -34,7 +34,7 @@ namespace FootballManagementApi.DAL.Models
 		public byte[] Password { get; set; }
 
 		public byte[] Salt { get; set; }
-
+        
 		public Guid? Image { get; set; }
 
         public string GoogleToken { get; set; }

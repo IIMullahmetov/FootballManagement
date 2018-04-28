@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
 using FootballManagementApi.Enums;
 using FootballManagementApi.FileStorage;
@@ -15,12 +16,16 @@ namespace FootballManagementApi.Services.Implementations
         private IEmailValidator _emailValidator;
         private IFileManager _fileManager;
         private IMailSender _mailSender;
+        private IPasswordSetter _passwordSetter;
+        private IUnitOfWork _unitOfWork;
 
-        public ProfileService(IEmailValidator emailValidator, IFileManager fileManager, IMailSender mailSender)
+        public ProfileService(IEmailValidator emailValidator, IFileManager fileManager, IMailSender mailSender, IPasswordSetter passwordSetter, IUnitOfWork unitOfWork)
         {
             _emailValidator = emailValidator;
             _fileManager = fileManager;
             _mailSender = mailSender;
+            _passwordSetter = passwordSetter;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task ChangeEmailAsync(User user, string email)
@@ -36,19 +41,22 @@ namespace FootballManagementApi.Services.Implementations
             user.Email = email;
         }
 
-        public async Task ChangeImageAsync(User user, byte[] image)
+        public async Task ChangeImageAsync(User user, int id)
         {
-            //TODO Change message
-            if (image == null) throw new ActionCannotBeExecutedException("HZ");
+            File image = await _unitOfWork.GetFileRepository().SelectByIdAsync(id)
+                ?? throw new ActionCannotBeExecutedException(ExceptionMessages.FileNotFound);
 
-            Guid guid = Guid.NewGuid();
-            string path = PathHelper.GeneratePath(guid);
-            await _fileManager.WriteFileAsync(image, path);
-
-            user.Image = guid;
+            user.Image = image.Guid;
         }
 
-        public async Task EditAsync(User user, string firstName, string lastName, Gender? gender)
+        public void ChangePassword(User user, string password, string confirm)
+        {
+            if (user.Registration.Type == RegistrationType.Google) throw new ActionCannotBeExecutedException(ExceptionMessages.ForbiddenToChangeEmail);
+
+            _passwordSetter.SetPassword(user, password, confirm);
+        }
+
+        public void Edit(User user, string firstName, string lastName, Gender? gender)
         {
             ValidateData(firstName, lastName, gender);
 

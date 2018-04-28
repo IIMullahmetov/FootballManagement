@@ -14,10 +14,11 @@ using FootballManagementApi.Services;
 
 namespace FootballManagementApi.Controllers
 {
+    
     public class ProfileController : BaseController
     {
         private IProfileService _profileService;
-
+        
         public ProfileController(IUnitOfWork unitOfWork, IProfileService profileService) : base(unitOfWork)
         {
             _profileService = profileService;
@@ -25,6 +26,7 @@ namespace FootballManagementApi.Controllers
 
         [HttpGet]
         [Route("get")]
+        [Auth.Authorize]
         public async Task<IHttpActionResult> GetAsync()
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -41,16 +43,18 @@ namespace FootballManagementApi.Controllers
 
         [HttpPost]
         [Route("edit")]
+        [Auth.Authorize]
         public async Task<IHttpActionResult> EditAsync([FromBody]EditRequest request)
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
-            await _profileService.EditAsync(user, request.FirstName, request.LastName, request.Gender);
+            _profileService.Edit(user, request.FirstName, request.LastName, request.Gender);
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPost]
         [Route("change_email")]
+        [Auth.Authorize]
         public async Task<IHttpActionResult> ChangeEmailAsync([FromBody]ChangeEmailRequest request)
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -61,25 +65,23 @@ namespace FootballManagementApi.Controllers
 
         [HttpPost]
         [Route("change_image")]
-        public async Task<IHttpActionResult> ChangeImageAsync()
+        [Auth.Authorize]
+        public async Task<IHttpActionResult> ChangeImageAsync([FromBody]ChangeImageRequest request)
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
-            byte[] image = (await ReadAsMultipartAsync()).FirstOrDefault().Value;
-            string g = "";
-
-            var dict = g.GroupBy(c => c)
-
-            await _profileService.ChangeImageAsync(user, image);
+            await _profileService.ChangeImageAsync(user, request.Id);
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPost]
         [Route("change_password")]
+        [Auth.Authorize]
         public async Task<IHttpActionResult> ChangePasswordAsync([FromBody]ChangePasswordRequest request)
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
-
+            _profileService.ChangePassword(user, request.Password, request.ConfirmPassword);
+            await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
     }
