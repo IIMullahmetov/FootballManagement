@@ -14,6 +14,7 @@ using FootballManagementApi.FileResponses;
 using FootballManagementApi.FileStorage;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Helpers;
+using FootballManagementApi.Resources;
 
 namespace FootballManagementApi.Controllers
 {
@@ -66,7 +67,7 @@ namespace FootballManagementApi.Controllers
             if (file == null)
             {
                 file = await repo.SelectFirstOrDefaultAsync(f => f.Guid == guid)
-                    ?? throw new ActionCannotBeExecutedException("Not found");
+                    ?? throw new ActionCannotBeExecutedException(ExceptionMessages.FileNotFound);
                 _fileCache.Add(guid.ToString(), file, DateTimeOffset.UtcNow.AddMinutes(30));
             }
 
@@ -76,7 +77,7 @@ namespace FootballManagementApi.Controllers
             {
                 string path = PathHelper.GeneratePath(file.Guid);
                 bytes = await _fileManager.GetFileAsync(path, file.Size)
-                    ?? throw new ActionCannotBeExecutedException("Not found");
+                    ?? throw new ActionCannotBeExecutedException(ExceptionMessages.FileNotFound);
                 _fileCache.Add(key: file.Id.ToString(), value: bytes, absoluteExpiration: DateTimeOffset.UtcNow.AddMinutes(30));
             }
 

@@ -142,6 +142,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player with the specified identifier does not exist.
+        /// </summary>
+        public static string PlayerNotFound {
+            get {
+                return ResourceManager.GetString("PlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post with the specified identifier does not exist.
         /// </summary>
         public static string PostNotFound {

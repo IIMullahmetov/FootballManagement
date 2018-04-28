@@ -21,6 +21,8 @@ namespace FootballManagementApi.DAL.Models
 
 		public string LastName { get; set; }
 
+        public Guid Image { get; set; }
+
 		public DateTime BirthDt { get; set; }
 
 		public int Number { get; set; }

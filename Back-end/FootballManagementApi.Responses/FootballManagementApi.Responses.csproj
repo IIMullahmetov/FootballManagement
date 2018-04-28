@@ -62,6 +62,7 @@
     <Compile Include="AuthResponse.cs" />
     <Compile Include="FileResponses.cs" />
     <Compile Include="MatchResponses.cs" />
+    <Compile Include="PlayerResponses.cs" />
     <Compile Include="PostCommentResponses.cs" />
     <Compile Include="PostResponses.cs" />
     <Compile Include="ProfileResponses.cs" />

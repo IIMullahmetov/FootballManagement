@@ -25,7 +25,7 @@ namespace FootballManagementApi.GlobalExceptionHandler
 				return context.Result.ExecuteAsync(cancellationToken);
 			}
 
-			context.Result = new ErrorResponse(request: context.Request, statusCode: HttpStatusCode.InternalServerError, reason: context.Exception.Message);
+			context.Result = new ErrorResponse(request: context.Request, statusCode: HttpStatusCode.InternalServerError, reason: context.Exception.StackTrace);
 			return context.Result.ExecuteAsync(cancellationToken);
 		}
 	}
