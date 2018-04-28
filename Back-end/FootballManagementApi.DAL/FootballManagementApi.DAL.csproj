@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201804271249258_UserIdIsRequiredInFile.Designer.cs">
       <DependentUpon>201804271249258_UserIdIsRequiredInFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280755366_AddedLikesAndDislikes.cs" />
+    <Compile Include="Migrations\201804280755366_AddedLikesAndDislikes.Designer.cs">
+      <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -181,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804271249258_UserIdIsRequiredInFile.resx">
       <DependentUpon>201804271249258_UserIdIsRequiredInFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280755366_AddedLikesAndDislikes.resx">
+      <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

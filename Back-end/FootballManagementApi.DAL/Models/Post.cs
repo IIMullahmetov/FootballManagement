@@ -12,6 +12,8 @@ namespace FootballManagementApi.DAL.Models
 		{
 			Comments = new HashSet<Comment>();
 			Items = new HashSet<PostItem>();
+            Dislikes = new HashSet<User>();
+            Likes = new HashSet<User>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,5 +37,9 @@ namespace FootballManagementApi.DAL.Models
 		public virtual ICollection<Comment> Comments { get; set; }
 
 		public virtual ICollection<PostItem> Items { get; set; }
+
+        public virtual ICollection<User> Dislikes { get; set; }
+
+        public virtual ICollection<User> Likes { get; set; }
 	}
 }

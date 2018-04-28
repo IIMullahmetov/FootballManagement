@@ -10,7 +10,7 @@ namespace FootballManagementApi.DAL
 	{
 		DbContext Context { get; set; }
 
-		Task<TEntity> SelectByIdAsync(int id);
+		Task<TEntity> SelectByIdAsync(int id, SelectOptions<TEntity> options = null);
 
 		Task<TEntity> SelectFirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, SelectOptions<TEntity> options = null);
 

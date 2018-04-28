@@ -35,6 +35,14 @@ namespace FootballManagementApi.DAL
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Post>());
 			modelBuilder.Entity<Post>().HasMany(p => p.Items).WithRequired(i => i.Post).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithRequired(c => c.Post).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Post>().HasMany(p => p.Likes).WithMany(u => u.Likes).Map(p =>
+            {
+                p.ToTable("PostLikes");
+            });
+            modelBuilder.Entity<Post>().HasMany(p => p.Dislikes).WithMany(p => p.Dislikes).Map(p =>
+            {
+                p.ToTable("PostDislikes");
+            });
 
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PostItem>());
 

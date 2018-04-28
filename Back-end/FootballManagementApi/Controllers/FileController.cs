@@ -21,6 +21,7 @@ namespace FootballManagementApi.Controllers
     public class FileController : BaseController
     {
         private IFileManager _fileManager;
+        private MemoryCache _fileCache = MemoryCache.Default;
 
         public FileController(IUnitOfWork unitOfWork, IFileManager fileManager) : base(unitOfWork)
         {
@@ -29,6 +30,7 @@ namespace FootballManagementApi.Controllers
 
         [HttpPost]
         [Route("upload")]
+        [Auth.Authorize]
         public async Task<IHttpActionResult> UploadAsync()
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -52,7 +54,7 @@ namespace FootballManagementApi.Controllers
                 Guid = file.Guid
             };
 
-            return Ok();
+            return Ok(response);
         }
 
         [HttpGet]
@@ -60,15 +62,28 @@ namespace FootballManagementApi.Controllers
         public async Task<HttpResponseMessage> DownloadAsync([FromUri]Guid guid)
         {
             IFileRepository repo = UnitOfWork.GetFileRepository();
-            File file = await repo.SelectFirstOrDefaultAsync(f => f.Guid == guid)
-                ?? throw new ActionCannotBeExecutedException("Not found");
-            string path = PathHelper.GeneratePath(file.Guid);
+            File file = _fileCache.Get(guid.ToString()) as File;
+            if (file == null)
+            {
+                file = await repo.SelectFirstOrDefaultAsync(f => f.Guid == guid)
+                    ?? throw new ActionCannotBeExecutedException("Not found");
+                _fileCache.Add(guid.ToString(), file, DateTimeOffset.UtcNow.AddMinutes(30));
+            }
 
-            byte[] bytes = await _fileManager.GetFileAsync(path, file.Size)
-                ?? throw new ActionCannotBeExecutedException("Not found");
+            byte[] bytes = _fileCache.Get(file.Id.ToString()) as byte[];
 
-            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-            result.Content = new StreamContent(new System.IO.MemoryStream(bytes));
+            if (bytes == null)
+            {
+                string path = PathHelper.GeneratePath(file.Guid);
+                bytes = await _fileManager.GetFileAsync(path, file.Size)
+                    ?? throw new ActionCannotBeExecutedException("Not found");
+                _fileCache.Add(key: file.Id.ToString(), value: bytes, absoluteExpiration: DateTimeOffset.UtcNow.AddMinutes(30));
+            }
+
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StreamContent(new System.IO.MemoryStream(bytes))
+            };
             //result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
             {

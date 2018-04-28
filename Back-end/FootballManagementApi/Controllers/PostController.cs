@@ -33,7 +33,10 @@ namespace FootballManagementApi.Controllers
 				Take = size,
 				Skip = page * size
 			};
-			IPostRepository repo = UnitOfWork.GetPostRepository();
+            options.Includes.Add(p => p.Dislikes.Count);
+            options.Includes.Add(p => p.Likes.Count);
+
+            IPostRepository repo = UnitOfWork.GetPostRepository();
 
 			ISpecification<Post> specification = (new TitleSpecification(searchString)
 				.Or(new ContentSpecification(searchString)))
@@ -50,7 +53,9 @@ namespace FootballManagementApi.Controllers
 					Id = p.Id,
 					Image = p.Image,
 					Intro = p.Intro,
-					Title = p.Title
+					Title = p.Title,
+                    Likes = p.Likes.Count,
+                    Dislikes = p.Dislikes.Count
 				})
 			};
 

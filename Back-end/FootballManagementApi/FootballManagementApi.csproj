@@ -188,6 +188,7 @@
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PostCommentController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\PostLikeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\TourneyController.cs" />

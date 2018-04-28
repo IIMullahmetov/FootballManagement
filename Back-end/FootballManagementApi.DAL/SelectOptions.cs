@@ -15,10 +15,8 @@ namespace FootballManagementApi.DAL
 
 		private List<Expression<Func<TEntity, object>>> _includes;
 
-		public List<Expression<Func<TEntity, object>>> GetIncludes() => _includes;
+		public List<Expression<Func<TEntity, object>>> Includes => _includes;
 
-		private void SetIncludes(List<Expression<Func<TEntity, object>>> value) => _includes = value;
-
-		public SelectOptions() => SetIncludes(new List<Expression<Func<TEntity, object>>>());
+        public SelectOptions() => _includes = new List<Expression<Func<TEntity, object>>>();
 	}
 }

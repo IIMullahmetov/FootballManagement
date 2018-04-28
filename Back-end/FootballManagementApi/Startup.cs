@@ -44,6 +44,7 @@ namespace FootballManagementApi
                 ClientSecret = "H8BEZfY2ljCwPW8CPM7_g6h3"
             };
             //app.UseGoogleAuthentication(googleOptions);
+           
             app.UseWebApi(configuration);
         }
 
@@ -58,24 +59,8 @@ namespace FootballManagementApi
             Container.Register<ILoginService, LoginService>(lifestyle: Lifestyle.Scoped);
             Container.Register<IPasswordSetter, PasswordSetter>(lifestyle: Lifestyle.Scoped);
             Container.Register<IProfileService, ProfileService>(lifestyle: Lifestyle.Scoped);
+            Container.Register<IPostServices, PostServices>(lifestyle: Lifestyle.Scoped);
             
-            //IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
-
-            //foreach (Type intrfc in types.Where(t => t.IsInterface && t.IsPublic))
-            //{
-            //	Type clss = types
-            //		.FirstOrDefault(t => t.IsClass && t.IsPublic && t.GetInterfaces()
-            //		.Contains(intrfc) && !t.IsAbstract && types.Count(t1 => t1.GetInterfaces()
-            //		.Contains(intrfc)) == 1);
-            //	if (clss != null)
-            //	{
-            //		try
-            //		{
-            //			Container.Register(intrfc, clss, Lifestyle.Scoped);
-            //		}
-            //		catch { }
-            //	}
-            //}
         }
     }
 }

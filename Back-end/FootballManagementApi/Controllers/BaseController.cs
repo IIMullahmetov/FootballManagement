@@ -14,6 +14,9 @@ namespace FootballManagementApi.Controllers
 {
     public abstract class BaseController : ApiController
     {
+        protected const string fileCache = "FileCache";
+        protected const string dbFileCache = "DbFileCache";
+
         private IUnitOfWork _unitOfWork;
 
         protected IUnitOfWork UnitOfWork => _unitOfWork;

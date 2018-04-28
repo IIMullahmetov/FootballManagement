@@ -44,10 +44,12 @@
     <Compile Include="IEmailValidator.cs" />
     <Compile Include="Implementations\EmailValidator.cs" />
     <Compile Include="Implementations\PasswordSetter.cs" />
+    <Compile Include="Implementations\PostServices.cs" />
     <Compile Include="Implementations\ProfileService.cs" />
     <Compile Include="Implementations\LoginService.cs" />
     <Compile Include="Implementations\RegistrationService.cs" />
     <Compile Include="IPasswordSetter.cs" />
+    <Compile Include="IPostServices.cs" />
     <Compile Include="IProfileService.cs" />
     <Compile Include="IRegistrationService.cs" />
     <Compile Include="ILoginService.cs" />

@@ -291,5 +291,33 @@ namespace FootballManagementApi
 				operation.parameters.Add(parameter);
 			}
 		}
-	}
+
+        public class FileUploadOperation : IOperationFilter
+        {
+            public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+            {
+                if (operation == null)
+                {
+                    return;
+                }
+
+                if (operation.parameters == null)
+                {
+                    operation.parameters = new List<Parameter>();
+                }
+
+                Parameter parameter = new Parameter
+                {
+                    name = "uploadedFile",
+                    @in = "formData",
+                    description = "Upload File",
+                    required = true,
+                    type = "file",
+                    collectionFormat = "multipart/form-data"
+                };
+
+                operation.parameters.Add(parameter);
+            }
+        }
+    }
 }

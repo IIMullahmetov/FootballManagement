@@ -11,9 +11,6 @@ namespace FootballManagementApi.PostResponses
 	{
 		public GetListResponse(Paging paging) : base(paging) { }
 
-		[JsonProperty("publishDt")]
-		public DateTimeOffset PublishDt { get; set; }
-
 		[JsonProperty("items")]
 		public IEnumerable<GetListReponseItem> Items { get; set; }
 	}
@@ -31,6 +28,12 @@ namespace FootballManagementApi.PostResponses
 
 		[JsonProperty("image")]
 		public Guid? Image { get; set; }
+
+        [JsonProperty("likes")]
+        public int Likes { get; set; }
+
+        [JsonProperty("dislikes")]
+        public int Dislikes { get; set; }
 	}
 
 	public class GetResponse

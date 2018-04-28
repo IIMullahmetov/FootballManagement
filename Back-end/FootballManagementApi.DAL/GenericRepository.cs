@@ -19,8 +19,12 @@ namespace FootballManagementApi.DAL
 			DbSet = context.Set<TEntity>();
 		}
 
-		public virtual Task<TEntity> SelectByIdAsync(int id)
+		public virtual Task<TEntity> SelectByIdAsync(int id, SelectOptions<TEntity> options = null)
 		{
+            if (options != null)
+            {
+                return SelectFirstOrDefaultAsync(e => e.Id == id, options);
+            }
 			return DbSet.FindAsync(id);
 		}
 
@@ -123,9 +127,9 @@ namespace FootballManagementApi.DAL
 				query = query.Take(options.Take);
 			}
 
-			if (options.GetIncludes()?.Count > 0)
+			if (options.Includes?.Count > 0)
 			{
-				query = options.GetIncludes().Aggregate(query, (current, include) => current.Include(include));
+				query = options.Includes.Aggregate(query, (current, include) => current.Include(include));
 			}
 
 			return query;
