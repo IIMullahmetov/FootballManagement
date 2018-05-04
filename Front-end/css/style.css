@@ -1,1 +1,191 @@
-a:active,a:focus,a:hover,a:visited{text-decoration:none}button:focus,button:hover{outline:0;text-decoration:none;color:#fff}header{background-color:#202125}header .logo_div h1{color:#fff}header .login_div,header .reg_div{padding-top:10px}header button{background-color:#202125;color:#fff}header button h5:focus,header button h5:hover{color:#fff}header button:active,header button:focus,header button:hover{color:#fff}main .container{background-color:#fff}main .league_tour_div{margin:15px;background-color:#f6f8ff;border-radius:10px}main .league_tour_div .league_tour_header_div{border-radius:5px 5px 0 0;background-color:#202125}main .league_tour_div .league_tour_header_div h5{display:inline;color:#fff}main .league_tour_div .league_tour_header_div a{color:#fff;float:right;margin-right:5px;margin-left:5px}main .league_tour_div .match_div h4{background-color:#30ca85;padding:5px 15px;border-radius:5px;text-align:center}main .main_news_div{background:url(../img/main_news.png) 10%;height:600px}main .main_news_div h1{color:#fff;margin-top:50px;margin-left:40px;font-size:60px;font-weight:700}main .main_news_div h3{color:#fff;margin-left:40px;font-size:32px}main .best_news_div h3{font-weight:700;color:#30ca85}main .best_news_div p{margin-top:15px;font-size:12px;font-weight:700}main .stat_div{padding-left:60px}main .stat_div h3{color:#30ca85;text-align:center;font-weight:700}main .stat_div .h4_table{color:#fff;background-color:#202125;text-align:center;padding:3px}main .stat_div h4{text-align:center}main .stat_div .group_table{table-layout:auto;font-size:14px}main .stat_div .group_table td,main .stat_div .group_table th{border:1px solid #202125}footer{background-color:#202125;color:#f6f8ff}footer .footer_main_div h4{color:#30ca85}footer .footer_main_div h5{display:inline-block}footer .footer_main_div .vk_link::before{content:url(../img/vk_icon.png);margin-top:10px}footer .footer_main_div .ok_link::before{content:url(../img/ok_icon.png)}footer .footer_main_div .fb_link::before{content:url(../img/fb_icon.png)}footer hr{border-color:#30ca85}footer a:active,footer a:focus,footer a:hover,footer a:visited{color:#fff}footer a{color:#fff}footer .cenz{margin-right:20px}
+a:active,a:focus,a:hover,a:visited{text-decoration:none}
+button:focus,button:hover{outline:0;text-decoration:none;color:#fff}
+header{background-color:#202125}header .logo_div h1{color:#fff}header .login_div,
+header .reg_div{padding-top:10px}
+header button{background-color:#202125;color:#fff}
+header button h5:focus,header button h5:hover{color:#fff}
+header button:active,header button:focus,header button:hover{color:#fff}
+main .container{background-color:#FFF}
+
+main {
+    margin-bottom: 100px;
+}
+
+main .league_tour_div{
+	margin:15px 0px;
+	background-color:#f6f8ff;
+	border-radius:10px;
+	padding: 0px !important;
+}
+main .league_tour_div .league_tour_header_div
+{
+	border-radius:5px 5px 0 0;
+	background-color:#202125
+}
+main .league_tour_div .league_tour_header_div h5
+{display:inline;color:#fff}
+main .league_tour_div .league_tour_header_div a
+{color:#fff;float:right;margin-right:5px;margin-left:5px;}
+main .league_tour_div .match_div span
+{background-color:#30ca85;padding:5px 15px;border-radius:5px;text-align:center;
+    width: 60px;
+    color: #FFF;
+    font-weight: bold; 
+}
+.match_div{
+	text-align: center;
+	margin-top: 15px;
+}
+
+.match_div img{
+	padding: 0px 5px;
+}
+
+main .best_news_div h3{font-weight:700;color:#30ca85; font-size: 20px;}
+
+main .best_news_div p{margin-top:15px;font-size:12px;font-weight:700}
+
+main .stat_div {padding-left:20px}
+
+main .stat_div h3{color:#30ca85;text-align:left;font-weight:700}
+
+main .stat_div .h4_table{
+	color:#fff;
+	background-color:#202125;
+	text-align:center;
+	padding:3px;
+	border-radius:2px;
+}
+main .stat_div h4{
+	text-align:center
+}
+main .stat_div .group_table
+{table-layout:auto;
+	font-size:14px;
+		margin-bottom: 0px;
+
+}
+main .stat_div .group_table td,main .stat_div .group_table th
+{border:none; 
+ padding: 4px 10px;
+ text-align: center;
+ }
+
+
+main .news_box_list .news_box {
+	height: 140px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); 
+    background-color: #F7FAF8;
+	}
+
+main .news_box_list {
+    margin-top: 60px;
+}
+
+main .news_box_content{
+	padding-left: 180px;
+}
+main .row{
+	margin: 0px;
+}
+
+main .index_content{
+	padding-top: 30px;
+}
+ 
+ main .blog_news_box{
+ 	background-color: #F7FAF8;
+ 	border-radius: 2px;
+ 	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	padding: 10px;
+	min-height: 85px;
+	margin: 10px 0px;
+ }
+
+ main .blog_news_box_title{
+ 	color: #415D82;
+ }
+
+ main .round{
+		width: 55px;
+        height: 55px;
+        background: #16C172;
+        border: 1px solid #939393;
+        line-height: 55px;
+        text-align: center;
+        font-size: 20px;
+        color: #000000;
+        border-radius: 27.5px;
+		margin-right: 10px;
+
+	}
+
+
+
+main .blog_news_box .icon{
+	float: right;
+	margin: 5px;
+}
+
+main .blog_news_box_img{
+	margin-left: 20px !important;
+}
+
+main .stat_div_select{
+	width: 100%;
+	font-size: 16px;
+	border-radius: 1px;
+	background-color: #F7FAF8;
+}
+
+main .stat_div hr{
+	margin: 0px;
+}
+ 
+main a.full{
+	color: #4A7987;
+	float: right;
+	text-decoration: underline;
+	margin-top: 10px;
+}
+
+.fame_board_box img{
+	float: left;
+}
+
+main .fame_board{
+	background-color: #F2F2F2;
+	margin-top: 50px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5); 
+
+}
+
+.news_btn{
+	border-radius: 2px;
+	background-color: #272D2D;
+	color: #FFFFFF;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.time{
+	font-weight:1200;
+}
+
+.fame_board_box_content{
+	padding-top: 15px;
+}
+footer{background-color:#202125;color:#f6f8ff}footer .footer_main_div h4{color:#30ca85}
+footer .footer_main_div h5{display:inline-block}footer .footer_main_div .vk_link::before{content:url(../img/vk_icon.png);margin-top:10px}
+footer .footer_main_div .ok_link::before{content:url(../img/ok_icon.png)}
+
+footer .footer_main_div .fb_link::before{content:url(../img/fb_icon.png)}
+footer hr{border-color:#30ca85}
+
+footer a:active,footer a:focus,footer a:hover,footer a:visited{color:#fff}
+
+footer a{color:#fff}
+
+footer .cenz{margin-right:20px}
+

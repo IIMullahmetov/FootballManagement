@@ -1,0 +1,322 @@
+@import "base.less";
+
+/* ==========================      MAIN        ===============================*/
+
+main {
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	.team_logo {
+		img {
+			float: right;
+		}
+	}
+
+	.team_info_head {
+		
+
+		h2 {
+			display: inline;
+			font-weight: bold;
+		}
+
+		p {
+			color: gray;
+
+			b {
+				color: black;
+			}
+		}
+	}
+
+	.team_last_maches {
+		margin-top: 10px;
+		.match_block {
+			margin-bottom: 10px;
+
+			h4 {
+				margin-top: 10px;
+				display: inline;
+				background-color: @gray;
+				padding: 10px 15px 10px 15px;
+			}
+
+			p{
+				margin-top: -10px;
+				float: right;
+			}
+		}
+		
+	}
+
+	.short_stat {
+		p{
+			text-align: center;
+		}
+
+		.achievments_list {
+			text-align:center;
+			li {
+				background-color: black;
+				color: white;
+				border-radius: 	5px;
+				padding: 5px 8px 5px 8px;
+				margin-left: 20px;
+
+				p {
+					text-align: center;
+					margin-bottom: 0;
+				}
+
+				h3 {
+					margin-top: 0;
+					margin-bottom: 0;
+					text-align: center
+				}
+			}
+		}
+
+		h5 {
+			font-weight: bold;	
+			text-align:center;	
+		}
+
+		.best_goleador {
+			padding-left: 60px;
+			text-align: 	left;
+			img {
+				float: left;
+			}
+
+			
+				
+			
+		}
+	}
+
+	.team_stat_block {
+		border-top: 2px solid @dark-gray;	
+		padding-top: 	20px;
+		.match_tabs {
+
+			li {
+				background-color: black;
+				
+				margin: -1px;
+				
+				a {
+					color: white;
+					padding: 5px 25px;
+					padding-left: 25px;
+					padding-right: 25px;
+					border-radius: 0;
+				}
+
+				a:hover {
+					background-color: black;
+					color: white;
+				}
+
+			}
+
+			li:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+
+			li:last-child {
+				border-radius: 0 5px 5px 0;
+			}
+
+			li.active {
+				
+				a {
+					background-color: @dark-green;
+					color: white;
+				}
+			}
+			
+		}
+
+		#stat_panel {
+			form {
+				margin-top: 	20px;
+				.form-group {
+					float:right;
+					margin-right: 50px;
+					select{
+						margin-top: 	10px;
+						
+					}
+
+					
+
+					button {
+						background-color: 	black;
+						border-radius: 0;
+						color: white;
+
+						padding-left: 30px;
+						padding-right: 	30px;
+					}
+				}
+
+
+			}
+
+			table {
+				margin-top: 30px;
+				text-align: center;	
+				
+				thead {
+					background-color: 	black;
+					color: white;
+					
+					tr {
+						
+						th {
+							
+							text-align: 	center;
+						}
+					}
+				}
+
+				tbody {
+					tr {
+						td.match_td {
+							span {
+								background-color: @green;
+								padding: 	5px 15px 5px 15px;
+								font-size: 20px;
+								
+								color: white;
+								border-radius: 5px;
+							}
+						}
+					}
+				}
+			}
+		
+		}
+
+		#calendar_panel {
+			form {
+				margin-top: 	20px;
+				.form-group {
+					float:right;
+					margin-right: 50px;
+					select{
+						margin-top: 	10px;
+						
+					}
+
+					
+
+					button {
+						background-color: 	black;
+						border-radius: 0;
+						color: white;
+
+						padding-left: 30px;
+						padding-right: 	30px;
+					}
+				}
+
+
+			}
+
+			table {
+				margin-top: 30px;
+				text-align: center;	
+				
+				thead {
+					background-color: 	black;
+					color: white;
+					
+					tr {
+						
+						th {
+							
+							text-align: 	center;
+						}
+					}
+				}
+
+				tbody {
+					tr {
+						td.match_td {
+							span {
+								background-color: @green;
+								padding: 	5px 15px 5px 15px;
+								font-size: 20px;
+								
+								color: white;
+								border-radius: 5px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#team_panel {
+			form {
+				margin-top: 	20px;
+				.form-group {
+					float:right;
+					margin-right: 50px;
+					select{
+						margin-top: 	10px;
+						
+					}
+
+					
+
+					button {
+						background-color: 	black;
+						border-radius: 0;
+						color: white;
+
+						padding-left: 30px;
+						padding-right: 	30px;
+					}
+				}
+
+
+			}
+
+			table {
+				margin-top: 30px;
+				text-align: center;	
+				
+				thead {
+					background-color: 	black;
+					color: white;
+					
+					tr {
+						
+						th {
+							
+							text-align: 	center;
+						}
+					}
+				}
+
+				tbody {
+					tr {
+						td.match_td {
+							span {
+								background-color: @green;
+								padding: 	5px 15px 5px 15px;
+								font-size: 20px;
+								
+								color: white;
+								border-radius: 5px;
+							}
+						}
+					}
+				}
+			}
+		
+		}
+	}
+}
