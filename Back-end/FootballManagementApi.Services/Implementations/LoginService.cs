@@ -23,7 +23,7 @@ namespace FootballManagementApi.Services.Implementations
             _authOption = authOption;
         }
 
-        public async Task<(string accessToken, Guid guid)> LoginAsync(LoginType loginType, string email, string password = null)
+        public async Task<(string accessToken, Guid guid, User user)> LoginAsync(LoginType loginType, string email, string password = null)
         {
             ValidateData(email, password);
             User user = await _unitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == email && u.Status == UserStatus.Active) ?? throw new ActionForbiddenException();
@@ -38,7 +38,7 @@ namespace FootballManagementApi.Services.Implementations
                     User = user,
                     Guid = Guid.NewGuid()
                 };
-                return (jwt, refreshToken.Guid);
+                return (jwt, refreshToken.Guid, user);
             }
 
             if (loginType == LoginType.Email)
@@ -55,7 +55,7 @@ namespace FootballManagementApi.Services.Implementations
                         User = user,
                         Guid = Guid.NewGuid()
                     };
-                    return (jwt, refreshToken.Guid);
+                    return (jwt, refreshToken.Guid, user);
                 }
             }
 

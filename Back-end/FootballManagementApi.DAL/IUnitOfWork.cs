@@ -11,11 +11,7 @@ namespace FootballManagementApi.DAL
 		ICommentRepository GetCommentRepository();
 
 		IGoalRepository GetGoalRepository();
-
-		ILeagueRepository GetLeagueRepository();
-
-		ILeagueTeamRepository GetLeagueTeamRepository();
-
+		
 		IMatchRepository GetMatchRepository();
 
 		IPlayerRepository GetPlayerRepository();

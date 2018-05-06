@@ -18,13 +18,7 @@ namespace FootballManagementApi.DAL
 		{
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Comment>());
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Goal>());
-
-			modelBuilder.Configurations.Add(new EntityTypeConfiguration<League>());
-			modelBuilder.Entity<League>().HasMany(l => l.Matches).WithOptional(m => m.League).WillCascadeOnDelete(false);
-			modelBuilder.Entity<League>().HasMany(l => l.Teams).WithRequired(t => t.League).WillCascadeOnDelete(false);
-
-			modelBuilder.Configurations.Add(new EntityTypeConfiguration<LeagueTeam>());
-
+			
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Match>());
 			modelBuilder.Entity<Match>().HasMany(m => m.Goals).WithRequired(g => g.Match).WillCascadeOnDelete(false);
 
@@ -49,13 +43,12 @@ namespace FootballManagementApi.DAL
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Team>());
 			modelBuilder.Entity<Team>().HasMany(t => t.Players).WithRequired(p => p.Team).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Team>().HasMany(t => t.Tourneys).WithRequired(t => t.Team).WillCascadeOnDelete(false);
-			modelBuilder.Entity<Team>().HasMany(t => t.Leagues).WithRequired(t => t.Team).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Team>().HasMany(t => t.Goals).WithRequired(t => t.Team).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Team>().HasMany(t => t.HomeMathces).WithRequired(m => m.Home).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Team>().HasMany(t => t.GuestMatches).WithRequired(m => m.Guest).WillCascadeOnDelete(false);
 
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Tourney>());
-			modelBuilder.Entity<Tourney>().HasMany(t => t.Matches).WithOptional(m => m.Tourney).WillCascadeOnDelete(false);
+			modelBuilder.Entity<Tourney>().HasMany(t => t.Matches).WithRequired(m => m.Tourney).WillCascadeOnDelete(false);
 			modelBuilder.Entity<Tourney>().HasMany(t => t.Teams).WithRequired(t => t.Tourney).WillCascadeOnDelete(false);
 
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<TourneyTeam>());

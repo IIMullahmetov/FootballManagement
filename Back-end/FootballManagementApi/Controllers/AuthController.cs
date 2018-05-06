@@ -33,11 +33,12 @@ namespace FootballManagementApi.Controllers
 		[Route("login")]
 		public async Task<IHttpActionResult> LoginAsync([FromBody]LoginRequest request)
 		{
-            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(LoginType.Email ,request.Email, request.Password);
+            (string accessToken, System.Guid guid, User user) = await _loginService.LoginAsync(LoginType.Email ,request.Email, request.Password);
             LoginResposne response = new LoginResposne
             {
                 AccessToken = accessToken,
-                RefreshToken = guid
+                RefreshToken = guid,
+				Role = user.Role
             };
             await UnitOfWork.SaveChangesAsync();
             return Ok(response);
@@ -68,12 +69,14 @@ namespace FootballManagementApi.Controllers
             if (!user.GoogleToken.Equals(request.GoogleToken))
                 user.GoogleToken = request.GoogleToken;
 
-            (string accessToken, System.Guid guid) = await _loginService.LoginAsync(LoginType.Google, request.Email);
+			(string accessToken, System.Guid guid, User user) result = await _loginService.LoginAsync(LoginType.Google, request.Email);
             LoginResposne response = new LoginResposne
             {
-                AccessToken = accessToken,
-                RefreshToken = guid
-            };
+                AccessToken = result.accessToken,
+                RefreshToken = result.guid,
+				Role = result.user.Role
+
+			};
 
             await UnitOfWork.SaveChangesAsync();
             return Ok(response);

@@ -19,16 +19,6 @@ namespace FootballManagementApi.DAL.Implementations
 		internal GoalRepository(DbContext context) : base(context) { }
 	}
 
-	internal class LeagueRepository : GenericRepository<League>, ILeagueRepository
-	{
-		internal LeagueRepository(DbContext context) : base(context) { }
-	}
-
-	internal class LeagueTeamRepository : GenericRepository<LeagueTeam>, ILeagueTeamRepository
-	{
-		internal LeagueTeamRepository(DbContext context) : base(context) { }
-	}
-
 	internal class MatchRepository : GenericRepository<Match>, IMatchRepository
 	{
 		internal MatchRepository(DbContext context) : base(context) { }

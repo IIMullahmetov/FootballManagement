@@ -30,16 +30,11 @@ namespace FootballManagementApi.DAL.Models
 
 		public DateTimeOffset StartDt { get; set; }
 
-		public int? TourneyId { get; set; }
+		public int TourneyId { get; set; }
 
 		[ForeignKey(nameof(TourneyId))]
 		public virtual Tourney Tourney { get; set; }
-
-		public int? LeagueId { get; set; }
-
-		[ForeignKey(nameof(LeagueId))]
-		public virtual League League { get; set; }
-
+		
 		public virtual ICollection<Goal> Goals { get; set; }
 	}
 }

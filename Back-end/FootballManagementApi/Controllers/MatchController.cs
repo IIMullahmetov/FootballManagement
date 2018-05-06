@@ -79,7 +79,6 @@ namespace FootballManagementApi.Controllers
 			GetResponse response = new GetResponse
 			{
 				Id = match.Id,
-				LeagueId = match.LeagueId,
 				TourneyId = match.TourneyId,
 				Guest = new GetResponseTeam
 				{

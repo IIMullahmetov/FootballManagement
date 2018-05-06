@@ -33,6 +33,14 @@ namespace FootballManagementApi.Controllers
             return Ok();
         }
 
+		public async Task<IHttpActionResult> RegisterAdminAsync([FromBody]RegisterRequest request)
+		{
+			Registration registration = await _registrationService.RegisterAsync(registrationType: Enums.RegistrationType.Email, email: request.Email, password: request.Password, confirm: request.ConfirmPassword, firstName: request.FirstName, lastName: request.LastName, birthDt: request.BirthDay, gender: request.Gender, role: Enums.Role.Admin);
+			UnitOfWork.GetRegistrationRepository().Insert(registration);
+			await UnitOfWork.SaveChangesAsync();
+			return Ok();
+		}
+
 		//TODO Change to post
         [HttpGet]
         [Route("confirm")]

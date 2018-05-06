@@ -17,7 +17,6 @@ namespace FootballManagementApi.DAL.Models
 
 		public Guid Guid { get; set; }
 
-		//TODO После того как будет готова авторизация сделать NOT NULL
 		public int UserId { get; set; }
 
 		[ForeignKey(nameof(UserId))]

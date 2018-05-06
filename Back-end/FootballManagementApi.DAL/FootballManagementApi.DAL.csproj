@@ -111,12 +111,14 @@
     <Compile Include="Migrations\201804280755366_AddedLikesAndDislikes.Designer.cs">
       <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805061742196_RemovedLeagues.cs" />
+    <Compile Include="Migrations\201805061742196_RemovedLeagues.Designer.cs">
+      <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Goal.cs" />
-    <Compile Include="Models\League.cs" />
-    <Compile Include="Models\LeagueTeam.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
@@ -188,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804280755366_AddedLikesAndDislikes.resx">
       <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805061742196_RemovedLeagues.resx">
+      <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

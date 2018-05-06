@@ -52,12 +52,9 @@ namespace FootballManagementApi.MatchResponses
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
-
-		[JsonProperty("leagueId", NullValueHandling = NullValueHandling.Ignore)]
-		public int? LeagueId { get; set; }
-
+		
 		[JsonProperty("tourneyId", NullValueHandling = NullValueHandling.Ignore)]
-		public int? TourneyId { get; set; }
+		public int TourneyId { get; set; }
 
 		[JsonProperty("home")]
 		public GetResponseTeam Home { get; set; }

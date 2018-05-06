@@ -16,7 +16,6 @@ using FootballManagementApi.Responses;
 namespace FootballManagementApi.Controllers
 {
 	[RoutePrefix("post")]
-    [Auth.Authorize]
 	public class PostController : BaseController
 	{
 		public PostController(IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -89,6 +88,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpPost]
 		[Route("create")]
+		[Auth.Authorize(Enums.Role.Admin)]
 		public async Task<IHttpActionResult> CreateAsync([FromBody]CreateRequest request)
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -120,6 +120,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpPost]
 		[Route("edit")]
+		[Auth.Authorize(Enums.Role.Admin)]
 		public async Task<IHttpActionResult> EditAsync([FromBody]EditRequest request)
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -142,6 +143,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpPost]
 		[Route("delete")]
+		[Auth.Authorize(Enums.Role.Admin)]
 		public async Task<IHttpActionResult> DeleteAsync([FromBody]DeleteRequest request)
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();

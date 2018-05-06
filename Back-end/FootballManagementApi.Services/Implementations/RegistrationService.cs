@@ -32,7 +32,7 @@ namespace FootballManagementApi.Services.Implementations
         }
 
         public async Task<Registration> RegisterAsync(RegistrationType registrationType, string email = null, string password = null, string confirm = null, string firstName = null,
-             string lastName = null, DateTime? birthDt = null, Gender? gender = null)
+             string lastName = null, DateTime? birthDt = null, Gender? gender = null, Role role = Role.User)
         {
             //TODO Implement
             ValidateData();
@@ -51,7 +51,7 @@ namespace FootballManagementApi.Services.Implementations
                 {
                     FirstName = firstName,
                     LastName = lastName,
-                    Role = Role.User,
+                    Role = role,
                     Gender = gender,
                     Registration = registration,
                     Status = UserStatus.Pending,
