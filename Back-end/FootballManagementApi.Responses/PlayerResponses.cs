@@ -20,6 +20,9 @@ namespace FootballManagementApi.PlayerResponses
         [JsonProperty("image")]
         public Guid Image { get; set; }
 
+		[JsonProperty("teamId")]
+		public int TeamId { get; set; }
+
         [JsonProperty("team")]
         public string Team { get; set; }
 
@@ -29,4 +32,9 @@ namespace FootballManagementApi.PlayerResponses
         [JsonProperty("winsCount")]
         public int WinsCount { get; set; }
     }
+
+	public class CreateRequest
+	{
+
+	}
 }

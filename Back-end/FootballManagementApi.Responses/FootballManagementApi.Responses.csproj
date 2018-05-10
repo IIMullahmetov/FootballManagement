@@ -68,6 +68,7 @@
     <Compile Include="ProfileResponses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses.cs" />
+    <Compile Include="TeamResponses.cs" />
     <Compile Include="TourneyResponses.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201805061742196_RemovedLeagues.Designer.cs">
       <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101651175_AddedTeamIdToEntity.cs" />
+    <Compile Include="Migrations\201805101651175_AddedTeamIdToEntity.Designer.cs">
+      <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -193,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805061742196_RemovedLeagues.resx">
       <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101651175_AddedTeamIdToEntity.resx">
+      <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

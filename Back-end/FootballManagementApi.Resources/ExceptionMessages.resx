@@ -150,6 +150,9 @@
   <data name="PostNotFound" xml:space="preserve">
     <value>Post with the specified identifier does not exist</value>
   </data>
+  <data name="TeamNotFound" xml:space="preserve">
+    <value>Team with the specified identifier does not exist</value>
+  </data>
   <data name="TourneyNotFound" xml:space="preserve">
     <value>Tourney with the specified identifier does not exist</value>
   </data>

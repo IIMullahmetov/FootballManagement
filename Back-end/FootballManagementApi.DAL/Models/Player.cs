@@ -30,6 +30,9 @@ namespace FootballManagementApi.DAL.Models
 		//TODO Пока хз для чего нужен, но должен понадобится
 		public PlayerStatus Status { get; set; }
 
+		public int TeamId { get; set; }
+
+		[ForeignKey(nameof(TeamId))]
 		public virtual Team Team { get; set; }
 
 		public virtual ICollection<Goal> Goals { get; set; }
