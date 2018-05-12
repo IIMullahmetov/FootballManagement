@@ -73,6 +73,48 @@ namespace FootballManagementApi.Controllers
 			return Ok(response);
 		}
 
+		//[HttpGet]
+		//[Route("create")]
+		//public async Task<IHttpActionResult> CreateAsync([FromUri]string request)
+		//{
+		//	int year = Random.Next(2015, 2017);
+		//	int month = Random.Next(1, 12);
+		//	int day = Random.Next(1, 28);
+
+		//	Tourney tourney = new Tourney
+		//	{
+		//		StartDt = new DateTime(year, month, day),
+		//		Name = request
+		//	};
+		//	tourney.EndDt = tourney.StartDt.AddMonths(3);
+		//	UnitOfWork.GetTourneyRepository().Insert(tourney);
+
+		//	await UnitOfWork.SaveChangesAsync();
+
+		//	int count = await UnitOfWork.GetTeamRepository().CountAsync(t => true);
+
+		//	List<int> teams = new List<int>();
+
+		//	while (teams.Count < 16)
+		//	{
+		//		int teamId = Random.Next(1, count);
+		//		if (!teams.Contains(teamId))
+		//		{
+		//			teams.Add(teamId);
+		//		}
+		//	}
+		//	foreach(var v in teams)
+		//	{
+		//		tourney.Teams.Add(new TourneyTeam
+		//		{
+		//			Status = Enums.TourneyTeamStatus.Participating,
+		//			TeamId = v,
+		//			TourneyId = tourney.Id
+		//		});
+		//	}
+		//	await UnitOfWork.SaveChangesAsync();
+		//	return Ok();
+		//}
 
 		//TODO Подсчитать позицию в турнире
 		private int GetPositionOntourney(Team team)

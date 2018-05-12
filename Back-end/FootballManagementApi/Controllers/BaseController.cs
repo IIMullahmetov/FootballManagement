@@ -16,8 +16,9 @@ namespace FootballManagementApi.Controllers
     {
         protected const string fileCache = "FileCache";
         protected const string dbFileCache = "DbFileCache";
+		public static readonly Random Random = new Random();
 
-        private IUnitOfWork _unitOfWork;
+		private IUnitOfWork _unitOfWork;
 
         protected IUnitOfWork UnitOfWork => _unitOfWork;
 

@@ -13,35 +13,35 @@ using FootballManagementApi.Resources;
 
 namespace FootballManagementApi.Controllers
 {
-    [RoutePrefix("player")]
-    public class PlayerController : BaseController
-    {
-		private static readonly Random Random = new Random();
+	[RoutePrefix("player")]
+	public class PlayerController : BaseController
+	{
 		
-        public PlayerController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
 
-        }
+		public PlayerController(IUnitOfWork unitOfWork) : base(unitOfWork)
+		{
 
-        [HttpGet]
-        [Route("get/{id:int}")]
-        public async Task<IHttpActionResult> GetAsync(int id)
-        {
-            Player player = await UnitOfWork.GetPlayerRepository().SelectByIdAsync(id) ?? throw new ActionCannotBeExecutedException(ExceptionMessages.PlayerNotFound);
+		}
 
-            GetResponse response = new GetResponse
-            {
-                Id = player.Id,
-                FirstName = player.FirstName,
-                LastName = player.LastName,
+		[HttpGet]
+		[Route("get/{id:int}")]
+		public async Task<IHttpActionResult> GetAsync(int id)
+		{
+			Player player = await UnitOfWork.GetPlayerRepository().SelectByIdAsync(id) ?? throw new ActionCannotBeExecutedException(ExceptionMessages.PlayerNotFound);
+
+			GetResponse response = new GetResponse
+			{
+				Id = player.Id,
+				FirstName = player.FirstName,
+				LastName = player.LastName,
 				TeamId = player.TeamId,
-                Team = player.Team.Name,
-                Age = DateTime.Now.Year - player.BirthDt.Year,
-                Image = player.Image
-            };
+				Team = player.Team.Name,
+				Age = DateTime.Now.Year - player.BirthDt.Year,
+				Image = player.Image
+			};
 
-            return Ok(response);
-        }
+			return Ok(response);
+		}
 
 		//[HttpPost]
 		//[Route("create")]
@@ -75,5 +75,5 @@ namespace FootballManagementApi.Controllers
 
 		//	public Guid Guid { get; set; }
 		//}
-    }
+	}
 }
