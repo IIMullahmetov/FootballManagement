@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagementApi.Resou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagementApi.Services", "FootballManagementApi.Services\FootballManagementApi.Services.csproj", "{5FEAB473-E583-4EE0-A6B7-AF267D39A599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{09E8D784-841B-4A81-9F61-C6F80DE3B976}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,12 +106,6 @@ Global
 		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FEAB473-E583-4EE0-A6B7-AF267D39A599}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09E8D784-841B-4A81-9F61-C6F80DE3B976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
