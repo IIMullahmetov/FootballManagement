@@ -44,9 +44,9 @@ public class StatsChampionshipFragment extends Fragment {
         rvStats.setLayoutManager(new LinearLayoutManager(context));
         StatsAdapter adapter = new StatsAdapter(context);
         List<Player> players = new ArrayList<>();
-        players.add(new Player("Nurislam Saitgaraev", "Tottenham", "69", "10", "0", null));
-        players.add(new Player("Nurislam Saitgaraev", "Tottenham", "69", "10", "0", null));
-        players.add(new Player("Nurislam Saitgaraev", "Tottenham", "69", "10", "0", null));
+        players.add(new Player("Harry Kane", "Tottenham", "10", "10", "30", null));
+        players.add(new Player("Moussa Dembele", "Tottenham", "18", "10", "0", null));
+        players.add(new Player("Eric Lamela", "Tottenham", "11", "10", "0", null));
         adapter.setPlayers(players);
         rvStats.setAdapter(adapter);
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -39,6 +40,7 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
     public void onBindViewHolder(@NonNull ChampionshipViewHolder holder, int position) {
         final Championship championship = championships.get(position);
         holder.tvName.setText(championship.getName());
+        holder.imageView.setImageResource(championship.getIcon());
         holder.itemView.setOnClickListener(v -> {
             championshipListener.onClickListener(championship);
         });
@@ -52,10 +54,12 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
 
     public class ChampionshipViewHolder extends RecyclerView.ViewHolder {
         private TextView tvName;
+        private ImageView imageView;
 
         public ChampionshipViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_champ_name);
+            imageView = itemView.findViewById(R.id.champ_icon);
         }
     }
 

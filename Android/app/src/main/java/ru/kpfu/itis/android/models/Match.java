@@ -1,5 +1,8 @@
 package ru.kpfu.itis.android.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,7 +10,7 @@ import java.util.List;
  * Created by hlopu on 08.04.2018.
  */
 
-public class Match implements Serializable {
+public class Match implements Parcelable {
     private String team1;
     private String team2;
     private String score1;
@@ -29,6 +32,28 @@ public class Match implements Serializable {
         this.goalsTeam1 = goalsTeam1;
         this.goalsTeam2 = goalsTeam2;
     }
+
+    protected Match(Parcel in) {
+        team1 = in.readString();
+        team2 = in.readString();
+        score1 = in.readString();
+        score2 = in.readString();
+        nameChampionships = in.readString();
+        date = in.readString();
+        referee = in.readString();
+    }
+
+    public static final Creator<Match> CREATOR = new Creator<Match>() {
+        @Override
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        @Override
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
 
     public String getDate() {
         return date;
@@ -100,5 +125,21 @@ public class Match implements Serializable {
 
     public void setGoalsTeam2(List<Goal> goalsTeam2) {
         this.goalsTeam2 = goalsTeam2;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(team1);
+        dest.writeString(team2);
+        dest.writeString(score1);
+        dest.writeString(score2);
+        dest.writeString(nameChampionships);
+        dest.writeString(date);
+        dest.writeString(referee);
     }
 }
