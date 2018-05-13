@@ -6,6 +6,7 @@ using FootballManagementApi.MailSender;
 using FootballManagementApi.Services;
 using FootballManagementApi.Services.Implementations;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SimpleInjector;
@@ -42,6 +43,7 @@ namespace FootballManagementApi
 			configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container);
 			app.Use<AuthMiddleware>(new AuthManager(new AuthOption()));
 			Task.Factory.StartNew(MatchStatusChanger);
+			app.UseCors(CorsOptions.AllowAll);
 			app.UseWebApi(configuration);
 		}
 
