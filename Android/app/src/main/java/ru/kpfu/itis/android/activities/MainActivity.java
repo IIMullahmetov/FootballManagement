@@ -1,6 +1,9 @@
 package ru.kpfu.itis.android.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +15,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.fragments.ChampionshipsFragment;
@@ -20,6 +27,10 @@ import ru.kpfu.itis.android.fragments.MatchesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
+    Context context = this;
+    NavigationView navigationView;
+    SharedPreferences sharedPref;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +41,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
-
+        sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-// Inflate the header view at runtime
+        imageView = navigationView.getHeaderView(0).findViewById(R.id.profile_photo);
+
+
     }
 
     private void bind() {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.feed);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!sharedPref.getString("profile", "").equals("")) {
+
+            Glide.with(context)
+                    .load(Uri.parse(sharedPref.getString("profile", "")))
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(imageView);
+        }
+
     }
 
     @Override
@@ -103,11 +129,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if (fragment!=null)
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        if (fragment != null)
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
