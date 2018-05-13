@@ -19,6 +19,13 @@ namespace FootballManagementApi.MatchResponses
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
+
+		[JsonProperty("startDt")]
+		public DateTimeOffset StartDt { get; set; }
+
+		[JsonProperty("status")]
+		[JsonConverter(typeof(StringEnumConverter))]
+		public MatchStatus Status { get; set; }
 		
 		[JsonProperty("home")]
 		public GetListResponseItemTeam Home { get; set; }

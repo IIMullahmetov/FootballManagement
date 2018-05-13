@@ -41,16 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundTaskBase.cs" />
     <Compile Include="IEmailValidator.cs" />
-    <Compile Include="Implementations\MatchExecuter.cs" />
     <Compile Include="Implementations\EmailValidator.cs" />
     <Compile Include="Implementations\PasswordSetter.cs" />
     <Compile Include="Implementations\PostServices.cs" />
     <Compile Include="Implementations\ProfileService.cs" />
     <Compile Include="Implementations\LoginService.cs" />
     <Compile Include="Implementations\RegistrationService.cs" />
-    <Compile Include="Implementations\TourneyExecuter.cs" />
     <Compile Include="IPasswordSetter.cs" />
     <Compile Include="IPostServices.cs" />
     <Compile Include="IProfileService.cs" />

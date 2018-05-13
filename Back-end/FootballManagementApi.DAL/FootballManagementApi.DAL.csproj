@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201805101651175_AddedTeamIdToEntity.Designer.cs">
       <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121146473_AddedEndDt.cs" />
+    <Compile Include="Migrations\201805121146473_AddedEndDt.Designer.cs">
+      <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -200,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805101651175_AddedTeamIdToEntity.resx">
       <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121146473_AddedEndDt.resx">
+      <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

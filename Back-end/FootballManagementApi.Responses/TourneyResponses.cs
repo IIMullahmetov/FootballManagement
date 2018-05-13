@@ -1,5 +1,7 @@
-﻿using FootballManagementApi.Responses;
+﻿using FootballManagementApi.Enums;
+using FootballManagementApi.Responses;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +14,7 @@ namespace FootballManagementApi.TourneyResponses
 		[JsonProperty("items")]
 		public IEnumerable<GetListItem> Items { get; set; }
 	}
+
 
 	public class GetListItem
 	{
@@ -43,10 +46,10 @@ namespace FootballManagementApi.TourneyResponses
 		public DateTime EndDt { get; set; }
 
 		[JsonProperty("items")]
-		public IEnumerable<GetItems> Items { get; set; }
+		public IEnumerable<GetItem> Items { get; set; }
 	}
 
-	public class GetItems
+	public class GetItem
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
@@ -62,5 +65,9 @@ namespace FootballManagementApi.TourneyResponses
 
 		[JsonProperty("position")]
 		public int Position { get; set; }
+
+		[JsonProperty("statud")]
+		[JsonConverter(typeof(StringEnumConverter))]
+		public TourneyTeamStatus Status { get; set; }
 	}
 }

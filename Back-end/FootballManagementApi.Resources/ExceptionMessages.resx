@@ -135,8 +135,17 @@
   <data name="InvalidPassword" xml:space="preserve">
     <value>Some message about invalid password</value>
   </data>
+  <data name="InvalidPlayersCount" xml:space="preserve">
+    <value>Invalid players count</value>
+  </data>
   <data name="InvalidRegistrationGuid" xml:space="preserve">
     <value>Invalid registration guid</value>
+  </data>
+  <data name="InvalidTeamsCount" xml:space="preserve">
+    <value>Invalid teams count</value>
+  </data>
+  <data name="MatchFinished" xml:space="preserve">
+    <value>Match finished</value>
   </data>
   <data name="MatchNotFound" xml:space="preserve">
     <value>Match with the specified identifier does not exist</value>
@@ -152,6 +161,15 @@
   </data>
   <data name="TeamNotFound" xml:space="preserve">
     <value>Team with the specified identifier does not exist</value>
+  </data>
+  <data name="TeamsMustBeDifferent" xml:space="preserve">
+    <value>Teams must be different</value>
+  </data>
+  <data name="TeamsMustBeSame" xml:space="preserve">
+    <value>Teams must be same</value>
+  </data>
+  <data name="TourenyFinished" xml:space="preserve">
+    <value>Toureny finished</value>
   </data>
   <data name="TourneyNotFound" xml:space="preserve">
     <value>Tourney with the specified identifier does not exist</value>

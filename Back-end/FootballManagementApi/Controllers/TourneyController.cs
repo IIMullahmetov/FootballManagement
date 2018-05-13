@@ -7,21 +7,24 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
+using FootballManagementApi.Enums;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
 using FootballManagementApi.TourneyResponses;
+using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
-	[RoutePrefix("tourney")]
 	public class TourneyController : BaseController
 	{
 		public TourneyController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
 
 		[HttpGet]
-		[Route("get_list")]
+		[Route("tourney/get_list")]
+		[SwaggerResponse(200, Type = typeof(GetListResponse))]
 		public async Task<IHttpActionResult> GetListAsync([FromUri]int page = 0, [FromUri]int size = 10)
 		{
 			SelectOptions<Tourney> options = new SelectOptions<Tourney>
@@ -50,7 +53,8 @@ namespace FootballManagementApi.Controllers
 		}
 
 		[HttpGet]
-		[Route("get/{id:int}")]
+		[Route("tourney/get/{id:int}")]
+		[SwaggerResponse(200, Type = typeof(GetResponse))]
 		public async Task<IHttpActionResult> GetAsync([FromUri]int id)
 		{
 			Tourney tourney = await UnitOfWork.GetTourneyRepository().SelectByIdAsync(id)
@@ -62,15 +66,97 @@ namespace FootballManagementApi.Controllers
 				Name = tourney.Name,
 				StartDt = tourney.StartDt,
 				EndDt = tourney.EndDt,
-				Items = tourney.Teams.Where(t => t.Status == Enums.TourneyTeamStatus.Participating).Select(t => new GetItems
+				Items = tourney.Teams.Select(t => new GetItem
 				{
-					Id = t.Id,
+					Id = t.TeamId,
 					Image = t.Team.Logotype,
 					Name = t.Team.Name,
-					Position = GetPositionOntourney(team: t.Team)
+					Position = GetPositionOntourney(team: t.Team),
+					Status = t.Status
 				})
 			};
 			return Ok(response);
+		}
+
+		[HttpGet]
+		[Route("tourney/get_active")]
+		[Auth.Authorize]
+		public async Task<IHttpActionResult> GetActiveAsync([FromUri]int page = 0, [FromUri]int size = 10)
+		{
+			SelectOptions<Tourney> options = new SelectOptions<Tourney>
+			{
+				OrderBy = p => p.OrderByDescending(t => t.Id),
+				Take = size,
+				Skip = page * size
+			};
+
+			IEnumerable<Tourney> results = await UnitOfWork.GetTourneyRepository().SelectAsync(predicate: t => t.EndDt > DateTime.Now, options: options);
+
+			Paging paging = new Paging(count: results.Count(), page: page, size: size);
+
+			GetListResponse response = new GetListResponse(paging)
+			{
+				Items = results.Select(t => new GetListItem
+				{
+					Id = t.Id,
+					Name = t.Name,
+					EndDt = t.EndDt,
+					StartDt = t.StartDt
+				})
+			};
+
+			return Ok(response);
+		}
+
+		[HttpPost]
+		[Route("tourney/{id:int}/add_teams")]
+		[Auth.Authorize(role: Role.Admin)]
+		public async Task<IHttpActionResult> AddTeamAsync(int id, [FromBody]AddTeamRequest request)
+		{
+			if (request.Teams.Distinct().Count() != 8)
+			{
+				throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidTeamsCount);
+			}
+
+			Tourney tourney = await UnitOfWork.GetTourneyRepository().SelectByIdAsync(id)
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.TourneyNotFound);
+
+			if (tourney.EndDt < DateTime.Now)
+			{
+				throw new ActionCannotBeExecutedException(ExceptionMessages.TourenyFinished);
+			}
+
+			IEnumerable<Team> teams = await UnitOfWork.GetTeamRepository().SelectAsync(t => request.Teams.Contains(t.Id));
+			foreach(Team team in teams)
+			{
+				tourney.Teams.Add(new TourneyTeam
+				{
+					Team = team,
+					Status = TourneyTeamStatus.Participating
+				});
+			}
+
+			await UnitOfWork.SaveChangesAsync();
+			return Ok();
+		}
+
+		private async Task ValidateTeamsAsync(IEnumerable<int> teams)
+		{
+			DAL.Repositories.ITeamRepository repo = UnitOfWork.GetTeamRepository();
+
+			foreach(int id in teams)
+			{
+				if (!(await repo.AnyAsync(t => t.Id == id)))
+				{
+					throw new ActionCannotBeExecutedException(ExceptionMessages.TeamNotFound + $" Id : {id}");
+				}
+			}
+		}
+
+		public class AddTeamRequest
+		{
+			[JsonProperty("teams")]
+			public IEnumerable<int> Teams { get; set; }
 		}
 
 		//[HttpGet]
