@@ -142,11 +142,38 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid players count.
+        /// </summary>
+        public static string InvalidPlayersCount {
+            get {
+                return ResourceManager.GetString("InvalidPlayersCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid registration guid.
         /// </summary>
         public static string InvalidRegistrationGuid {
             get {
                 return ResourceManager.GetString("InvalidRegistrationGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid teams count.
+        /// </summary>
+        public static string InvalidTeamsCount {
+            get {
+                return ResourceManager.GetString("InvalidTeamsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match finished.
+        /// </summary>
+        public static string MatchFinished {
+            get {
+                return ResourceManager.GetString("MatchFinished", resourceCulture);
             }
         }
         
@@ -192,6 +219,33 @@ namespace FootballManagementApi.Resources {
         public static string TeamNotFound {
             get {
                 return ResourceManager.GetString("TeamNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teams must be different.
+        /// </summary>
+        public static string TeamsMustBeDifferent {
+            get {
+                return ResourceManager.GetString("TeamsMustBeDifferent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teams must be same.
+        /// </summary>
+        public static string TeamsMustBeSame {
+            get {
+                return ResourceManager.GetString("TeamsMustBeSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toureny finished.
+        /// </summary>
+        public static string TourenyFinished {
+            get {
+                return ResourceManager.GetString("TourenyFinished", resourceCulture);
             }
         }
         

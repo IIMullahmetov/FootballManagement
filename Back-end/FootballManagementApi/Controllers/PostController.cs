@@ -12,6 +12,7 @@ using FootballManagementApi.PostResponses;
 using FootballManagementApi.Requests.PostRequests;
 using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -24,6 +25,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpGet]
 		[Route("get_list")]
+		[SwaggerResponse(200, Type = typeof(GetListResponse))]
 		public async Task<IHttpActionResult> GetListAsync([FromUri]int page = 0, [FromUri]int size = 10, [FromUri]string searchString = null)
 		{
 			SelectOptions<Post> options = new SelectOptions<Post>
@@ -63,6 +65,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpGet]
 		[Route("get/{id:int}")]
+		[SwaggerResponse(200, Type = typeof(GetResponse))]
 		public async Task<IHttpActionResult> GetAsync(int id)
 		{
 			Post post = await UnitOfWork.GetPostRepository().SelectByIdAsync(id)

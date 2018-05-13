@@ -11,6 +11,7 @@ namespace FootballManagementApi.DAL.Models
 		public Match()
 		{
 			Goals = new HashSet<Goal>();
+			Players = new HashSet<Player>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +22,8 @@ namespace FootballManagementApi.DAL.Models
 		[ForeignKey(nameof(HomeId))]
 		public virtual Team Home { get; set; }
 		
+		public DateTimeOffset? EndDt { get; set; }
+
 		public int GuestId { get; set; }
 
 		[ForeignKey(nameof(GuestId))]
@@ -36,5 +39,7 @@ namespace FootballManagementApi.DAL.Models
 		public virtual Tourney Tourney { get; set; }
 		
 		public virtual ICollection<Goal> Goals { get; set; }
+
+		public virtual ICollection<Player> Players { get; set; }
 	}
 }

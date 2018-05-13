@@ -11,6 +11,7 @@ using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Resources;
 using FootballManagementApi.TeamResponses;
 using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -23,6 +24,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpGet]
 		[Route("get/{id:int}")]
+		[SwaggerResponse(200, Type = typeof(GetResponse))]
 		public async Task<IHttpActionResult> GetAsync(int id)
 		{
 			Team team = await UnitOfWork.GetTeamRepository().SelectByIdAsync(id) 
