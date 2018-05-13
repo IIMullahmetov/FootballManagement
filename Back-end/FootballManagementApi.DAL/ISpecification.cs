@@ -6,7 +6,7 @@ namespace FootballManagementApi.DAL
 {
 	public interface ISpecification<TEntity>
 	{
-		Expression<Func<TEntity, bool>> EvalPredicate { get; }
+		Expression<Func<TEntity, bool>> Predicate { get; }
 
 		IQueryable<TEntity> SatisfyingItemsFrom(IQueryable<TEntity> query);
 

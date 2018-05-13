@@ -77,37 +77,7 @@ namespace FootballManagementApi.Controllers
 			};
 			return Ok(response);
 		}
-
-		[HttpGet]
-		[Route("tourney/get_active")]
-		[Auth.Authorize]
-		public async Task<IHttpActionResult> GetActiveAsync([FromUri]int page = 0, [FromUri]int size = 10)
-		{
-			SelectOptions<Tourney> options = new SelectOptions<Tourney>
-			{
-				OrderBy = p => p.OrderByDescending(t => t.Id),
-				Take = size,
-				Skip = page * size
-			};
-
-			IEnumerable<Tourney> results = await UnitOfWork.GetTourneyRepository().SelectAsync(predicate: t => t.EndDt > DateTime.Now, options: options);
-
-			Paging paging = new Paging(count: results.Count(), page: page, size: size);
-
-			GetListResponse response = new GetListResponse(paging)
-			{
-				Items = results.Select(t => new GetListItem
-				{
-					Id = t.Id,
-					Name = t.Name,
-					EndDt = t.EndDt,
-					StartDt = t.StartDt
-				})
-			};
-
-			return Ok(response);
-		}
-
+		
 		[HttpPost]
 		[Route("tourney/{id:int}/add_teams")]
 		[Auth.Authorize(role: Role.Admin)]

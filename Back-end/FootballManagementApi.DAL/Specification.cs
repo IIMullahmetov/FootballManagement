@@ -7,15 +7,15 @@ namespace FootballManagementApi.DAL
 {
 	public class Specification<TEntity> : ISpecification<TEntity>
 	{
-		public Expression<Func<TEntity, bool>> EvalPredicate { get; protected set; }
+		public Expression<Func<TEntity, bool>> Predicate { get; protected set; }
 
 		protected Specification() { }
 
-		public Specification(Expression<Func<TEntity, bool>> predicate) => EvalPredicate = predicate;
+		public Specification(Expression<Func<TEntity, bool>> predicate) => Predicate = predicate;
 
 		public IQueryable<TEntity> SatisfyingItemsFrom(IQueryable<TEntity> query)
 		{
-			return query.Where(EvalPredicate);
+			return query.Where(Predicate);
 		}
 
 		public ISpecification<TEntity> And(ISpecification<TEntity> other) => new AndSpecification<TEntity>(this, other);
@@ -33,7 +33,7 @@ namespace FootballManagementApi.DAL
 			_left = left;
 			_right = right;
 
-			EvalPredicate = left.EvalPredicate.And(right.EvalPredicate);
+			Predicate = left.Predicate.And(right.Predicate);
 		}
 	}
 
@@ -47,7 +47,7 @@ namespace FootballManagementApi.DAL
 			_left = left;
 			_right = right;
 
-			EvalPredicate = left.EvalPredicate.Or(right.EvalPredicate);
+			Predicate = left.Predicate.Or(right.Predicate);
 		}
 	}
 

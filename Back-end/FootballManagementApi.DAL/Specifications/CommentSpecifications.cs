@@ -5,6 +5,6 @@ namespace FootballManagementApi.DAL.Specifications.Comments
 {
 	public class StatusSpecification : Specification<Comment>
 	{
-		public StatusSpecification(CommentStatus status) => EvalPredicate = c => c.Status == status;
+		public StatusSpecification(CommentStatus status) => Predicate = c => c.Status == status;
 	}
 }

@@ -9,11 +9,11 @@ namespace FootballManagementApi.DAL.MatchSpecifications
 		{
 			if (status != null)
 			{
-				EvalPredicate = m => m.Status == status;
+				Predicate = m => m.Status == status;
 			}
 			else
 			{
-				EvalPredicate = m => true;
+				Predicate = m => true;
 			}
 		}
 	}

@@ -9,11 +9,11 @@ namespace FootballManagementApi.DAL.Specifications.Posts
 		{
 			if (searchString != null)
 			{
-				EvalPredicate = p => p.Title.Contains(searchString);
+				Predicate = p => p.Title.Contains(searchString);
 			}
 			else
 			{
-				EvalPredicate = p => true;
+				Predicate = p => true;
 			}
 		}
 	}
@@ -24,11 +24,11 @@ namespace FootballManagementApi.DAL.Specifications.Posts
 		{
 			if (searchString != null)
 			{
-				EvalPredicate = p => p.Items.Any(i => i.Type == Enums.PostItemType.Text && i.Text.Contains(searchString));
+				Predicate = p => p.Items.Any(i => i.Type == Enums.PostItemType.Text && i.Text.Contains(searchString));
 			}
 			else
 			{
-				EvalPredicate = p => true;
+				Predicate = p => true;
 			}
 		}
 	}
@@ -36,6 +36,6 @@ namespace FootballManagementApi.DAL.Specifications.Posts
 	public class StatusSpecification : Specification<Post>
 	{
 		public StatusSpecification(Enums.PostStatus status = Enums.PostStatus.Published)
-			=> EvalPredicate = p => p.Status == status;
+			=> Predicate = p => p.Status == status;
 	}
 }
