@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
+using FootballManagementApi.DAL.Repositories;
 using FootballManagementApi.Enums;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Resources;
@@ -42,7 +43,7 @@ namespace FootballManagementApi.Controllers
 			{
 				Items = results.Select(t => new GetListItem
 				{
-					Id = t.Id,
+			    		Id = t.Id,
 					Name = t.Name,
 					EndDt = t.EndDt,
 					StartDt = t.StartDt
@@ -71,7 +72,7 @@ namespace FootballManagementApi.Controllers
 					Id = t.TeamId,
 					Image = t.Team.Logotype,
 					Name = t.Team.Name,
-					Position = GetPositionOntourney(team: t.Team),
+					Position = GetScoreOntourney(team: t.Team, tourney: tourney),
 					Status = t.Status
 				})
 			};
@@ -172,10 +173,25 @@ namespace FootballManagementApi.Controllers
 		//	return Ok();
 		//}
 
-		//TODO Подсчитать позицию в турнире
-		private int GetPositionOntourney(Team team)
+
+		private int GetScoreOntourney(Team team, Tourney tourney)
 		{
-			return 0;
+		    int score = 0;
+            IEnumerable<Match> matches = tourney.Matches.Where(t => t.GuestId == team.Id | t.HomeId == team.Id);
+            foreach (var teamMatch in matches)
+            {
+                int teamGoals = teamMatch.Goals.Select(g => g.TeamId == team.Id).Count();
+                int goals = teamMatch.Goals.Select(g => g.TeamId != team.Id).Count();
+                if (teamGoals == goals)
+                {
+                    score = +1;
+                }
+                else if (teamGoals > goals)
+                {
+                    score += 3;
+                }
+            }
+            return score;
 		}
 	}
 }
