@@ -44,18 +44,20 @@ namespace FootballManagementApi.Controllers
             return Ok(response);
 		}
 
+        //TODO Доделать
         [HttpPost]
         [Route("refresh_token")]
-        public async Task<IHttpActionResult> RefreshTokenAsync([FromUri]System.Guid refreshToken)
+        public async Task<IHttpActionResult> RefreshTokenAsync([FromBody]RefreshTokenRequest request)
         {
-            (string accessToken, System.Guid guid) = await _loginService.RefreshTokenAsync(refreshToken);
-            LoginResposne response = new LoginResposne
-            {
-                AccessToken = accessToken,
-                RefreshToken = guid
-            };
-            await UnitOfWork.SaveChangesAsync();
-            return Ok(response);
+			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
+			(string accessToken, System.Guid guid) = await _loginService.RefreshTokenAsync(request.RefreshToken, user);
+			await UnitOfWork.SaveChangesAsync();
+            return Ok(new LoginResposne
+			{
+				AccessToken = accessToken,
+				RefreshToken = guid,
+				Role = user.Role
+			});
         }
 
         [HttpPost]
@@ -81,6 +83,7 @@ namespace FootballManagementApi.Controllers
                 AccessToken = result.accessToken,
                 RefreshToken = result.guid,
 				Role = result.user.Role
+
 			};
 
             await UnitOfWork.SaveChangesAsync();

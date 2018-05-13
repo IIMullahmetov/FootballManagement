@@ -5,6 +5,7 @@ using System.Web.Http.Filters;
 using FootballManagementApi.Enums;
 using System.Net.Http;
 using Microsoft.Owin;
+using System;
 
 namespace FootballManagementApi.Auth
 {
@@ -32,6 +33,16 @@ namespace FootballManagementApi.Auth
                     StatusCode = System.Net.HttpStatusCode.Unauthorized,
                 };
             }
+			else
+			{
+				if (principal.ExpireAt < DateTimeOffset.Now)
+				{
+					actionContext.Response = new HttpResponseMessage
+					{
+						StatusCode = System.Net.HttpStatusCode.Unauthorized,
+					};
+				}
+			}
         }
     }
 }

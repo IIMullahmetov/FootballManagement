@@ -123,6 +123,10 @@
     <Compile Include="Migrations\201805121146473_AddedEndDt.Designer.cs">
       <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805130954264_DeletedIntroFromPost.cs" />
+    <Compile Include="Migrations\201805130954264_DeletedIntroFromPost.Designer.cs">
+      <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805121146473_AddedEndDt.resx">
       <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130954264_DeletedIntroFromPost.resx">
+      <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
