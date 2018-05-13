@@ -7,6 +7,7 @@ using FootballManagementApi.DAL.Models;
 using FootballManagementApi.Enums;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Helpers;
+using FootballManagementApi.Resources;
 
 namespace FootballManagementApi.Services.Implementations
 {
@@ -33,11 +34,12 @@ namespace FootballManagementApi.Services.Implementations
                 string jwt = GetJwt(user, LoginType.Google);
                 RefreshToken refreshToken = new RefreshToken
                 {
-                    ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.RefreshTokenLife),
+                    ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.TokenLife),
                     CreateDt = DateTimeOffset.Now,
                     User = user,
                     Guid = Guid.NewGuid()
                 };
+				user.RefreshTokens.Add(refreshToken);
                 return (jwt, refreshToken.Guid, user);
             }
 
@@ -55,14 +57,30 @@ namespace FootballManagementApi.Services.Implementations
                         User = user,
                         Guid = Guid.NewGuid()
                     };
-                    return (jwt, refreshToken.Guid, user);
+					user.RefreshTokens.Add(refreshToken);
+					return (jwt, refreshToken.Guid, user);
                 }
             }
 
             throw new ActionForbiddenException();
         }
 
-        public Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid) => throw new NotImplementedException();
+        public async Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid, User user)
+		{
+			RefreshToken refreshToken = user.RefreshTokens.FirstOrDefault(t => t.Guid == guid && t.ExpireAt >= DateTimeOffset.Now)
+				?? throw new ActionCannotBeExecutedException(ExceptionMessages.TokenHasExpired);
+
+			string token = GetJwt(user, (LoginType)user.Registration.Type);
+			RefreshToken newRefreshToken = new RefreshToken
+			{
+				User = user,
+				ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.RefreshTokenLife),
+				CreateDt = DateTimeOffset.Now,
+				Guid = Guid.NewGuid()
+			};
+			user.RefreshTokens.Add(newRefreshToken);
+			return (token, newRefreshToken.Guid);
+		}
 
         //TODO Implement
         private void ValidateData(string email, string password = null)

@@ -10,7 +10,7 @@ namespace FootballManagementApi
     {
         public int RefreshTokenLife => 100000;
 
-        public int TokenLife => 100000;
+        public int TokenLife => 1;
 
         public string Secret => "Somefuckinsecreteptablya";
     }

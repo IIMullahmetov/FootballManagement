@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace FootballManagementApi.AuthRequests
 {
@@ -10,4 +11,10 @@ namespace FootballManagementApi.AuthRequests
         [JsonProperty("password")]
         public string Password { get; set; }
     }
+
+	public class RefreshTokenRequest
+	{
+		[JsonProperty("refreshToken")]
+		public Guid RefreshToken { get; set; }
+	}
 }

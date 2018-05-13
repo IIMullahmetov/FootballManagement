@@ -20,11 +20,7 @@ namespace FootballManagementApi.DAL.Models
 		public int Id { get; set; }
 
 		public string Title { get; set; }
-
-		public string Intro { get; set; }
-
-		public Guid? Image { get; set; }
-
+		
 		public DateTimeOffset CreateDt { get; set; }
 
 		public PostStatus Status { get; set; }

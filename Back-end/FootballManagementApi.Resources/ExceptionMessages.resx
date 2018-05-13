@@ -168,6 +168,9 @@
   <data name="TeamsMustBeSame" xml:space="preserve">
     <value>Teams must be same</value>
   </data>
+  <data name="TokenHasExpired" xml:space="preserve">
+    <value>The token has expired</value>
+  </data>
   <data name="TourenyFinished" xml:space="preserve">
     <value>Toureny finished</value>
   </data>

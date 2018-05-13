@@ -214,6 +214,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The token has expired.
+        /// </summary>
+        public static string TokenHasExpired {
+            get {
+                return ResourceManager.GetString("TokenHasExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Toureny finished.
         /// </summary>
         public static string TourenyFinished {

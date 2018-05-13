@@ -47,9 +47,17 @@ namespace FootballManagementApi.Controllers
         //TODO Доделать
         [HttpPost]
         [Route("refresh_token")]
-        public async Task<IHttpActionResult> RefreshTokenAsync()
+        public async Task<IHttpActionResult> RefreshTokenAsync([FromBody]RefreshTokenRequest request)
         {
-            return Ok();
+			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
+			(string accessToken, System.Guid guid) = await _loginService.RefreshTokenAsync(request.RefreshToken, user);
+			await UnitOfWork.SaveChangesAsync();
+            return Ok(new LoginResposne
+			{
+				AccessToken = accessToken,
+				RefreshToken = guid,
+				Role = user.Role
+			});
         }
 
         [HttpPost]

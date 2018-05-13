@@ -9,6 +9,6 @@ namespace FootballManagementApi.Services
     {
         Task<(string accessToken, Guid guid, User user)> LoginAsync(LoginType loginType, string email, string password = null);
 
-        Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid);
+        Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid, User user);
     }
 }

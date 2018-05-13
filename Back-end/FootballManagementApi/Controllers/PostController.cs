@@ -34,8 +34,8 @@ namespace FootballManagementApi.Controllers
 				Take = size,
 				Skip = page * size
 			};
-            options.Includes.Add(p => p.Dislikes.Count);
-            options.Includes.Add(p => p.Likes.Count);
+            options.Includes.Add(p => p.Dislikes);
+            options.Includes.Add(p => p.Likes);
 
             IPostRepository repo = UnitOfWork.GetPostRepository();
 
@@ -52,8 +52,8 @@ namespace FootballManagementApi.Controllers
 				Items = list.Select(p => new GetListReponseItem
 				{
 					Id = p.Id,
-					Image = p.Image,
-					Intro = p.Intro,
+					Image = p.Items.FirstOrDefault(i => i.Type == Enums.PostItemType.Image).Guid,
+					Intro = p.Items.FirstOrDefault(i => i.Type == Enums.PostItemType.Text).Text,
 					Title = p.Title,
                     Likes = p.Likes.Count,
                     Dislikes = p.Dislikes.Count
@@ -73,8 +73,6 @@ namespace FootballManagementApi.Controllers
 			GetResponse response = new GetResponse
 			{
 				Id = post.Id,
-				Image = post.Image,
-				Intro = post.Intro,
 				Title = post.Title,
 				Items = post.Items.Select(i => new GetResponseItem
 				{
@@ -98,8 +96,6 @@ namespace FootballManagementApi.Controllers
 			Post post = new Post
 			{
 				Title = request.Title,
-				Intro = request.Intro,
-				Image = request.Image,
 				CreateDt = DateTimeOffset.Now,
 				User = user,
 				//TODO Возможно будет реализовано так, что сначала черновик потом публикация
@@ -130,8 +126,6 @@ namespace FootballManagementApi.Controllers
 			Post post = await UnitOfWork.GetPostRepository().SelectByIdAsync(request.Id)
 				?? throw new ActionCannotBeExecutedException(ExceptionMessages.PostNotFound);
 			post.Title = request.Title;
-			post.Intro = request.Intro;
-			post.Image = request.Image;
 			post.Items = request.Items?.Select(i => new PostItem
 			{
 				Type = i.Type,
