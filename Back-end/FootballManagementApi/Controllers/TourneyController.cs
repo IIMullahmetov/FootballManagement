@@ -72,7 +72,7 @@ namespace FootballManagementApi.Controllers
 					Id = t.TeamId,
 					Image = t.Team.Logotype,
 					Name = t.Team.Name,
-					Position = GetPositionOntourney(team: t.Team, tourney: tourney),
+					Position = GetScoreOntourney(team: t.Team, tourney: tourney),
 					Status = t.Status
 				})
 			};
@@ -174,7 +174,7 @@ namespace FootballManagementApi.Controllers
 		//}
 
 
-		private int GetPositionOntourney(Team team, Tourney tourney)
+		private int GetScoreOntourney(Team team, Tourney tourney)
 		{
 		    int score = 0;
             IEnumerable<Match> matches = tourney.Matches.Where(t => t.GuestId == team.Id | t.HomeId == team.Id);
