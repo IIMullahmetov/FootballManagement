@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
@@ -58,17 +59,30 @@ namespace FootballManagementApi.Services.Implementations
 
         public void Edit(User user, string firstName, string lastName, Gender? gender)
         {
-            ValidateData(firstName, lastName, gender);
+            ValidateData(firstName, lastName);
 
             user.FirstName = firstName;
             user.LastName = lastName;
             user.Gender = gender;
         }
 
-        //TODO Implement him
-        private void ValidateData(string firstName, string lastName, Gender? gender)
+        private void ValidateData(string firstName, string lastName)
         {
+            if (firstName != null)
+            {
+                var isName = new Regex(@"^[A-Z][a-z]+$");
 
+                if (!isName.IsMatch(firstName))
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidFirstName);
+            }
+
+            if (lastName != null)
+            {
+                var isName = new Regex(@"^[A-Z][a-z]+$");
+
+                if (!isName.IsMatch(lastName))
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FootballManagementApi.DAL;
 using FootballManagementApi.DAL.Models;
@@ -34,8 +36,7 @@ namespace FootballManagementApi.Services.Implementations
         public async Task<Registration> RegisterAsync(RegistrationType registrationType, string email = null, string password = null, string confirm = null, string firstName = null,
              string lastName = null, DateTime? birthDt = null, Gender? gender = null, Role role = Role.User)
         {
-            //TODO Implement
-            ValidateData();
+            ValidateData(email, firstName, lastName, birthDt);
 
             Registration registration = new Registration
             {
@@ -47,6 +48,7 @@ namespace FootballManagementApi.Services.Implementations
 
             if (registrationType == RegistrationType.Email)
             {
+                ValidatePassword(password, confirm);
                 User user = new User
                 {
                     FirstName = firstName,
@@ -57,7 +59,6 @@ namespace FootballManagementApi.Services.Implementations
                     Status = UserStatus.Pending,
                     Email = email,
                 };
-                //TODO Реализовать отдельно в методе и проверить валидность всех входящих параметров
                 _passwordSetter.SetPassword(user, password, confirm);
 				_unitOfWork.GetUserRepository().Insert(user);
                 //TODO отпралять сверстанную страницу
@@ -66,8 +67,6 @@ namespace FootballManagementApi.Services.Implementations
 
             if (registrationType == RegistrationType.Google)
             {
-                //TODO Реализовать отдельно в методе и проверить валидность всех входящих параметров
-
                 User user = new User
                 {
                     FirstName = firstName,
@@ -97,9 +96,53 @@ namespace FootballManagementApi.Services.Implementations
             return registration.User;
         }
 
-        private void ValidateData()
+        private void ValidateData(string email, string firstName = null, string lastName = null, DateTime? birthDt = null)
         {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(email);
+            }
+            catch (Exception ex)
+            {
+                throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidEmailFormat);
+            }
 
+            if (firstName != null)
+            {
+                var isName = new Regex(@"^[A-Z][a-z]+$");
+
+                if (!isName.IsMatch(firstName))
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidFirstName);
+            }
+
+            if (lastName != null)
+            {
+                var isName = new Regex(@"^[A-Z][a-z]+$");
+
+                if (!isName.IsMatch(lastName))
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
+            }
+
+            if (birthDt != null)
+                if (birthDt >= DateTime.Today.AddYears(-16))
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidBirthDate);
+        }
+
+        private void ValidatePassword(string password, string confirm)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var has8Char = new Regex(@".{8,}");
+
+            var isValidated = hasNumber.IsMatch(password) &&
+                hasUpperChar.IsMatch(password) &&
+                has8Char.IsMatch(password);
+
+            if (!isValidated)
+                throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPassword);
+
+            if (!password.Equals(confirm))
+                throw new ActionCannotBeExecutedException(ExceptionMessages.PasswordsNotMatch);
         }
     }
 }

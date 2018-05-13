@@ -97,6 +97,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must be at least 16 years old.
+        /// </summary>
+        public static string InvalidBirthDate {
+            get {
+                return ResourceManager.GetString("InvalidBirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email format.
         /// </summary>
         public static string InvalidEmailFormat {
@@ -106,7 +115,25 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some message about invalid password.
+        ///   Looks up a localized string similar to Invalid first name format.
+        /// </summary>
+        public static string InvalidFirstName {
+            get {
+                return ResourceManager.GetString("InvalidFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid last name format.
+        /// </summary>
+        public static string InvalidLastName {
+            get {
+                return ResourceManager.GetString("InvalidLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be at least 8 characters long and must contains at least one uppercase letter and one digit.
         /// </summary>
         public static string InvalidPassword {
             get {
