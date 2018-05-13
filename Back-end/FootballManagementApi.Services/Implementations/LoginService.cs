@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FootballManagementApi.Auth;
 using FootballManagementApi.DAL;
@@ -7,6 +9,7 @@ using FootballManagementApi.DAL.Models;
 using FootballManagementApi.Enums;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Helpers;
+using FootballManagementApi.Resources;
 
 namespace FootballManagementApi.Services.Implementations
 {
@@ -64,10 +67,30 @@ namespace FootballManagementApi.Services.Implementations
 
         public Task<(string accessToken, Guid guid)> RefreshTokenAsync(Guid guid) => throw new NotImplementedException();
 
-        //TODO Implement
         private void ValidateData(string email, string password = null)
         {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(email);
+            }
+            catch(Exception ex)
+            {
+                throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidEmailFormat);
+            }
 
+            if(password != null)
+            {
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var has8Char = new Regex(@".{8,}");
+
+                var isValidated = hasNumber.IsMatch(password) && 
+                    hasUpperChar.IsMatch(password) &&
+                    has8Char.IsMatch(password);
+
+                if (!isValidated)
+                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPassword);
+            }
         }
 
         private string GetJwt(User user, LoginType loginType)

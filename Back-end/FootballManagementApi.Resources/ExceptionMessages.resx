@@ -129,11 +129,20 @@
   <data name="ForbiddenToChangeEmail" xml:space="preserve">
     <value>It is forbidden to change the email</value>
   </data>
+  <data name="InvalidBirthDate" xml:space="preserve">
+    <value>You must be at least 16 years old</value>
+  </data>
   <data name="InvalidEmailFormat" xml:space="preserve">
     <value>Invalid email format</value>
   </data>
+  <data name="InvalidFirstName" xml:space="preserve">
+    <value>Invalid first name format</value>
+  </data>
+  <data name="InvalidLastName" xml:space="preserve">
+    <value>Invalid last name format</value>
+  </data>
   <data name="InvalidPassword" xml:space="preserve">
-    <value>Some message about invalid password</value>
+    <value>The password must be at least 8 characters long and must contains at least one uppercase letter and one digit</value>
   </data>
   <data name="InvalidRegistrationGuid" xml:space="preserve">
     <value>Invalid registration guid</value>
