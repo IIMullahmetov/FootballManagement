@@ -36,7 +36,7 @@ namespace FootballManagementApi.Services.Implementations
         public async Task<Registration> RegisterAsync(RegistrationType registrationType, string email = null, string password = null, string confirm = null, string firstName = null,
              string lastName = null, DateTime? birthDt = null, Gender? gender = null, Role role = Role.User)
         {
-            ValidateData(email, firstName, lastName, birthDt, password, confirm);
+            ValidateData(email, firstName, lastName, birthDt);
 
             Registration registration = new Registration
             {
@@ -48,6 +48,7 @@ namespace FootballManagementApi.Services.Implementations
 
             if (registrationType == RegistrationType.Email)
             {
+                ValidatePassword(password, confirm);
                 User user = new User
                 {
                     FirstName = firstName,
@@ -95,7 +96,7 @@ namespace FootballManagementApi.Services.Implementations
             return registration.User;
         }
 
-        private void ValidateData(string email, string firstName = null, string lastName = null, DateTime? birthDt = null, string password = null, string confirm = null)
+        private void ValidateData(string email, string firstName = null, string lastName = null, DateTime? birthDt = null)
         {
             try
             {
@@ -122,26 +123,26 @@ namespace FootballManagementApi.Services.Implementations
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
             }
 
-            if(birthDt != null)
+            if (birthDt != null)
                 if (birthDt >= DateTime.Today.AddYears(-16))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidBirthDate);
+        }
 
-            if (password != null)
-            {
-                var hasNumber = new Regex(@"[0-9]+");
-                var hasUpperChar = new Regex(@"[A-Z]+");
-                var has8Char = new Regex(@".{8,}");
+        private void ValidatePassword(string password, string confirm)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var has8Char = new Regex(@".{8,}");
 
-                var isValidated = hasNumber.IsMatch(password) &&
-                    hasUpperChar.IsMatch(password) &&
-                    has8Char.IsMatch(password);
+            var isValidated = hasNumber.IsMatch(password) &&
+                hasUpperChar.IsMatch(password) &&
+                has8Char.IsMatch(password);
 
-                if (!isValidated)
-                    throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPassword);
+            if (!isValidated)
+                throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPassword);
 
-                if (!password.Equals(confirm))
-                    throw new ActionCannotBeExecutedException(ExceptionMessages.PasswordsNotMatch);
-            }
+            if (!password.Equals(confirm))
+                throw new ActionCannotBeExecutedException(ExceptionMessages.PasswordsNotMatch);
         }
     }
 }
