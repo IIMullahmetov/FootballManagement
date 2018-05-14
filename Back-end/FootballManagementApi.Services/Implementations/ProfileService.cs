@@ -36,8 +36,8 @@ namespace FootballManagementApi.Services.Implementations
 
             await _emailValidator.ValidateToRegistrationAsync(email);
 
-            //TODO ChangeBody
-            await _mailSender.SendAsync(new Letter { Body = "", Email = new string[] { email }, Topic = "email Changing" });
+            string emailBody = MailTemplates.Changing;
+            await _mailSender.SendAsync(new Letter { Body = emailBody, Email = new string[] { email }, Topic = "Successful email change" });
 
             user.Email = email;
         }
