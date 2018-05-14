@@ -26,6 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
+import ru.kpfu.itis.android.models.UserPost;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,14 +71,17 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_signIn:
                 setVisibleProgressBar(View.VISIBLE);
                 SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
-                requests.authorization(etEmail.getText().toString(), etPassword.getText().toString())
+                requests.authorization(new UserPost(etEmail.getText().toString(), etPassword.getText().toString()))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(user -> {
-                            Intent intent = new Intent(context, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-
+                        .subscribe(response -> {
+                            if (response.code() == 200) {
+                                Intent intent = new Intent(context, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else if (response.code() == 400) {
+                                Toast.makeText(context, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                            }
                         }, throwable -> {
                             setVisibleProgressBar(View.GONE);
                             Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
@@ -109,8 +113,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-        }
-        else{
+        } else {
             Toast.makeText(context, "Не удалось войти", Toast.LENGTH_SHORT).show();
         }
     }
@@ -118,9 +121,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
+            Log.d("ACCOUNT", account.getEmail());
             SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
-            System.out.println(account.getEmail()+ " "+ account.getIdToken());
+            System.out.println(account.getEmail() + " " + account.getIdToken());
             requests.authorizationWithGoogle(account.getEmail(), account.getFamilyName(), account.getGivenName(),
                     //TODO birthday and gender
                     "17.04.1997", "man", account.getIdToken())
@@ -135,7 +138,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         setVisibleProgressBar(View.GONE);
                         Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     });
-
 
             // Signed in successfully, show authenticated UI.
 //            updateUI(account);
@@ -157,8 +159,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void setVisibleProgressBar(int visibility){
-        switch (visibility){
+    private void setVisibleProgressBar(int visibility) {
+        switch (visibility) {
             case View.GONE:
                 pbAuth.setVisibility(View.GONE);
                 cLayout.setVisibility(View.VISIBLE);
