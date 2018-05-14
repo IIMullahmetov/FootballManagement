@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TeamTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify nav-bar visibility">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyNavBarVisibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify image in team page">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyImageInTeamPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of team information">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfTeamInformation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of recently matches team">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfRecentlyMatchesTeam"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of achievements team">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfAchievementsTeam"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of best bombardier">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfBestBombardier"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify functionality of navigation team page">
+        <classes>
+            <class name="CssAndFuncTests.TeamPageTests">
+                <methods>
+                    <include name="tFunctionalityOfNavigationTeamPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

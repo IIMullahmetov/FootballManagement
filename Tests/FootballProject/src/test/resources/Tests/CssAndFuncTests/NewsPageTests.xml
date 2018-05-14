@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="NewsTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify nav-bar visibility">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyNavBarVisibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of news post">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfNewsPost"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles news of block of comments">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfNewsBlockOfComments"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of send button news page">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfSendButtonNewsPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify size of list of comments and amount of comments news page">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifySizeAndAmountOfCommentsNewsPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of blogs at news page">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfBlogsAtNewsPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of main news">
+        <classes>
+            <class name="CssAndFuncTests.NewsPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfMainNews"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

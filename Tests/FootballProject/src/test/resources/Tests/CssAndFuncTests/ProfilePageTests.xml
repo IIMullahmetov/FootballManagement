@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProfileTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify nav-bar visibility">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyNavBarVisibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of information of user">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyStylesOfInformationOfUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of edit button">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyStylesOfEditButton"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify image in profile page">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyImageInProfilePage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of name and username">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyStylesOfNameAndUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of activity user">
+        <classes>
+            <class name="CssAndFuncTests.ProfilePageTests">
+                <methods>
+                    <include name="tVerifyStylesOfActivityUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

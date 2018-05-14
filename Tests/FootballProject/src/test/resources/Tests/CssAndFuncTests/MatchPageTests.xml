@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MatchTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify nav-bar visibility">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tVerifyNavBarVisibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify images in score table">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tVerifyImagesInScoreTable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of players and scores">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfPlayersAndScores"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of date and other inf">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfDateAndOtherInf"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of navigation">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfNavigation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify functionality of navigation">
+        <classes>
+            <class name="CssAndFuncTests.MatchPageTests">
+                <methods>
+                    <include name="tFunctionalityOfNavigation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

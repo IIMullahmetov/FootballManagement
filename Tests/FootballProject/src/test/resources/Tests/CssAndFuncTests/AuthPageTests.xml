@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AuthTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify functionality SignIn button">
+        <classes>
+            <class name="CssAndFuncTests.AuthPageTests">
+                <methods>
+                    <include name="tVerifyFuncSignIn"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

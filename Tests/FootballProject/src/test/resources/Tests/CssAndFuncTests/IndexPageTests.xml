@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="IndexTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify styles of Nav-bar">
+        <classes>
+            <class name="CssAndFuncTests.IndexPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfNavBar"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of tables of matches">
+        <classes>
+            <class name="CssAndFuncTests.IndexPageTests">
+                <methods>
+                    <include name="tVerifyStyleOfTablesOfMatches"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of main news">
+        <classes>
+            <class name="CssAndFuncTests.IndexPageTests">
+                <methods>
+                    <include name="tVerifyStyleOfMainNews"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of stat">
+        <classes>
+            <class name="CssAndFuncTests.IndexPageTests">
+                <methods>
+                    <include name="tVerifyStyleOfStat"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of footer">
+        <classes>
+            <class name="CssAndFuncTests.IndexPageTests">
+                <methods>
+                    <include name="tVerifyStyleOfFooter"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="BlogTests" parallel="tests" preserve-order="true" thread-count="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <parameter name="BROWSER" value="CHROME"/>
+    <parameter name="DEVICE" value=""/>
+    <test name="Verify nav-bar visibility">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyNavBarVisibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of information in blog page">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfPInformationInBlogPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of subscribe button">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfSubscribeButton"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of create blog button">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfCreateBlogButton"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of send button">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfSendButton"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of recently in blogs block">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfRecentlyInBlogs"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of post">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfPost"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify visibilities and styles of block of comments">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifyStylesOfBlockOfComments"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Verify size of list of comments and amount of comments">
+        <classes>
+            <class name="CssAndFuncTests.BlogPageTests">
+                <methods>
+                    <include name="tVerifySizeAndAmountOfComments"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

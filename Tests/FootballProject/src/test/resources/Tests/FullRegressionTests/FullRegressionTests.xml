@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite thread-count="4" name="CARS Regression Suite" parallel="tests" preserve-order="true">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="utilities.listeners.SuiteListener"/>
+    </listeners>
+    <suite-files>
+        <suite-file path="../CssAndFuncTests/AuthPageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/BlogPageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/IndexPageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/MatchPageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/NewsPageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/ProfilePageTests.xml"/>
+        <suite-file path="../CssAndFuncTests/TeamPageTests.xml"/>
+    </suite-files>
+</suite>
