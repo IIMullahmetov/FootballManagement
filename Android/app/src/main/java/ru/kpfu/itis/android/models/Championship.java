@@ -9,10 +9,12 @@ import java.util.List;
 
 public class Championship implements Serializable {
     private String name;
+    private int icon;
     private List<News> news;
 
-    public Championship(String name, List<News> news) {
+    public Championship(String name, int icon, List<News> news) {
         this.name = name;
+        this.icon = icon;
         this.news = news;
     }
 
@@ -30,5 +32,13 @@ public class Championship implements Serializable {
 
     public void setNews(List<News> news) {
         this.news = news;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

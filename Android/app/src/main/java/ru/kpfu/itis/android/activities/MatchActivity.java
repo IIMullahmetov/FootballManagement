@@ -39,7 +39,8 @@ public class MatchActivity extends AppCompatActivity {
         bind();
 
 
-        Match match = (Match) getIntent().getSerializableExtra("MATCH");
+        Match match = getIntent().getParcelableExtra("MATCH");
+
         tvNameTeam1.setText(match.getTeam1());
         tvNameTeam2.setText(match.getTeam2());
         tvScore.setText((match.getScore1() + " : " + match.getScore2()));
@@ -56,14 +57,30 @@ public class MatchActivity extends AppCompatActivity {
         goalsAdapter2.setGoalList(match.getGoalsTeam2());
         rvGoalsTeam2.setAdapter(goalsAdapter2);
 
-        Glide.with(this)
-                .load(R.drawable.tottenham_hotspur)
-                .apply(RequestOptions.fitCenterTransform())
-                .into(ivTeam1);
-        Glide.with(this)
-                .load(R.drawable.real_madrid)
-                .apply(RequestOptions.fitCenterTransform())
-                .into(ivTeam2);
+        switch (getIntent().getIntExtra("type", 0)) {
+            case 0:
+                Glide.with(this)
+                        .load(R.drawable.tottenham_hotspur)
+                        .apply(RequestOptions.fitCenterTransform())
+                        .into(ivTeam1);
+                Glide.with(this)
+                        .load(R.drawable.real_madrid)
+                        .apply(RequestOptions.fitCenterTransform())
+                        .into(ivTeam2);
+                break;
+            case 1:
+                Glide.with(this)
+                        .load(R.drawable.tottenham_hotspur)
+                        .apply(RequestOptions.fitCenterTransform())
+                        .into(ivTeam1);
+                Glide.with(this)
+                        .load(R.drawable.psg)
+                        .apply(RequestOptions.fitCenterTransform())
+                        .into(ivTeam2);
+                break;
+        }
+
+
     }
 
     public void bind() {

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.net.URI;
 import java.util.ArrayList;
 
 import ru.kpfu.itis.android.R;
@@ -33,14 +39,20 @@ import ru.kpfu.itis.android.R;
 public class SettingsActivity extends AppCompatActivity {
 
     Button addAvatar;
+    Button changeName;
     Activity context = this;
     ImageView avatar;
     Uri mCropImageUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         TextView title = myToolbar.findViewById(R.id.toolbar_title);
@@ -63,13 +75,22 @@ public class SettingsActivity extends AppCompatActivity {
 
         avatar = findViewById(R.id.avatar);
 
+        if (!sharedPref.getString("profile", "").equals("")) {
+            mCropImageUri = Uri.parse(sharedPref.getString("profile", ""));
+            Glide.with(context)
+                    .load(mCropImageUri)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(avatar);
+        }
+
         addAvatar = findViewById(R.id.add_avatar);
-        addAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addAvatar.setOnClickListener(v -> {
+
                 CropImage.startPickImageActivity(context);
-            }
+
         });
+
+
     }
 
     @Override
@@ -98,7 +119,9 @@ public class SettingsActivity extends AppCompatActivity {
                         .apply(RequestOptions.circleCropTransform())
                         .into(avatar);
 
-
+                SharedPreferences sharedPref = context.getSharedPreferences(
+                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                sharedPref.edit().putString("profile", String.valueOf(mCropImageUri)).apply();
 
 
             } else {

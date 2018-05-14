@@ -23,19 +23,20 @@
 
 
         <ImageView
-
+            android:adjustViewBounds="true"
             android:layout_gravity="top"
             android:id="@+id/avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/ic_avatar" />
 
         <TextView
+
             android:id="@+id/nickname"
             android:gravity="top"
-            android:text="Имя пользователя"
+            android:text="Булат Мотыгуллин"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp" />
 
     </LinearLayout>

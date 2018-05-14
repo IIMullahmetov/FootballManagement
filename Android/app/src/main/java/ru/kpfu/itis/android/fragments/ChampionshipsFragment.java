@@ -53,9 +53,9 @@ public class ChampionshipsFragment extends Fragment{
         List<News> news = new ArrayList<>();
         news.add(new News("url", "Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST"));
         news.add(new News("url", "Делаем ставки, господа!", "TEXT TEST TEXT TEST"));
-        chmpshps.add(new Championship("РФПЛ", news));
-        chmpshps.add(new Championship("UEFA", news));
-        chmpshps.add(new Championship("Euro", news));
+        chmpshps.add(new Championship("РФПЛ", R.drawable.russia, news));
+        chmpshps.add(new Championship("UEFA", R.drawable.europe, news));
+        chmpshps.add(new Championship("Euro", R.drawable.europe, news));
         championshipAdapter.setChampionships(chmpshps);
         championshipAdapter.setChampionshipListener(championship -> {
             Intent intent = new Intent(context, ChampionshipActivity.class);
