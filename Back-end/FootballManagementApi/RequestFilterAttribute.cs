@@ -17,7 +17,7 @@ namespace FootballManagementApi
 		
 		public override async Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
 		{
-			if (!actionContext.ModelState.IsValid || (actionContext.Request.Method.Method == "POST" && actionContext.ActionDescriptor.ResultConverter == null && actionContext.ActionArguments.Count > 0))
+			if (!actionContext.ModelState.IsValid || (actionContext.Request.Method.Method == "POST" && actionContext.ActionArguments.Any(k => k.Value == null) && actionContext.ActionArguments.Count > 0))
 			{
 				actionContext.Response = new HttpResponseMessage
 				{
