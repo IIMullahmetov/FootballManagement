@@ -61,8 +61,8 @@ namespace FootballManagementApi.Services.Implementations
                 };
                 _passwordSetter.SetPassword(user, password, confirm);
 				_unitOfWork.GetUserRepository().Insert(user);
-                //TODO отпралять сверстанную страницу
-                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
+                string emailBody = MailTemplates.Confirmation.Replace("[Confirmation_Link]", _currentHost + "registration/confirm?guid=" + registration.Guid);
+                await _mailSender.SendAsync(new Letter { Topic = "Registration confirmation", Email = new string[] { user.Email }, Body = emailBody });
             }
 
             if (registrationType == RegistrationType.Google)
@@ -79,8 +79,8 @@ namespace FootballManagementApi.Services.Implementations
                 };
                 registration.Status = RegistrationStatus.Accepted;
                 _unitOfWork.GetUserRepository().Insert(user);
-                //TODO отпралять сверстанную страницу
-                //await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" + registration.Guid });
+                string emailBody = MailTemplates.Confirmation.Replace("[Confirmation_Link]", _currentHost + "registration/confirm?guid=" + registration.Guid);
+                await _mailSender.SendAsync(new Letter { Topic = "Registration confirmation", Email = new string[] { user.Email }, Body = emailBody });
             }
 
             return registration;

@@ -62,5 +62,11 @@
       <LastGenOutput>MailTemplates.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Confirmation.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Changing.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

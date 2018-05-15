@@ -61,6 +61,49 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot;&gt;
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;  
+        ///&lt;title&gt;Successful email change&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body class=&quot;body&quot; style=&quot;font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, Helvetica, sans-serif; line-height: initial; max-width: 580px;&quot; fiprocessed=&quot;true&quot;&gt;
+        ///&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+        ///&lt;title&gt;Successful email change&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///@media (min-width: 500px) {
+        ///  .avatar__media .media__fluid {
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Changing {
+            get {
+                return ResourceManager.GetString("Changing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot;&gt;
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;  
+        ///&lt;title&gt;Confirm your email address&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body class=&quot;body&quot; style=&quot;font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, Helvetica, sans-serif; line-height: initial; max-width: 580px;&quot; fiprocessed=&quot;true&quot;&gt;
+        ///&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+        ///&lt;title&gt;Confirm your email address&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///@media (min-width: 500px) {
+        ///  .avatar__media .media__fluid  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blabla.
         /// </summary>
         public static string Registration {
