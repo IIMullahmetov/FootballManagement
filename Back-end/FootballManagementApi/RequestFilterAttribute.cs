@@ -19,9 +19,16 @@ namespace FootballManagementApi
 		{
 			if (!actionContext.ModelState.IsValid || (actionContext.Request.Method.Method == "POST" && actionContext.ActionArguments.Any(k => k.Value == null) && actionContext.ActionArguments.Count > 0))
 			{
-				actionContext.Response = new HttpResponseMessage
+				//if (!actionContext.ModelState.IsValid)
+				//{
+				//	actionContext.Response = new HttpResponseMessage(HttpStatusCode.BadGateway)
+				//	{
+				//		Content = new StringContent(actionContext.ModelState.E)
+				//	};
+				//}
+				actionContext.Response = new HttpResponseMessage(HttpStatusCode.BadGateway)
 				{
-					StatusCode = HttpStatusCode.BadRequest
+					Content = new StringContent("Invalid fucking request body or headers")
 				};
 			}
 		}
