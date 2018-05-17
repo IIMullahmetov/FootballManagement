@@ -87,11 +87,36 @@ namespace FootballManagementApi.MatchResponses
 		[JsonProperty("logotype")]
 		public Guid Logotype { get; set; }
 
+		[JsonProperty("redCards")]
+		public int RedCards { get; set; }
+
+		[JsonProperty("yellowCards")]
+		public int YellowCards { get; set; }
+
+		[JsonProperty("fauls")]
+		public int Fouls { get; set; }
+
+		[JsonProperty("possession")]
+		public double Possession { get; set; }
+
+		[JsonProperty("shots")]
+		public IEnumerable<GetResponseShot> Shots { get; set; }
+
 		[JsonProperty("goals")]
 		public IEnumerable<GetResponseTeamGoal> Goals { get; set; }
 
 		[JsonProperty("players")]
 		public IEnumerable<GetResponsePlayer> Players { get; set; }
+	}
+	
+	public class GetResponseShot
+	{
+		[JsonProperty("count")]
+		public int Count { get; set; }
+
+		[JsonProperty("type")]
+		[JsonConverter(typeof(StringEnumConverter))]
+		public ShotType Type { get; set; }
 	}
 
 	public class GetResponseTeamGoal
