@@ -31,10 +31,16 @@ namespace FootballManagementApi.MatchRequests
 		[JsonConverter(typeof(StringEnumConverter))]
 		public MatchStatus Status { get; set; }
 
-		[JsonProperty("homePlayers")]
-		public IEnumerable<int> HomePlayers { get; set; }
+		[JsonProperty("homePlayersMain")]
+		public IEnumerable<int> HomePlayersMain { get; set; }
 
-		[JsonProperty("guestPlayers")]
-		public IEnumerable<int> GuestPlayers { get; set; }
+		[JsonProperty("guestPlayersMain")]
+		public IEnumerable<int> GuestPlayersMain { get; set; }
+
+		[JsonProperty("homePlayersSpare")]
+		public IEnumerable<int> HomePlayersSpare { get; set; }
+
+		[JsonProperty("guestPlayersSpare")]
+		public IEnumerable<int> GuestPlayersSpare { get; set; }
 	}
 }

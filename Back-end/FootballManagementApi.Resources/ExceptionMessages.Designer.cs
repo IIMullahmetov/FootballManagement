@@ -196,6 +196,15 @@ namespace FootballManagementApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player can be only in one composition.
+        /// </summary>
+        public static string PlayerCanBeOnlyOneComposition {
+            get {
+                return ResourceManager.GetString("PlayerCanBeOnlyOneComposition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Player with the specified identifier does not exist.
         /// </summary>
         public static string PlayerNotFound {
