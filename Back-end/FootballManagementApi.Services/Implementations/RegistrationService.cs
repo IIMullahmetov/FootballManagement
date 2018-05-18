@@ -109,7 +109,7 @@ namespace FootballManagementApi.Services.Implementations
 
             if (firstName != null)
             {
-                var isName = new Regex(@"^[A-Z][a-z]+$");
+                var isName = new Regex(@"^[a-zа-я]+$");
 
                 if (!isName.IsMatch(firstName))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidFirstName);
@@ -117,14 +117,14 @@ namespace FootballManagementApi.Services.Implementations
 
             if (lastName != null)
             {
-                var isName = new Regex(@"^[A-Z][a-z]+$");
+                var isName = new Regex(@"^[a-zа-я]+$");
 
                 if (!isName.IsMatch(lastName))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
             }
 
             if (birthDt != null)
-                if (birthDt >= DateTime.Today.AddYears(-16))
+                if (birthDt >= DateTime.Today)
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidBirthDate);
         }
 
