@@ -111,7 +111,7 @@ namespace FootballManagementApi.Services.Implementations
             {
                 var isName = new Regex(@"^[a-zа-я]+$");
 
-                if (!isName.IsMatch(firstName))
+                if (!isName.IsMatch(firstName.ToLower()))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidFirstName);
             }
 
@@ -119,7 +119,7 @@ namespace FootballManagementApi.Services.Implementations
             {
                 var isName = new Regex(@"^[a-zа-я]+$");
 
-                if (!isName.IsMatch(lastName))
+                if (!isName.IsMatch(lastName.ToLower()))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
             }
 
