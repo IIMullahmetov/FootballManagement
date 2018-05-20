@@ -44,12 +44,6 @@ namespace FootballManagementApi.PostResponses
 		[JsonProperty("title")]
 		public string Title { get; set; }
 
-		[JsonProperty("intro", NullValueHandling = NullValueHandling.Ignore)]
-		public string Intro { get; set; }
-
-		[JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
-		public Guid? Image { get; set; }
-
 		[JsonProperty("items")]
 		public IEnumerable<GetResponseItem> Items { get; set; }
 	}
