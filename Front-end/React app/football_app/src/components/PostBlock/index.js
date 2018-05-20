@@ -5,62 +5,34 @@ import { connect } from 'react-redux';
 //import { sidebarA, homeA, modalsA } from '../../actions';
 import './style.css';
 
-/*const mapStateToProps = ( {home: { loginData } }) => ({
-  chosens,
-  loginData,
-  push,
+const mapStateToProps = ( { match: { postList } }) => ({
+  postList
 });
-const mapDispatchToProps = dispatch => ({
+
+
+/*const mapDispatchToProps = dispatch => ({
   removeChoosen: address => dispatch(sidebarA.removeChoosen(address)),
   logout: push => dispatch(homeA.logoutPending(push)),
   confirm: () =>
     dispatch(modalsA.open('confirm', { text: 'Вы уверены что хотите выйти?', answer: { type: 'logout' } })),
-});
-*/
+});*/
+
 const Post_block = ({
-  /*removeChoosen,
-  loginData,
-  chosens,
-  // logout,
-  confirm,*/
-}: // push,
+  posts,
+  title  
+}: 
 {
-  /*loginData: { communal: string, name: string },
-  chosens: Array<Object>,
-  // push: Function,
-  // logout: Function,
-  confirm: Function,
-  removeChoosen: Function,*/
+ posts: Array<Object>,
+ title: string
 }) => (
-  <ul>
-  <h3>Главные новости</h3>
-          <li>
-          <p>
-            22:12 <br/>
-            Сол Кэмпбелл сравнил решение<br/> министров Великобритании<br/> бойкотировать ЧМ-2018 с режимами<br/>
-            Гитлера и Муссолини 20
-          </p>
-           </li>
-           <li><p>
-            22:12 <br/>
-            Сол Кэмпбелл сравнил решение<br/> министров Великобритании<br/> бойкотировать ЧМ-2018 с режимами<br/>
-            Гитлера и Муссолини 20
-          </p>
-           </li>
-           <li><p>
-            22:12 <br/>
-            Сол Кэмпбелл сравнил решение<br/> министров Великобритании<br/> бойкотировать ЧМ-2018 с режимами<br/>
-            Гитлера и Муссолини 20
-          </p>
-           </li>
-           <li>
-           <p>
-            22:12 <br/>
-            Сол Кэмпбелл сравнил решение<br/> министров Великобритании<br/> бойкотировать ЧМ-2018 с режимами<br/>
-            Гитлера и Муссолини 20
-          </p>
-           </li>
-    </ul>
+
+  <ul className="unstyled post_list">
+    <h3 style={{color: '#0fc272', fontWeight: 'bold'}}>{title}</h3>
+    {posts.map((post) => { const imgUrl = 'http://footballmanagement.azurewebsites.net/file/download?guid=' + post.image;
+    const postUrl = '/post/' + post.id;
+    return (<li><p style={{color: 'black', fontSize: '14px'}}><img src={imgUrl} className='img-responsive'  style={{float: 'left', margin: '7px 7px 7px 0', width: '100px'}}/><Link to={postUrl} style={{fontSize: '18px', fontWeight: 'bold', color: 'black'}}>{post.title}</Link><br/>{post.intro} </p>
+     </li>);})}        
+  </ul>
 );
 
 export default connect()(Post_block);

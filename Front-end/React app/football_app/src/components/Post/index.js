@@ -49,12 +49,12 @@ class Post extends React.Component<{
   	if(postObject.items) {
   		const imgSrc = 'http://footballmanagement.azurewebsites.net/file/download?guid=';
   		
-  		return (
-  			 <div className="col-md-6 main_news">
-		        <h5 className="news_time">Сегодня, 14:55</h5>
-		        <h2 className="news_name">{postObject.title}</h2>
+  		return (  			
+  			 <div className="col-md-10 col-md-offset-1 post">
+		        <h5 className="post_time">{postObject.createDt}</h5>
+		        <h2 className="post_name">{postObject.title}</h2>
 		        <span className="news_intro">
-		        {postObject.intro} swdsds
+		        {postObject.intro} 
 		        </span>
 		        <p className='news_body'>
 					{ postObject.items.map((item) => {
