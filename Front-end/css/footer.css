@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Oswald');
+
+
+footer hr {
+	border-color:  #16C172;
+	padding-left: 30px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body{
+	margin-bottom: 203px;
+}
+
+footer {
+  color: white;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 166px;
+ 
+
+}
+.inner-footer {
+  	background-color: #202125;
+  	padding: 1%;
+}
+
+
+.footer-groups {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.group-list{
+	font-family: 'Raleway';
+	font-style: Regular;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: left;
+	color:  #C2C2C2;
+}
+
+.info-line{
+font-family: 'Lato';
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+color: #F2E9E9;
+
+}

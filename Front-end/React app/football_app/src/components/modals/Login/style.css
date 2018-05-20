@@ -1,0 +1,49 @@
+.login-modal__overlay--black {
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.24);
+}
+
+.login-modal__overlay--clear {
+}
+
+.login-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px;
+  padding-top: 0;
+}
+
+.login-modal__logo {
+  width: 100px;
+  height: 100px;
+  background: url("/abdev-media/img/logo_abd.svg");
+}
+
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-modal__form input {
+  margin-top: 20px;
+}
+
+.close_btn {
+ text-align: right;
+  font-weight: bold;
+  margin-right: -300px;
+  margin-top: -5px;
+
+}
+
+.close_btn:focus,
+.close_btn:hover,
+.close_btn:active {
+  text-decoration: none;
+}

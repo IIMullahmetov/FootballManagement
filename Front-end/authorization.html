@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="css/popup_avtorization.css" rel="stylesheet">
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/90633989-B621-8F4B-8266-95B4E3F5FB5B/main.js" charset="UTF-8">		</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+		Войти
+	</button>
+
+	<!-- Модальное окно -->
+	<div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class=" btn close" data-dismiss="modal" aria-label="Закрыть">
+						<span aria-hidden="true">×</span>
+					</button> 
+					<div class="modal-body">
+						<h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+					</div>
+					<button type="button" id="my-signin2" class="btn btn-primary" align="center" data-dismiss="modal">Войти через Google</button>
+					<hr>
+					<br>
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Email address</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="exampleCheck1">
+							<label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+					</form>
+					<input type="button" class="btn btn-secondary modal-btn" value = "Войти" data-dismiss="modal">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+	 <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script> 
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>

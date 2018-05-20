@@ -1,0 +1,143 @@
+    .details li {
+      list-style: none;
+    }
+
+    li
+    {
+    	padding-top: 3px;
+    }
+
+
+    .container {
+
+    	max-width: 100%;
+    	width: 100%;
+    	box-shadow: 7px 7px 5px rgba(0,0,0,0.1); 
+    	padding-right: 0px;
+    	padding-left: 0px;
+
+    }
+    hr{
+    	margin-top: 8px;
+    	margin-bottom: 8px;
+    }
+
+	ul
+	{
+		 list-style-type:none;
+		 padding-left: 0px;
+	}
+    .jumbotron
+    {
+    	width: 100%;
+    	background-color:#FAFAFA; 
+    	margin-bottom: 0px;
+    	margin-left: 0px;
+    	margin-right: 0px;
+    }
+
+    .profileImage {
+    	background-color: #FAFAFA;
+    	padding-top: 20px; 
+    	padding-right: 40px;
+
+    	
+    }
+    .profile{
+    	padding-top: 40px;	
+    	padding-left: 20px;	
+    }
+    .row 
+    {
+    	background-color: #FAFAFA;
+    }
+    .FIO
+    {
+		
+    	line-height: 29px;	 
+		font-size: 24px;
+	
+    }
+
+
+.state 
+{
+	font-size: 15px;
+}
+
+.pasport
+{
+
+	font-family: Open Sans;
+	background-color: #fff;
+	font-size: 16px;
+	line-height:22px;
+	text-align: left;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+}
+.statistic
+{
+	font-family: Open Sans;
+	background-color: #fff;
+	font-size: 16px;
+	line-height:22px;
+	text-align: left;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	display: inline-block;
+}
+
+.statisticRight
+{
+	font-family: Open Sans;
+	font-size: 16px;
+	line-height:22px;
+	text-align: right;
+	float: right;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	
+
+}
+
+.boldText{
+	padding-top: 6px;
+	padding-bottom: 6px;
+	font-weight: bold;
+	float: left;
+	
+}
+
+table
+{
+	width: 90%;
+
+}
+.col-md-11
+{
+	max-width: 100%;
+}
+
+div.btn-group {
+    margin: 0 auto; 
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+
+.text-center{
+	margin-top: 54px;
+	margin-bottom: 25px;
+}
+form {
+  overflow: hidden;
+}
+
+.pagination>li>a
+{
+	color: #544949;
+}
+
+.pagination a.active {
+    background-color:  #27AE60;
+}

@@ -1,0 +1,232 @@
+
+
+/*=================           ПЕРЕМЕННЫЕ           ==============*/
+
+@light-green: #5edc94;
+@black: #202125;
+@green: #30ca85;
+@white: #ffffff;
+@dark-green: #0fc272;
+@gray : #f6f8ff;
+
+/*=================           БАЗОВЫЕ НАСТРОЙКИ           ==============*/
+
+a:focus,
+a:hover,
+a:visited,
+a:active{
+	text-decoration: none;
+	
+}
+
+
+
+button:focus,
+button:hover {
+	outline: none;
+	text-decoration: none;
+	color: @white;
+}
+
+/*=================          ХЕДЕР          ==============*/
+
+header {
+	background-color: @black;
+
+	.logo_div {
+		h1 {
+			color: @white;
+		}
+	}
+
+	.reg_div,.login_div{
+		padding-top: 10px;
+	}
+
+	button {
+		background-color: @black;
+		color: @white;
+
+		h5:hover,
+		h5:focus {
+			color: @white;
+		}
+
+
+	}
+
+	button:hover,
+	button:focus,
+	button:active{
+		color : @white;
+	}
+}
+
+/*=================          MAIN         ==============*/
+
+main {
+	.container{
+		background-color: @white;
+	}
+
+	
+
+	.league_tour_div {
+		margin: 15px;
+		background-color: @gray;
+		border-radius: 10px;
+
+		.league_tour_header_div {
+			border-radius: 5px 5px 0 0;
+			background-color: @black;
+			h5{
+				display: inline;
+				color: @white;	
+
+			}
+			a{
+				color: @white;
+				float:right;
+				margin-right: 5px;
+				margin-left: 5px;
+			}
+
+		}
+
+		.match_div {
+			h4 {
+				background-color: @green;
+				padding: 5px 15px;
+				border-radius: 5px;
+				text-align: center;
+			}
+		}
+	}
+
+	.main_news_div {
+		
+		background: url('../img/main_news.png')  10%;
+		height: 600px;
+		
+
+		h1 {
+			color: @white;
+			margin-top: 50px;
+			margin-left: 40px;
+			font-size: 60px;
+			font-weight: bold;
+		}
+
+		h3 {
+			color: @white;
+			margin-left: 40px;
+			font-size: 32px;
+		}
+	}
+
+	.best_news_div {
+		h3 {
+			font-weight: bold;
+			color: @green;
+		}
+		p {
+			margin-top: 15px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+	}
+
+	.stat_div {
+
+		padding-left: 60px;
+
+
+
+		h3 {
+			color: @green;
+			text-align: center;
+			font-weight: bold;
+		}
+
+		.h4_table {
+			color: @white;
+			background-color: @black;
+			text-align: center;
+			padding: 3px;
+		}
+
+		h4 {
+			text-align: center;
+		}
+
+
+		.group_table {
+
+			table-layout: auto;
+
+			th, td {border: 1px solid @black;}
+
+			font-size: 14px;
+		}
+	}
+
+
+
+}
+
+/*=================          FOOTER         ==============*/
+
+footer {
+	background-color: @black;
+
+	color: @gray;
+
+	.footer_main_div {
+		h4 {
+			color: @green;
+		}
+
+		h5 {
+			display: inline-block;
+		}
+
+		.vk_link::before {
+			content: url("../img/vk_icon.png");
+			margin-top: 	 10px;
+		}
+
+		.ok_link::before {
+			content: url("../img/ok_icon.png");
+		}
+	
+		.fb_link::before {
+			content: url("../img/fb_icon.png");
+		}
+	}
+
+
+	
+
+	hr{
+		border-color: @green;
+		
+	}
+
+	a:focus,
+	a:hover,
+	a:visited,
+	a:active {
+		color: @white;
+	}
+
+	a{
+		color: @white;
+
+	}
+
+	.cenz {
+		margin-right: 20px;
+	}
+	
+	
+}
