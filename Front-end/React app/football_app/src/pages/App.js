@@ -1,11 +1,15 @@
 import React from 'react';
 import history from 'utils/history';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Main from './main';
+import MatchPage from './match_page';
+import ProfilePage from './profile_page';
+import PostPage from './post_page';
 
 // import Permission from 'components/Permission';
 
@@ -18,28 +22,20 @@ import './app.css';
 // const Admin = Permission(['admin']);
 
 const App = ({ store }: { store: Object }) => (
-  <div>
+  <div id="app">
     <Provider store={store}>
       <Router basename="/" history={history}>
-        <div className="container">
-          {/* <Route path="/" exact render={() => <Redirect to="/login" />} /> */}
-          <Route
-            path="/"
-            render={() => (
-              <div>
-                <CounterAbout />
-                <CreateCounter />
-                <Sms />
-                <Error />
-                <Login />
-                <Confirm />
-                <Limits />
-                <Alert />
-              </div>
-            )}
-          />        
-        </div>
-      </Router>
+        <div>      
+          <Route path="/" component={Header} />
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/match/:matchId" component={MatchPage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/post/:postId" component={PostPage} />
+          </Switch>
+          <Route path="/" component={Footer} />       
+        </div>         
+      </Router>    
     </Provider>
   </div>
 );

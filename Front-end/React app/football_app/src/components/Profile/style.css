@@ -1,0 +1,43 @@
+.profile-info button {
+	float: right;
+	/*margin-right: 20px;
+    margin-top: 20px;*/
+    color: #fff;
+    background-color: #30ca85;
+    border-radius: 0;
+}
+
+.profile-info span, .quantity {
+	font-family: fantasy;
+}
+
+main{
+	font-size: 18px;
+	background-color: #FAFAFA;
+}
+
+.profile-info{
+	padding: 3% 2%;
+	background-color: #FDFDFD;
+}
+
+.profile-head {
+	padding-top:45px;
+	padding-bottom: 45px;
+}
+
+.profile-head .head-col-2 {
+	padding-left: 5%;
+} 
+
+.profile-head .head-col-2 h2 {
+	font-family: fantasy;
+} 
+
+.profile-head .head-col-3{
+	padding-top: 3%;
+}
+
+.quantity{
+	float: right;
+}

@@ -1,0 +1,78 @@
+
+
+/*=================           ПЕРЕМЕННЫЕ           ==============*/
+
+@light-green: #5edc94;
+@black: #202125;
+@green: #30ca85;
+@white: #ffffff;
+@dark-green: #0fc272;
+@gray : #f6f8ff;
+
+/*=================           БАЗОВЫЕ НАСТРОЙКИ           ==============*/
+
+a:focus,
+a:hover,
+a:visited,
+a:active{
+	text-decoration: none;
+	
+}
+
+
+
+button:focus,
+button:hover {
+	outline: none;
+	text-decoration: none;
+	color: @white;
+}
+
+
+/*=================           НАСТРОЙКИ КОМПОНЕНТА           ==============*/
+main {
+
+margin-top: 20px;
+.match_intro_div {
+		margin: 15px;
+		background-color: @gray;
+		border-radius: 10px;
+
+		.match_intro_header {
+			background-color: @black;
+			border-radius: 5px 5px 0 0;
+
+			a {
+				color: @white;
+				float:right;
+				margin-right: 5px;
+				margin-left: 5px;
+			}
+		}
+
+		.match_intro_goals{
+				h2 {
+					background-color: @green;
+					padding: 5px 15px;
+					border-radius: 5px;
+					text-align: center;
+					display: inline;
+					color: @white;	
+				}
+		}
+
+		.match_intro_info {
+			p {
+
+				font-size: 16px;
+				span {
+					color: gray;
+					font-size: 12px;
+				}
+			}
+		}
+
+		
+	}
+
+}

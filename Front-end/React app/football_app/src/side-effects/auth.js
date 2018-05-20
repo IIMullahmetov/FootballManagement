@@ -1,11 +1,13 @@
-/*import { put, takeLatest, call, select } from 'redux-saga/effects';
-import { homeA, modalsA } from 'actions';
+// @flow
+import { put, takeLatest, call, select } from 'redux-saga/effects';
+import { home, modalsA } from 'actions';
 import history from 'utils/history';
 import { auth } from 'api';
 
+
 import { getConfirmAnswer } from 'selectors';
 
-function* login({ payload: user }: { payload: { user: { username: string, password: string } } }) {
+function* login({ payload: user }: { payload: { user: { email: string, password: string } } }) {
   try {
     const authSuccess = yield call(auth.login, user);
 
@@ -13,15 +15,17 @@ function* login({ payload: user }: { payload: { user: { username: string, passwo
     // yield (document.cookie = `refresh=${authSuccess.body.refreshToken}`);
     yield localStorage.setItem('access', authSuccess.body.accessToken);
     yield localStorage.setItem('refresh', authSuccess.body.refreshToken);
-    // window.token = authSuccess.body.accessToken;
-    const { body } = yield call(auth.role);
+    yield localStorage.setItem('role', authSuccess.body.role);
+    // window.token = authSuccess.body.accessToken;   
 
-    yield localStorage.setItem('user', JSON.stringify(body));
+    const role = authSuccess.body.role;
 
-    yield call([history, history.push], '/operator/home');
-    yield put(homeA.loginPendingSuccess(body));
+    console.log(role);
+
+    
+    yield put(home.loginPendingSuccess(role));
   } catch (error) {
-    yield put(homeA.loginPendingError(error));
+    yield put(home.loginPendingError(error));
   }
 }
 
@@ -32,34 +36,33 @@ function* fetchLoginContext() {
 
     yield localStorage.setItem('context', JSON.stringify(info));
 
-    yield put(homeA.loginContextPendingSuccess(info));
+    yield put(home.loginContextPendingSuccess(info));
   } catch (error) {
-    yield put(homeA.loginContextPendingError(error));
+    yield put(home.loginContextPendingError(error));
   }
 }
 
 function* logout() {
   try {
-    const isLogout = yield select(getConfirmAnswer);
-    console.log('isLogout', isLogout);
-    if (isLogout.type === 'logout' && isLogout.value) {
+    
+   
       yield localStorage.removeItem('access');
       yield localStorage.removeItem('user');
-      yield localStorage.removeItem('context');
+      yield localStorage.removeItem('role');
 
-      yield call([history, history.push], '/login');
-      yield put(homeA.logoutPendingSuccess());
-    }
+      console.log('logout');
+      yield call([history, history.push], '/');
+      yield put(home.logoutPendingSuccess());
+    
   } catch (error) {
-    yield put(homeA.logoutPendingError(error));
+    yield put(home.logoutPendingError(error));
   }
 }
 
 export default function* watchFetchHouses(): Object {
-  yield takeLatest(homeA.loginPending.getType(), login);
-  yield takeLatest(homeA.loginContextPending.getType(), fetchLoginContext);
-  yield takeLatest(homeA.logoutPending.getType(), logout);
+  yield takeLatest(home.loginPending.getType(), login);
+  yield takeLatest(home.loginContextPending.getType(), fetchLoginContext);
+  yield takeLatest(home.logoutPending.getType(), logout);
 
   yield takeLatest(modalsA.confirm.getType(), logout);
 }
-*/

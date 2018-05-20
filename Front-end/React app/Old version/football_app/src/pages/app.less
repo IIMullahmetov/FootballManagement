@@ -1,0 +1,130 @@
+/*=================           ПЕРЕМЕННЫЕ           ==============*/
+
+@light-green: #5edc94;
+@black: #202125;
+@green-black:  #272D2D;
+@green: #30ca85;
+@white: #ffffff;
+@dark-green: #0fc272;
+@gray : #f6f8ff;
+@dark-gray : #C4C4C4;
+
+/*===================            ИМПОРТЫ          =====================*/
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Oswald');
+
+/*=================           БАЗОВЫЕ НАСТРОЙКИ           ==============*/
+
+a:focus,
+a:hover,
+a:visited,
+a:active{
+	text-decoration: none;
+	
+}
+
+
+
+button:focus,
+button:hover {
+	outline: none;
+	text-decoration: none;
+	color: @white;
+}
+
+/*=================          ХЕДЕР          ==============*/
+
+header {
+	background-color: @green-black;
+
+	.logo_div {
+		h1 {
+			color: @white;
+		}
+	}
+
+	.reg_div,.login_div{
+		padding-top: 10px;
+	}
+
+	button {
+		background-color: @green-black;
+		color: @white;
+
+		h5:hover,
+		h5:focus {
+			color: @white;
+		}
+
+
+	}
+
+	button:hover,
+	button:focus,
+	button:active{
+		color : @white;
+	}
+}
+
+
+
+/*=================          FOOTER         ==============*/
+
+
+
+
+footer hr {
+	border-color:  #16C172;
+	padding-left: 30px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body{
+	margin-bottom: 203px;
+}
+
+footer {
+  color: white;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 166px;
+ 
+
+}
+.inner-footer {
+  	background-color: #272D2D;
+  	padding-top: 1%;
+  	padding-bottom: 1%;
+}
+
+
+.footer-groups {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.group-list{
+	font-family: 'Raleway';
+	font-style: Regular;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: left;
+	color:  #C2C2C2;
+}
+
+.info-line{
+font-family: 'Lato';
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+color: #F2E9E9;
+
+}

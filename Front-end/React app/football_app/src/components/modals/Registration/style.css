@@ -1,0 +1,13 @@
+.close_btn {
+ text-align: right;
+  font-weight: bold;
+  margin-right: -300px;
+  margin-top: -5px;
+
+}
+
+.close_btn:focus,
+.close_btn:hover,
+.close_btn:active {
+  text-decoration: none;
+}
