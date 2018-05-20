@@ -7,10 +7,11 @@
     <ProjectGuid>{011B8BAB-5C1B-4931-88F2-8D1339AF4388}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FootballManagementApi.Models</RootNamespace>
-    <AssemblyName>FootballManagementApi.Models</AssemblyName>
+    <RootNamespace>FootballManagementApi</RootNamespace>
+    <AssemblyName>FootballManagementApi.Responses</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -49,12 +59,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthResponse.cs" />
+    <Compile Include="FileResponses.cs" />
+    <Compile Include="MatchResponses.cs" />
+    <Compile Include="PlayerResponses.cs" />
+    <Compile Include="PostCommentResponses.cs" />
+    <Compile Include="PostResponses.cs" />
+    <Compile Include="ProfileResponses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses.cs" />
+    <Compile Include="TeamResponses.cs" />
+    <Compile Include="TourneyResponses.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FootballManagementApi.Enums\FootballManagementApi.Enums.csproj">
+      <Project>{59072831-8E9A-491C-AD60-64984B80026C}</Project>
+      <Name>FootballManagementApi.Enums</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

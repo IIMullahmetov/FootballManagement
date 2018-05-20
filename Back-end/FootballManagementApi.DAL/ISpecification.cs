@@ -1,7 +1,17 @@
-﻿namespace FootballManagementApi.DAL
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+
+namespace FootballManagementApi.DAL
 {
 	public interface ISpecification<TEntity>
 	{
-		bool IsSatisfiedBy(TEntity entity);
+		Expression<Func<TEntity, bool>> Predicate { get; }
+
+		IQueryable<TEntity> SatisfyingItemsFrom(IQueryable<TEntity> query);
+
+		ISpecification<TEntity> And(ISpecification<TEntity> other);
+
+		ISpecification<TEntity> Or(ISpecification<TEntity> other);
 	}
 }

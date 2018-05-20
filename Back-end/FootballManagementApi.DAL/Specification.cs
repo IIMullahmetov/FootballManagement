@@ -1,111 +1,93 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace FootballManagementApi.DAL
 {
-	public abstract class Specification<TEntity> : ISpecification<TEntity>
+	public class Specification<TEntity> : ISpecification<TEntity>
 	{
-		public bool IsSatisfiedBy(TEntity entity) => throw new NotImplementedException();
-	}
+		public Expression<Func<TEntity, bool>> Predicate { get; protected set; }
 
-	internal class AndSpecification<TEntity> : ISpecification<TEntity>
-	{
-		private readonly ISpecification<TEntity> _spec1;
-		private readonly ISpecification<TEntity> _spec2;
+		protected Specification() { }
 
-		protected ISpecification<TEntity> Spec1 => _spec1;
+		public Specification(Expression<Func<TEntity, bool>> predicate) => Predicate = predicate;
 
-		protected ISpecification<TEntity> Spec2 => _spec2;
-
-		internal AndSpecification(ISpecification<TEntity> spec1, ISpecification<TEntity> spec2)
+		public IQueryable<TEntity> SatisfyingItemsFrom(IQueryable<TEntity> query)
 		{
-			if (spec1 == null)
-			{
-				throw new ArgumentNullException("spec1");
-			}
-
-			if (spec2 == null)
-			{
-				throw new ArgumentNullException("spec2");
-			}
-
-			_spec1 = spec1;
-			_spec2 = spec2;
+			return query.Where(Predicate);
 		}
 
-		public bool IsSatisfiedBy(TEntity candidate)
+		public ISpecification<TEntity> And(ISpecification<TEntity> other) => new AndSpecification<TEntity>(this, other);
+		
+		public ISpecification<TEntity> Or(ISpecification<TEntity> other) => new OrSpecification<TEntity>(this, other);
+	}
+
+	public class AndSpecification<TEntity> : Specification<TEntity>
+	{
+		private readonly ISpecification<TEntity> _left;
+		private readonly ISpecification<TEntity> _right;
+
+		public AndSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
 		{
-			return Spec1.IsSatisfiedBy(candidate) && Spec2.IsSatisfiedBy(candidate);
+			_left = left;
+			_right = right;
+
+			Predicate = left.Predicate.And(right.Predicate);
 		}
 	}
 
-	internal class OrSpecification<TEntity> : ISpecification<TEntity>
+	public class OrSpecification<TEntity> : Specification<TEntity>
 	{
-		private readonly ISpecification<TEntity> _spec1;
-		private readonly ISpecification<TEntity> _spec2;
+		private readonly ISpecification<TEntity> _left;
+		private readonly ISpecification<TEntity> _right;
 
-		protected ISpecification<TEntity> Spec1 => _spec1;
-
-		protected ISpecification<TEntity> Spec2 => _spec2;
-
-		internal OrSpecification(ISpecification<TEntity> spec1, ISpecification<TEntity> spec2)
+		public OrSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
 		{
-			if (spec1 == null)
-			{
-				throw new ArgumentNullException("spec1");
-			}
+			_left = left;
+			_right = right;
 
-			if (spec2 == null)
-			{
-				throw new ArgumentNullException("spec2");
-			}
-
-			_spec1 = spec1;
-			_spec2 = spec2;
-		}
-
-		public bool IsSatisfiedBy(TEntity candidate)
-		{
-			return Spec1.IsSatisfiedBy(candidate) || Spec2.IsSatisfiedBy(candidate);
+			Predicate = left.Predicate.Or(right.Predicate);
 		}
 	}
 
-	internal class NotSpecification<TEntity> : ISpecification<TEntity>
+	public class ParameterRebinder : ExpressionVisitor
 	{
-		private readonly ISpecification<TEntity> _wrapped;
+		private readonly Dictionary<ParameterExpression, ParameterExpression> _map;
 
-		protected ISpecification<TEntity> Wrapped => _wrapped;
+		public ParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
+			=> _map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
 
-		internal NotSpecification(ISpecification<TEntity> spec)
+		public static Expression ReplaceParameters(Dictionary<ParameterExpression, ParameterExpression> map, Expression exp) => new ParameterRebinder(map).Visit(exp);
+
+		protected override Expression VisitParameter(ParameterExpression p)
 		{
-			if (spec == null)
+			if (_map.TryGetValue(p, out ParameterExpression replacement))
 			{
-				throw new ArgumentNullException("spec");
+				p = replacement;
 			}
 
-			_wrapped = spec;
-		}
-
-		public bool IsSatisfiedBy(TEntity candidate)
-		{
-			return !Wrapped.IsSatisfiedBy(candidate);
+			return base.VisitParameter(p);
 		}
 	}
 
-	public static class ExtensionMethods
+	public static class ExpressionExtensions
 	{
-		public static ISpecification<TEntity> And<TEntity>(this ISpecification<TEntity> spec1, ISpecification<TEntity> spec2)
+		public static Expression<TEntity> Compose<TEntity>(this Expression<TEntity> left, Expression<TEntity> right,
+			Func<Expression, Expression, Expression> merge)
 		{
-			return new AndSpecification<TEntity>(spec1, spec2);
+			Dictionary<ParameterExpression, ParameterExpression> map = left.Parameters
+				.Select((f, i) => new { f, s = right.Parameters[i] })
+				.ToDictionary(p => p.s, p => p.f);
+
+			Expression secondBody = ParameterRebinder.ReplaceParameters(map, right.Body);
+			return Expression.Lambda<TEntity>(merge(left.Body, secondBody), left.Parameters);
 		}
 
-		public static ISpecification<TEntity> Or<TEntity>(this ISpecification<TEntity> spec1, ISpecification<TEntity> spec2)
-		{
-			return new OrSpecification<TEntity>(spec1, spec2);
-		}
+		public static Expression<Func<TEntity, bool>> And<TEntity>(this Expression<Func<TEntity, bool>> left,
+			Expression<Func<TEntity, bool>> second) => left.Compose(second, Expression.And);
 
-		public static ISpecification<TEntity> Not<TEntity>(this ISpecification<TEntity> spec)
-		{
-			return new NotSpecification<TEntity>(spec);
-		}
+		public static Expression<Func<TEntity, bool>> Or<TEntity>(this Expression<Func<TEntity, bool>> left,
+			Expression<Func<TEntity, bool>> second) => left.Compose(second, Expression.Or);
 	}
 }

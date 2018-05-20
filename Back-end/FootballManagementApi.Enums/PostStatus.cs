@@ -4,8 +4,8 @@ namespace FootballManagementApi.Enums
 {
 	public enum PostStatus : byte
 	{
-		[EnumMember(Value = "draft")]
-		Draft = 0,
+		//[EnumMember(Value = "draft")]
+		//Draft = 0,
 
 		[EnumMember(Value = "published")]
 		Published = 1,

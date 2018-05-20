@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootballManagementApi.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +21,8 @@ namespace FootballManagementApi.DAL.Models
 
 		public DateTime StartDt { get; set; }
 		
+		public DateTime EndDt { get; set; }
+
 		public virtual ICollection<Match> Matches { get; set; }
 
 		public virtual ICollection<TourneyTeam> Teams { get; set; }

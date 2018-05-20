@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,27 +67,96 @@
     <Compile Include="Implementations.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="IUnitOfWorkFactory.cs" />
     <Compile Include="Migrations\201803241243552_Init.cs" />
     <Compile Include="Migrations\201803241243552_Init.Designer.cs">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.cs" />
+    <Compile Include="Migrations\201804092041477_ChangedPostStruct.Designer.cs">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.cs" />
+    <Compile Include="Migrations\201804101932419_ChangedCommentsStruct.Designer.cs">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804151154240_Updating.cs" />
+    <Compile Include="Migrations\201804151154240_Updating.Designer.cs">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804151852485_AddedFiles.cs" />
+    <Compile Include="Migrations\201804151852485_AddedFiles.Designer.cs">
+      <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804230942287_ExtendingUserAddedRegistration.cs" />
+    <Compile Include="Migrations\201804230942287_ExtendingUserAddedRegistration.Designer.cs">
+      <DependentUpon>201804230942287_ExtendingUserAddedRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250953307_SomeUpdating.cs" />
+    <Compile Include="Migrations\201804250953307_SomeUpdating.Designer.cs">
+      <DependentUpon>201804250953307_SomeUpdating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.cs" />
+    <Compile Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.Designer.cs">
+      <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261431398_AddedRegistrarionType.cs" />
+    <Compile Include="Migrations\201804261431398_AddedRegistrarionType.Designer.cs">
+      <DependentUpon>201804261431398_AddedRegistrarionType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804271249258_UserIdIsRequiredInFile.cs" />
+    <Compile Include="Migrations\201804271249258_UserIdIsRequiredInFile.Designer.cs">
+      <DependentUpon>201804271249258_UserIdIsRequiredInFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804280755366_AddedLikesAndDislikes.cs" />
+    <Compile Include="Migrations\201804280755366_AddedLikesAndDislikes.Designer.cs">
+      <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805061742196_RemovedLeagues.cs" />
+    <Compile Include="Migrations\201805061742196_RemovedLeagues.Designer.cs">
+      <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805101651175_AddedTeamIdToEntity.cs" />
+    <Compile Include="Migrations\201805101651175_AddedTeamIdToEntity.Designer.cs">
+      <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121146473_AddedEndDt.cs" />
+    <Compile Include="Migrations\201805121146473_AddedEndDt.Designer.cs">
+      <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805130954264_DeletedIntroFromPost.cs" />
+    <Compile Include="Migrations\201805130954264_DeletedIntroFromPost.Designer.cs">
+      <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805162027341_GlobalStructChanging.cs" />
+    <Compile Include="Migrations\201805162027341_GlobalStructChanging.Designer.cs">
+      <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\ComplexTypes\MatchData.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Goal.cs" />
-    <Compile Include="Models\League.cs" />
-    <Compile Include="Models\LeagueTeam.cs" />
     <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\MatchPlayer.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostItem.cs" />
+    <Compile Include="Models\RefreshToken.cs" />
+    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\Shot.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories.cs" />
+    <Compile Include="SelectOptions.cs" />
     <Compile Include="Specification.cs" />
     <Compile Include="Models\Tourney.cs" />
+    <Compile Include="Specifications\CommentSpecifications.cs" />
+    <Compile Include="Specifications\MatchSpecifications.cs" />
+    <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -110,6 +180,51 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803241243552_Init.resx">
       <DependentUpon>201803241243552_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804092041477_ChangedPostStruct.resx">
+      <DependentUpon>201804092041477_ChangedPostStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804101932419_ChangedCommentsStruct.resx">
+      <DependentUpon>201804101932419_ChangedCommentsStruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151154240_Updating.resx">
+      <DependentUpon>201804151154240_Updating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804151852485_AddedFiles.resx">
+      <DependentUpon>201804151852485_AddedFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804230942287_ExtendingUserAddedRegistration.resx">
+      <DependentUpon>201804230942287_ExtendingUserAddedRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250953307_SomeUpdating.resx">
+      <DependentUpon>201804250953307_SomeUpdating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251356107_ChangingLinkOfRegistrationAndUsers.resx">
+      <DependentUpon>201804251356107_ChangingLinkOfRegistrationAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261431398_AddedRegistrarionType.resx">
+      <DependentUpon>201804261431398_AddedRegistrarionType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804271249258_UserIdIsRequiredInFile.resx">
+      <DependentUpon>201804271249258_UserIdIsRequiredInFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280755366_AddedLikesAndDislikes.resx">
+      <DependentUpon>201804280755366_AddedLikesAndDislikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805061742196_RemovedLeagues.resx">
+      <DependentUpon>201805061742196_RemovedLeagues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101651175_AddedTeamIdToEntity.resx">
+      <DependentUpon>201805101651175_AddedTeamIdToEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121146473_AddedEndDt.resx">
+      <DependentUpon>201805121146473_AddedEndDt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130954264_DeletedIntroFromPost.resx">
+      <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162027341_GlobalStructChanging.resx">
+      <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

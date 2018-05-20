@@ -1,16 +1,17 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
+using FootballManagementApi.DAL.Implementations;
+using FootballManagementApi.DAL.Repositories;
 
 namespace FootballManagementApi.DAL
 {
-	internal class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext, new()
+	public class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext, new()
 	{
 		private bool _isDisposed = false;
 
 		private TContext Context { get; set; }
 
-		internal UnitOfWork() => Context = new TContext();
+		public UnitOfWork() => Context = new TContext();
 
 		public void Dispose()
 		{
@@ -28,5 +29,27 @@ namespace FootballManagementApi.DAL
 			Context.ChangeTracker.DetectChanges();
 			return Context.SaveChangesAsync();
 		}
-	}
+
+		public IUserRepository GetUserRepository() => new UserRepository(Context);
+
+		public ICommentRepository GetCommentRepository() => new CommentRepository(Context);
+
+		public IGoalRepository GetGoalRepository() => new GoalRepository(Context);
+		
+		public IMatchRepository GetMatchRepository() => new MatchRepository(Context);
+
+		public IPlayerRepository GetPlayerRepository() => new PlayerRepository(Context);
+
+		public IPostRepository GetPostRepository() => new PostRepository(Context);
+
+		public ITeamRepository GetTeamRepository() => new TeamRepository(Context);
+
+		public ITourneyRepository GetTourneyRepository() => new TourneyRepository(Context);
+
+		public ITourneyTeamRepository GetTourneyTeamRepository() => new TourneyTeamRepository(Context);
+
+		public IFileRepository GetFileRepository() => new FileRepository(Context);
+
+        public IRegistrationRepository GetRegistrationRepository() => new RegistrationRepository(Context);
+    }
 }
