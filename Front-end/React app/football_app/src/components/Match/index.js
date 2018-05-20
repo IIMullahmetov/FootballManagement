@@ -66,7 +66,7 @@ class Match extends React.Component<{
 			      </ul>
 			    </div> 
 			    <div className="col-md-4 match_info_block">
-			      <p className="match_time">21.02.2018, 14:00</p>      
+			      <p className="match_time">{matchObject.startDt}</p>      
 			      <p className="defis">-</p>
 			      <p  className="liga_name">Ла Лига</p>
 			      <p className="stadium_name">Стадион: Бутарке</p>
@@ -85,8 +85,7 @@ class Match extends React.Component<{
 			   <div className="col-md-12 match_stat_block"> 
 			    <div className="row">
 			      <div className="col-md-4 col-md-offset-4"> 
-			        <ul className="nav nav-pills match_tabs" id="tabs">
-			          <li ><a data-toggle="tab" href="#news_panel">Новости</a></li>
+			        <ul className="nav nav-pills match_tabs" id="tabs">			         
 			          <li className="active"><a data-toggle="tab" href="#stat_panel">Статистика</a></li>
 			          <li><a data-toggle="tab" href="#teams_panel">Составы</a></li>      
 			      </ul> 

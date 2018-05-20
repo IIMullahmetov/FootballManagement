@@ -5,7 +5,7 @@ import './style.css';
 const Footer = () => (
   <footer className="footer" >
       <div className="container-fluid inner-footer">
-          <span className="footer-groups group-list">Product developed by</span>
+          <span className="footer-groups group-list" style={{fontWeight: 'bold', color: 'white'}}>Product developed by</span>
           <div className="row footer-groups ">
               <div className="col-md-3 group-list">
                 Anatoliy Khlopunov<br/>
@@ -14,11 +14,11 @@ const Footer = () => (
               </div>
               <div className="col-md-3 group-list">
                 Ilvir Dimukhametov<br/>
-                Ilyas Mullahmetov <br/>
+                <span style={{fontWeight: 'bold', color: 'white'}}>Ilyas Mullahmetov</span> <br/>
                 Iskander Khakimzhanov<br/>
               </div>
               <div className="col-md-3 group-list">
-                Rinaz Siraziev<br/>
+                <span style={{fontWeight: 'bold', color: 'white'}}>Rinaz Siraziev</span><br/>
                 Stepan Lukyanov<br/>
                 Timur Timerkhanov
               </div>

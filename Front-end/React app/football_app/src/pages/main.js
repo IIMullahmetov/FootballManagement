@@ -49,15 +49,15 @@ class Main extends React.Component<{
        <div className="container">
        <LastMatches />
        <div className="col-md-12" >
-       <div style={{background: 'rgba(0, 170, 238, 0.9)'}}> 
+      
          <div className="jumbotron" style={{background: 'url(http://footballmanagement.azurewebsites.net/file/download?guid=1b8df587-24ed-4ed5-b350-20994e724266) 100% 100% no-repeat', backgroundSize: 'cover'}}>
          
           <p style={{color: 'white', fontWeight: 'bold', marginTop: '200px'}}>{mainPost.title}</p>
           <p><Link to={`/post/${mainPost.id}`} className="btn btn-primary btn-lg" style={{backgroundColor: '#0fc272'}} role="button" >Узнать больше</Link></p>
           </div>
       </div>
-      </div>
-      <div className="col-md-5 col-md-offset-1">
+      
+      <div className="col-md-5 ">
         <PostBlock posts={this.props.postList} title='Главные новости'/>
          
          
