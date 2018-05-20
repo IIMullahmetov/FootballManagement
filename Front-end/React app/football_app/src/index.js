@@ -19,7 +19,13 @@ import sagas from './side-effects';
 import rootReducer from './reducers';
 import App from './pages/app';
 
+
+import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
+
+
+
+
 
 moment.locale('ru');
 
@@ -32,6 +38,10 @@ const store = createStore(
   /* preloadedState, */ composeEnhancers(applyMiddleware(sagaMiddleware)),
 );
 /* eslint-enable */
+
+store.subscribe(() => {
+	console.log('subscribe', store.getState());
+})
 
 sagaMiddleware.run(sagas);
 render(<App store={store} />, document.getElementById('root'));
