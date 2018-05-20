@@ -10,7 +10,7 @@ namespace FootballManagementApi.MatchResponses
 	public class GetListResponse : PagingResponse
 	{
 		public GetListResponse(Paging paging) : base(paging) { }
-
+		
 		[JsonProperty("items")]
 		public IEnumerable<GetListResponseItem> Items { get; set; }
 	}
@@ -62,6 +62,10 @@ namespace FootballManagementApi.MatchResponses
 		
 		[JsonProperty("tourneyId", NullValueHandling = NullValueHandling.Ignore)]
 		public int TourneyId { get; set; }
+
+		[JsonProperty("startDt")]
+		public DateTimeOffset StartDt { get; set; }
+
 
 		[JsonProperty("home")]
 		public GetResponseTeam Home { get; set; }

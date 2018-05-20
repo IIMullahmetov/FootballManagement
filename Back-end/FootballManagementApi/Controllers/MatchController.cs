@@ -88,6 +88,7 @@ namespace FootballManagementApi.Controllers
 			{
 				Id = match.Id,
 				TourneyId = match.TourneyId,
+				StartDt = match.StartDt,
 				Guest = new GetResponseTeam
 				{
 					Id = match.GuestId,
