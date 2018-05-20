@@ -57,7 +57,7 @@ class Header extends React.Component<{
         <div className="container">
           <div className="row">
             <div className="col-md-2 logo_div">
-              <h1>LOGO</h1>
+              <img src="https://cdn.pixabay.com/photo/2012/04/18/01/21/flag-36423_960_720.png" className="img-responsive"/>
             </div> 
             {!loginStatus &&
               <div>
