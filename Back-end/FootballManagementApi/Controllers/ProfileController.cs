@@ -36,7 +36,8 @@ namespace FootballManagementApi.Controllers
                 FirstName = user.FirstName,
                 Image = user.Image,
                 LastName = user.LastName,
-                Gender = user.Gender
+                Gender = user.Gender,
+				RegistrationDt = user.Registration.CreateDt
             };
             return Ok(response);
         }
