@@ -144,9 +144,8 @@ namespace FootballManagementApi.MatchResponses
 		
 		[JsonProperty("number")]
 		public int Number { get; set; }
-
-		[JsonProperty("position")]
-		[JsonConverter(typeof(StringEnumConverter))]
-		public Position Position { get; set; }
+        
+        [JsonProperty("status")]
+        public MatchPlayerStatus Status { get; set; }
 	}
 }

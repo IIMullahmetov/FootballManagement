@@ -115,7 +115,8 @@ namespace FootballManagementApi.Controllers
 						Id = p.Id,
 						FisrtName = p.Player.FirstName,
 						LastName = p.Player.LastName,
-						Number = p.Player.Number
+						Number = p.Player.Number,
+                        Status = p.Status
 					})
 				},
 				Home = new GetResponseTeam
@@ -145,7 +146,8 @@ namespace FootballManagementApi.Controllers
 						Id = p.Id,
 						FisrtName = p.Player.FirstName,
 						LastName = p.Player.LastName,
-						Number = p.Player.Number
+						Number = p.Player.Number,
+                        Status = p.Status
 					})
 				}
 			};
