@@ -50,6 +50,20 @@ class Match extends React.Component<{
 
   		const homeTeamLogoUrl = "http://footballmanagement.azurewebsites.net/file/download?guid=" + matchObject.home.logotype;
   		const guestTeamLogoUrl = "http://footballmanagement.azurewebsites.net/file/download?guid=" + matchObject.guest.logotype;
+  		const players = [];
+
+
+  		if(matchObject.home.players.length >= matchObject.guest.players.length ) {
+  			matchObject.home.players.forEach(function(item, i, arr) {
+  				players.push({homePlayer: item, guestPlayer: matchObject.guest.players[i]});
+			});
+  		} else{
+  			matchObject.guest.players.forEach(function(item, i, arr) {
+  				players.push({guestPlayer: item, homePlayer: matchObject.home.players[i]});
+			});
+  		}
+
+  		console.log(players);
 
   		return (
   			<main>
@@ -155,76 +169,37 @@ class Match extends React.Component<{
 			    <table className="table table-striped group_table" id="teams_table">
 			      <thead>
 			        <tr>
-			          <th>Леганес</th>        
-			          <th>Реал Мадрид</th>         
+			          <th>{matchObject.home.name}</th>        
+			          <th>{matchObject.guest.name}</th>         
 			        </tr>
-			      </thead>   
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <thead>
-			        <tr>
-			          <th>Запасные</th>        
-			          <th>Запасные</th>         
-			        </tr>
-			      </thead> 
-			       <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>
-			      <tr>
-			        <td>31 Wayne Hennessey</td>
-			        <td>31 Wayne Hennessey</td>
-			      </tr>  
+			      </thead>  
+			      {players.map((playerItem) => {
+			      	if(playerItem.homePlayer && playerItem.guestPlayer) {
+			      		return(  <tr>			      		
+			        			<td>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</td>
+			        			<td>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</td>
+			      				</tr>
+			     			 );
+			      	} else{
+						if(playerItem.homePlayer) {
+			      		return(  <tr>	
+
+			        			<td>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</td>
+			        			<td></td>
+			      				</tr>
+			     			 );
+			      	} else{
+						return(  <tr>			      		
+			        			<td></td>
+			        			<td>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</td>
+			      				</tr>
+			     			 );
+			      	}
+			      }
+			      	
+			      })} 
+			    
+			     
 			    </table>
 			  </div>
 			  </div>

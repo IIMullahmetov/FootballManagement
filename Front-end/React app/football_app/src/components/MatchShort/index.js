@@ -19,7 +19,7 @@ const MatchShort = ({
   homeTeam: Object,
   guestTeam: Object,
  }) => (
-  <div className="col-md-6 match_intro_div">
+  <div className="col-md-5 match_intro_div">
     <div className="row">
                 <div className="col-md-12 match_intro_header">
                   <Link to={`/match/${matchId}`}>Статистика</Link>
