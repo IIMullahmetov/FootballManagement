@@ -21,7 +21,7 @@ namespace FootballManagementApi.MatchResponses
 		public int Id { get; set; }
 
 		[JsonProperty("startDt")]
-		public DateTimeOffset StartDt { get; set; }
+		public string StartDt { get; set; }
 
 		[JsonProperty("status")]
 		[JsonConverter(typeof(StringEnumConverter))]
@@ -64,7 +64,7 @@ namespace FootballManagementApi.MatchResponses
 		public int TourneyId { get; set; }
 
 		[JsonProperty("startDt")]
-		public DateTimeOffset StartDt { get; set; }
+		public string StartDt { get; set; }
 
 
 		[JsonProperty("home")]

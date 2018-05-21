@@ -17,6 +17,7 @@ namespace FootballManagementApi.Controllers
         protected const string fileCache = "FileCache";
         protected const string dbFileCache = "DbFileCache";
 		public static readonly Random Random = new Random();
+		public const string DateTimeFormat = "yyyy-MM-dd HH:mm";
 
 		private IUnitOfWork _unitOfWork;
 

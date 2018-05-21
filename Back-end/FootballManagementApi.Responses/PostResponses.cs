@@ -34,6 +34,9 @@ namespace FootballManagementApi.PostResponses
 
         [JsonProperty("dislikes")]
         public int Dislikes { get; set; }
+
+		[JsonProperty("createDt")]
+		public string CreateDt { get; set; }
 	}
 
 	public class GetResponse
@@ -43,6 +46,9 @@ namespace FootballManagementApi.PostResponses
 
 		[JsonProperty("title")]
 		public string Title { get; set; }
+
+		[JsonProperty("createDt")]
+		public string CreateDt { get; set; }
 
 		[JsonProperty("items")]
 		public IEnumerable<GetResponseItem> Items { get; set; }

@@ -48,7 +48,7 @@ namespace FootballManagementApi.Controllers
 				Items = result.Select(m => new GetListResponseItem
 				{
 					Id = m.Id,
-					StartDt = m.StartDt,
+					StartDt = m.StartDt.ToString(DateTimeFormat),
 					Status = m.Status, 
 					Guest = new GetListResponseItemTeam
 					{
@@ -88,7 +88,7 @@ namespace FootballManagementApi.Controllers
 			{
 				Id = match.Id,
 				TourneyId = match.TourneyId,
-				StartDt = match.StartDt,
+				StartDt = match.StartDt.ToString(DateTimeFormat),
 				Guest = new GetResponseTeam
 				{
 					Id = match.GuestId,
