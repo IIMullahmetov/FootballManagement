@@ -10,6 +10,7 @@ import Main from './main';
 import MatchPage from './match_page';
 import ProfilePage from './profile_page';
 import PostPage from './post_page';
+import TeamPage from './team_page';
 
 // import Permission from 'components/Permission';
 
@@ -32,6 +33,8 @@ const App = ({ store }: { store: Object }) => (
             <Route path="/match/:matchId" component={MatchPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/post/:postId" component={PostPage} />
+            <Route path="/team/:teamId" component={TeamPage} />
+          
           </Switch>
           <Route path="/" component={Footer} />       
         </div>         
