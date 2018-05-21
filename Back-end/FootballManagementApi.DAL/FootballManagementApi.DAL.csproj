@@ -155,6 +155,7 @@
     <Compile Include="Models\Tourney.cs" />
     <Compile Include="Specifications\CommentSpecifications.cs" />
     <Compile Include="Specifications\MatchSpecifications.cs" />
+    <Compile Include="Specifications\PlayerSpecifications.cs" />
     <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
