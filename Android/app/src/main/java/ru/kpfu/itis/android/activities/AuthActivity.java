@@ -33,6 +33,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     Context context = this;
     public static int RC_SIGN_IN = 101;
     Button btn_signIn;
+    private Button btnSignUp;
     SignInButton btn_googleSignIn;
     private ProgressBar pbAuth;
     private TextInputEditText etEmail;
@@ -62,15 +63,16 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        btnSignUp = findViewById(R.id.btn_signUp);
+        btnSignUp.setOnClickListener(this);
     }
 
     @Override
-
     public void onClick(View v) {
+        SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
         switch (v.getId()) {
             case R.id.btn_signIn:
                 setVisibleProgressBar(View.VISIBLE);
-                SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
                 requests.authorization(new UserPost(etEmail.getText().toString(), etPassword.getText().toString()))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -88,6 +90,10 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         });
                 break;
 
+            case R.id.btn_signUp:
+                Intent intent = new Intent(AuthActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.google_auth:
                 setVisibleProgressBar(View.VISIBLE);

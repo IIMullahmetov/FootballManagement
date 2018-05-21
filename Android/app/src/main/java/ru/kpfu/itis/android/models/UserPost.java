@@ -5,11 +5,13 @@ package ru.kpfu.itis.android.models;
  */
 
 public class UserPost {
+    public String email;
+    public String password;
+
     public UserPost(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public String email;
-        public String password;
+
 }
