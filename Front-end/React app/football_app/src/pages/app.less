@@ -18,7 +18,7 @@ a:focus,
 a:hover,
 a:visited,
 a:active{
-	text-decoration: none;
+	text-decoration: none !important;
 	
 }
 
@@ -26,9 +26,9 @@ a:active{
 
 button:focus,
 button:hover {
-	outline: none;
-	text-decoration: none;
-	color: @white;
+	outline: none !important;
+	text-decoration: none !important;
+	color: @white !important;
 }
 
 /*=================          ХЕДЕР          ==============*/
@@ -39,6 +39,12 @@ header {
 	.logo_div {
 		h1 {
 			color: @white;
+
+		}
+
+		img {
+			height: 80px;
+			padding: 10px;
 		}
 	}
 
@@ -68,7 +74,7 @@ header {
 /*=================          MAIN        ==============*/
 
 main {
-	margin-bottom: 150px;
+	margin-bottom: 170px;
 	margin-top: 20px;
 	background-color: @white;
 }

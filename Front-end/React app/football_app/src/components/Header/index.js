@@ -57,7 +57,7 @@ class Header extends React.Component<{
         <div className="container">
           <div className="row">
             <div className="col-md-2 logo_div">
-              <img src="https://cdn.pixabay.com/photo/2012/04/18/01/21/flag-36423_960_720.png" className="img-responsive"/>
+              <Link to='/'><img src="https://www.soccer.ru/sites/all/themes/newtheme/images/soccer-logo-690.svg" className="img-responsive"/></Link>
             </div> 
             {!loginStatus &&
               <div>
@@ -72,14 +72,18 @@ class Header extends React.Component<{
           }
 
           {loginStatus &&
-              
+              <div>
                <div className="col-md-1 col-md-offset-7 login_div">
-               <button tabIndex={0} onKeyPress={this.props.logout} className="exit" onClick={this.props.logout} >Выйти</button>
+               <Link  className='btn btn-block' style={{backgroundColor: '#272D2D', color: 'white', border: 'none', marginTop: '10px' }} to="/profile">Профиль</Link>
+              
 
-               <Link to="/profile">Профиль</Link>
+              
              
               </div>
-             
+              <div className="col-md-2">
+               <button style={{backgroundColor: '#272D2D', color: 'white', border: 'none', marginTop: '20px' }} tabIndex={0} onKeyPress={this.props.logout} className="btn btn-block" onClick={this.props.logout} >Выйти</button>
+            </div>
+            </div>
                       
                        
           }

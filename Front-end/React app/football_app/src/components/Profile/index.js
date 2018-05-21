@@ -54,13 +54,13 @@ class Profile extends React.Component<{
 
               <div className="col-md-7 head-col-2">
 
-              <h2>BolshoyLeha</h2>
-              <p>Алексей Большаков</p> 
+             
+              <h2>{profileObject.firstName} {profileObject.lastName}</h2> 
             </div>
 
            <div className="col-md-3 head-col-3">
-               <p> Записи в блоге <span className="quantity">12</span> </p>
-                <p> Комментарии <span className="quantity">12</span> </p>
+               <p> Записи в блоге <span className="quantity">1</span> </p>
+                <p> Комментарии <span className="quantity">1</span> </p>
            </div>
         </div>
 
@@ -68,9 +68,9 @@ class Profile extends React.Component<{
       <div className="col-md-10 profile-info col-md-offset-1 panel panel-default">
           <button className="btn btn-lg">Редактировать</button>
 
-          <p> <span>Дата регистрации:</span>  27.12.2016</p>
-          <p> <span>Пол:</span> Мужской</p>
-          <p> <span>Email:</span>  lehabolshoy@big.com</p>
+          <p> <span>Дата регистрации:</span>  {profileObject.registrationDt}</p>
+          <p> <span>Пол:</span>   {profileObject.gender===0 ? 'Мужской': 'Женский'}</p>
+          <p> <span>Email:</span> {profileObject.email}</p>
           <p> <span>Страна:</span>  Россия</p>
           <p> <span>Город:</span> Альметьевск </p>
          

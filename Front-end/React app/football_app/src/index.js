@@ -19,9 +19,18 @@ import sagas from './side-effects';
 import rootReducer from './reducers';
 import App from './pages/app';
 
+import 'jquery/src/jquery';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+
+
+
+
+
+
+
 
 
 

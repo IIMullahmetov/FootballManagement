@@ -22,11 +22,12 @@ const Select = ({
 }) => (
   <select
     onChange={handler}
-    style={{ ...style, width: `${width}px`, height: `${height}px` }}
+    style={{ ...style, width: `${width}px`, height: `${height}px`, marginTop: '20px'}}
     className="select-element"
     defaultValue={defaultValue}
   >
-    {options.map(option => (
+
+    {options && options.map(option => (
       <option
         key={option.value}
         value={option.value}
