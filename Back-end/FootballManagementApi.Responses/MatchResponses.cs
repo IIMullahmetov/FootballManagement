@@ -150,6 +150,7 @@ namespace FootballManagementApi.MatchResponses
 		public int Number { get; set; }
         
         [JsonProperty("status")]
+		[JsonConverter(typeof(StringEnumConverter))]
         public MatchPlayerStatus Status { get; set; }
 	}
 }
