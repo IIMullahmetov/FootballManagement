@@ -35,7 +35,7 @@ namespace FootballManagementApi.MailSender
 					{
 						Body = letter.Body,
 						Subject = letter.Topic,
-                        IsBodyHtml = true
+                        			IsBodyHtml = true
 					};
 					await smtp.SendMailAsync(message);
 				}
