@@ -1,5 +1,6 @@
 package ru.kpfu.itis.android.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
@@ -27,6 +28,8 @@ import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.models.UserPost;
+import ru.kpfu.itis.android.providers.SharedPreferencesProvider;
+import ru.kpfu.itis.android.service.ApiService;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,6 +50,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+        if(SharedPreferencesProvider.getInstance(context).getUserTokken() != null){
+            startMainActivity();
+        }
 
         btn_signIn = findViewById(R.id.btn_signIn);
         btn_signIn.setOnClickListener(this);
@@ -78,14 +84,20 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {
                             if (response.code() == 200) {
-                                Intent intent = new Intent(context, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                SharedPreferencesProvider.getInstance(this).saveUserTokken(response.body().getAccessToken());
+                                downloadDataForUser(response.body().getAccessToken());
                             } else if (response.code() == 400) {
+                                setVisibleProgressBar(View.GONE);
+                                Log.d("Auth", "THROW " + response.code());
                                 Toast.makeText(context, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                            } else {
+                                setVisibleProgressBar(View.GONE);
+                                Log.d("Auth", "THROW " + response.code());
                             }
+
                         }, throwable -> {
                             setVisibleProgressBar(View.GONE);
+                            Log.d("Auth", "THROW " + throwable.getMessage());
                             Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         });
                 break;
@@ -177,6 +189,35 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
 
+    @SuppressLint("CheckResult")
+    public void downloadDataForUser(String token) {
+        Log.d("TOKEN", "Bearer " + token);
+        SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
+        requests.getUser("Bearer " + token).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.code() == 200) {
+                        SharedPreferencesProvider.getInstance(context).saveUser(response.body());
+                        Toast.makeText(context, "Данные пользователя успешно подгружены", Toast.LENGTH_SHORT).show();
+                        startMainActivity();
+                    } else {
+                        Log.d("getUser CODE", String.valueOf(response.code()));
+                        setVisibleProgressBar(View.GONE);
+                        Toast.makeText(context, "Данные пользователя не были подгружены", Toast.LENGTH_SHORT).show();
+                    }
+
+                }, throwable -> {
+                    setVisibleProgressBar(View.GONE);
+                    Log.d("getUser", String.valueOf(throwable.getMessage()));
+                    Toast.makeText(context, "Данные пользователя не были подгружены", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    public void startMainActivity() {
+        Intent intent = new Intent(context, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

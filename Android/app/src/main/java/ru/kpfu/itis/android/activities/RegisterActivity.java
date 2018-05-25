@@ -1,5 +1,6 @@
 package ru.kpfu.itis.android.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
@@ -38,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +67,9 @@ public class RegisterActivity extends AppCompatActivity {
                         null)).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {
+                            Log.d("REGISTR CODE", response.code()+ " "+response.message());
                             if (response.code() == 200) {
-                                response.body();
-                                Toast.makeText(context, "Регистрация успешна!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Подтвердите ваш email, письмо было выслано на почту", Toast.LENGTH_LONG).show();
                                 finish();
                             } else {
                                 setVisibleProgressBar(View.GONE);
@@ -76,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }, throwable -> {
                             setVisibleProgressBar(View.GONE);
+                            Log.d("REGISTER", "THROW "+throwable.getMessage());
                             Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         });
             }

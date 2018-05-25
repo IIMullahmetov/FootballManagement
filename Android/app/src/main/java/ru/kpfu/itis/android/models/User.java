@@ -1,5 +1,8 @@
 package ru.kpfu.itis.android.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,19 +10,27 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-    String email;
-    String firstName;
-    String lastName;
-    String gender;
-    String tokken;
-
-    public User(String email, String firstName, String lastName, String gender, String tokken) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.tokken = tokken;
-    }
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("firstName")
+    @Expose
+    private String firstName;
+    @SerializedName("lastName")
+    @Expose
+    private String lastName;
+    @SerializedName("gender")
+    @Expose
+    private String gender;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("registrationDt")
+    @Expose
+    private String registrationDt;
+    @SerializedName("message")
+    @Expose
+    private String message;
 
     public String getEmail() {
         return email;
@@ -53,11 +64,27 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public String getTokken() {
-        return tokken;
+    public String getImage() {
+        return image;
     }
 
-    public void setTokken(String tokken) {
-        this.tokken = tokken;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getRegistrationDt() {
+        return registrationDt;
+    }
+
+    public void setRegistrationDt(String registrationDt) {
+        this.registrationDt = registrationDt;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

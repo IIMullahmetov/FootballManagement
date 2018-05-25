@@ -3,9 +3,12 @@ package ru.kpfu.itis.android.api;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.kpfu.itis.android.models.Authorization;
+import ru.kpfu.itis.android.models.User;
 import ru.kpfu.itis.android.models.UserForRegistration;
 import ru.kpfu.itis.android.models.UserPost;
 
@@ -23,5 +26,8 @@ public interface SportApiRequests {
                                              @Query("lastName") String lastName, @Query("birthday") String birthday,
                                              @Query("gender") String gender, @Query("googleToken") String googleToken);
     @POST("/registration/register")
-    Observable<Response<String>> registration(@Body UserForRegistration user);
+    Observable<Response<Void>> registration(@Body UserForRegistration user);
+
+    @GET("/get")
+    Observable<Response<User>> getUser(@Header("Authorization") String token);
 }
