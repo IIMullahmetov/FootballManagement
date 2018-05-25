@@ -25,8 +25,8 @@ namespace FootballManagementApi.Controllers
         /// <summary>
         /// Получение списка турниров
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="size"></param>
+        /// <param name="page">номер страницы</param>
+        /// <param name="size">размер страницы</param>
         /// <returns></returns>
 	    [HttpGet]
 	    [Route("tourney/get_list")]

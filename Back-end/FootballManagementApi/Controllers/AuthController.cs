@@ -22,7 +22,7 @@ namespace FootballManagementApi.Controllers
 	{
         private ILoginService _loginService;
         private IRegistrationService _registrationService;
-
+       
         public AuthController(IUnitOfWork unitOfWork, ILoginService loginService, IRegistrationService registrationService) : base(unitOfWork)
 		{
             _loginService = loginService;
@@ -48,6 +48,11 @@ namespace FootballManagementApi.Controllers
             return Ok(response);
 		}
 
+        /// <summary>
+        /// Обновление токена пользователя
+        /// </summary>
+        /// <param name="request">текущий токен пользователя</param>
+        /// <returns></returns>
         //TODO Доделать
         [HttpPost]
         [Route("refresh_token")]

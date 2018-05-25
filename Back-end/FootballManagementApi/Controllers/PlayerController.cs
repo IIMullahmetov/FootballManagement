@@ -17,12 +17,15 @@ namespace FootballManagementApi.Controllers
 	public class PlayerController : BaseController
 	{
 		
-
 		public PlayerController(IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
 
 		}
-
+        /// <summary>
+        /// получение информации об игроке по идентификатору
+        /// </summary>
+        /// <param name="id">идентификатор игрока</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("get/{id:int}")]
 		public async Task<IHttpActionResult> GetAsync(int id)

@@ -23,12 +23,15 @@ namespace FootballManagementApi.Controllers
     {
         private IFileManager _fileManager;
         private MemoryCache _fileCache = MemoryCache.Default;
-
+    
         public FileController(IUnitOfWork unitOfWork, IFileManager fileManager) : base(unitOfWork)
         {
             _fileManager = fileManager;
         }
-
+        /// <summary>
+        /// Загрузка файла
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("upload")]
         [Auth.Authorize]
@@ -57,7 +60,11 @@ namespace FootballManagementApi.Controllers
 
             return Ok(response);
         }
-
+        /// <summary>
+        /// Закрузка файла на клиент
+        /// </summary>
+        /// <param name="guid">путь к файлу</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("download")]
         public async Task<HttpResponseMessage> DownloadAsync([FromUri]Guid guid)
