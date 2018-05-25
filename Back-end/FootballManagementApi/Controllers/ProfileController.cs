@@ -24,6 +24,10 @@ namespace FootballManagementApi.Controllers
             _profileService = profileService;
         }
 
+        /// <summary>
+        /// получение профиля профиля пользователя
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("get")]
         [Auth.Authorize]
@@ -42,6 +46,11 @@ namespace FootballManagementApi.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// изменение профиля пользователя
+        /// </summary>
+        /// <param name="request">измененные данные о пользователе</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("edit")]
         [Auth.Authorize]
@@ -53,6 +62,11 @@ namespace FootballManagementApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Изменение email пользователя
+        /// </summary>
+        /// <param name="request">новый email</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("change_email")]
         [Auth.Authorize]
@@ -64,6 +78,11 @@ namespace FootballManagementApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Изменение фото профиля пользователя
+        /// </summary>
+        /// <param name="request">новое фото</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("change_image")]
         [Auth.Authorize]
@@ -74,7 +93,11 @@ namespace FootballManagementApi.Controllers
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
-
+        /// <summary>
+        /// Изменение пароля пользователя
+        /// </summary>
+        /// <param name="request">новый пароль</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("change_password")]
         [Auth.Authorize]

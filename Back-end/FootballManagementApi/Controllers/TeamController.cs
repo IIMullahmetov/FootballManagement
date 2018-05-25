@@ -21,7 +21,11 @@ namespace FootballManagementApi.Controllers
 		public TeamController(IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
 		}
-
+        /// <summary>
+        /// получение команды по идентификатору
+        /// </summary>
+        /// <param name="id">идентификатор команды</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("get/{id:int}")]
 		[SwaggerResponse(200, Type = typeof(GetResponse))]

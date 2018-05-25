@@ -21,7 +21,11 @@ namespace FootballManagementApi.Controllers
         {
             _postServices = postServices;
         }
-
+        /// <summary>
+        /// добавление лайка к посту
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("post/{id:int}/like")]
         public async Task<IHttpActionResult> LikeAsync(int id)
@@ -31,7 +35,11 @@ namespace FootballManagementApi.Controllers
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
-
+        /// <summary>
+        /// добавление дизлайка к посту
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("post/{id:int}/dislike")]
         public async Task<IHttpActionResult> DislikeAsync(int id)
