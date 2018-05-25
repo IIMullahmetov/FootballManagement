@@ -51,9 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardType.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="LoginType.cs" />
+    <Compile Include="MatchPlayerStatus.cs" />
     <Compile Include="MatchStatus.cs" />
     <Compile Include="PlayerStatus.cs" />
     <Compile Include="Position.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="RegistrationStatus.cs" />
     <Compile Include="RegistrationType.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="ShotType.cs" />
     <Compile Include="TourneyStatus.cs" />
     <Compile Include="TourneyTeamStatus.cs" />
     <Compile Include="TourneyType.cs" />

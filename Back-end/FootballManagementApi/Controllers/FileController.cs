@@ -15,6 +15,7 @@ using FootballManagementApi.FileStorage;
 using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.Helpers;
 using FootballManagementApi.Resources;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -35,7 +36,8 @@ namespace FootballManagementApi.Controllers
         [HttpPost]
         [Route("upload")]
         [Auth.Authorize]
-        public async Task<IHttpActionResult> UploadAsync()
+		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(UploadResponse))]
+		public async Task<IHttpActionResult> UploadAsync()
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
             Dictionary<string, byte[]> files = await ReadAsMultipartAsync();

@@ -1,4 +1,5 @@
-﻿using FootballManagementApi.Enums;
+﻿using FootballManagementApi.DAL.Models.ComplexTypes;
+using FootballManagementApi.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,8 @@ namespace FootballManagementApi.DAL.Models
 		public Match()
 		{
 			Goals = new HashSet<Goal>();
-			Players = new HashSet<Player>();
+			Players = new HashSet<MatchPlayer>();
+			Shots = new HashSet<Shot>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,6 +35,10 @@ namespace FootballManagementApi.DAL.Models
 
 		public DateTimeOffset StartDt { get; set; }
 
+		public MatchData HomeData { get; set; } = new MatchData();
+
+		public MatchData GuestData { get; set; } = new MatchData();
+
 		public int TourneyId { get; set; }
 
 		[ForeignKey(nameof(TourneyId))]
@@ -40,6 +46,8 @@ namespace FootballManagementApi.DAL.Models
 		
 		public virtual ICollection<Goal> Goals { get; set; }
 
-		public virtual ICollection<Player> Players { get; set; }
+		public virtual ICollection<MatchPlayer> Players { get; set; }
+
+		public virtual ICollection<Shot> Shots { get; set; }
 	}
 }

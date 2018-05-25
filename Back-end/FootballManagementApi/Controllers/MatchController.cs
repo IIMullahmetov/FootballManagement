@@ -16,6 +16,7 @@ using FootballManagementApi.MatchResponses;
 using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
 using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -53,7 +54,7 @@ namespace FootballManagementApi.Controllers
 				Items = result.Select(m => new GetListResponseItem
 				{
 					Id = m.Id,
-					StartDt = m.StartDt,
+					StartDt = m.StartDt.ToString(DateTimeFormat),
 					Status = m.Status, 
 					Guest = new GetListResponseItemTeam
 					{
@@ -84,15 +85,20 @@ namespace FootballManagementApi.Controllers
         /// <returns></returns>
 		[HttpGet]
 		[Route("match/get/{id:int}")]
+		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetResponse))]		
 		public async Task<IHttpActionResult> GetAsync(int id)
 		{
 			DAL.Models.Match match = await UnitOfWork.GetMatchRepository().SelectByIdAsync(id)
 				?? throw new ActionCannotBeExecutedException(ExceptionMessages.MatchNotFound);
 
+
+			IEnumerable<IGrouping<ShotType, DAL.Models.Shot>> result = (from s in match.Shots.Where(w => w.TeamId == match.GuestId) group s by s.Type);
+
 			GetResponse response = new GetResponse
 			{
 				Id = match.Id,
 				TourneyId = match.TourneyId,
+				StartDt = match.StartDt.ToString(DateTimeFormat),
 				Guest = new GetResponseTeam
 				{
 					Id = match.GuestId,
@@ -104,14 +110,24 @@ namespace FootballManagementApi.Controllers
 						GoalDt = g.GoalDt,
 						AssistantId = g.AssistantId
 					}),
+					Fouls = match.GuestData.Fouls,
+					Possession = match.GuestData.Possession,
+					Shots = (from s in match.Shots.Where(w => w.TeamId == match.GuestId) group s by s.Type).Select(s => new GetResponseShot
+					{
+						Count = match.Shots.Count(w => w.TeamId == match.GuestId && w.Type == s.Key),
+						Type = s.Key
+					}),
+					RedCards = match.Players.Where(p => p.Player.TeamId == match.GuestId).SelectMany(c => c.Cards).Count(c => c.Type == CardType.Red),
+					YellowCards = match.Players.Where(p => p.Player.TeamId == match.GuestId).SelectMany(c => c.Cards).Count(c => c.Type == CardType.Yellow),
 					Name = match.Guest.Name,
 					Logotype = match.Guest.Logotype,
-					Players = match.Players.Where(p => p.TeamId == match.GuestId).Select(p => new GetResponsePlayer
+					Players = match.Players.Where(p => p.Player.TeamId == match.GuestId).Select(p => new GetResponsePlayer
 					{
 						Id = p.Id,
-						FisrtName = p.FirstName,
-						LastName = p.LastName,
-						Number = p.Number
+						FisrtName = p.Player.FirstName,
+						LastName = p.Player.LastName,
+						Number = p.Player.Number,
+                        Status = p.Status
 					})
 				},
 				Home = new GetResponseTeam
@@ -119,6 +135,8 @@ namespace FootballManagementApi.Controllers
 					Id = match.HomeId,
 					City = match.Home.City,
 					Country = match.Home.County,
+					Fouls = match.HomeData.Fouls,
+					Possession = match.HomeData.Possession,
 					Goals = match.Goals.Where(g => g.TeamId == match.HomeId).Select(g => new GetResponseTeamGoal
 					{
 						AuthorId = g.AuthorId,
@@ -126,13 +144,21 @@ namespace FootballManagementApi.Controllers
 						AssistantId = g.AssistantId
 					}),
 					Name = match.Home.Name,
+					Shots = (from s in match.Shots.Where(w => w.TeamId == match.HomeId) group s by s.Type).Select(s => new GetResponseShot
+					{
+						Count = match.Shots.Count(w => w.TeamId == match.HomeId && w.Type == s.Key),
+						Type = s.Key
+					}),
+					RedCards = match.Players.Where(p => p.Player.TeamId == match.HomeId).SelectMany(c => c.Cards).Count(c => c.Type == CardType.Red),
+					YellowCards = match.Players.Where(p => p.Player.TeamId == match.HomeId).SelectMany(c => c.Cards).Count(c => c.Type == CardType.Yellow),
 					Logotype = match.Home.Logotype,
-					Players = match.Players.Where(p => p.TeamId == match.HomeId).Select(p => new GetResponsePlayer
+					Players = match.Players.Where(p => p.Player.TeamId == match.HomeId).Select(p => new GetResponsePlayer
 					{
 						Id = p.Id,
-						FisrtName = p.FirstName,
-						LastName = p.LastName,
-						Number = p.Number
+						FisrtName = p.Player.FirstName,
+						LastName = p.Player.LastName,
+						Number = p.Player.Number,
+                        Status = p.Status
 					})
 				}
 			};
@@ -162,9 +188,20 @@ namespace FootballManagementApi.Controllers
 			//	throw new ActionCannotBeExecutedException(ExceptionMessages.TourenyFinished);
 			//}
 
-			if (request.GuestPlayers.Distinct().Count() != 11 || request.HomePlayers.Distinct().Count() != 11)
+			if (request.GuestPlayersMain.Distinct().Count() != 11 || request.HomePlayersMain.Distinct().Count() != 11)
 			{
 				throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPlayersCount);
+			}
+
+			if (request.GuestPlayersSpare.Distinct().Count() != 5 || request.HomePlayersSpare.Distinct().Count() != 5)
+			{
+				throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidPlayersCount);
+			}
+
+			if (request.GuestPlayersMain.Any(p => request.GuestPlayersSpare.Contains(p)) ||
+				request.HomePlayersMain.Any(p => request.HomePlayersSpare.Contains(p)))
+			{
+				throw new ActionCannotBeExecutedException(ExceptionMessages.PlayerCanBeOnlyOneComposition);
 			}
 
 			ITeamRepository teamRepo = UnitOfWork.GetTeamRepository();
@@ -179,8 +216,8 @@ namespace FootballManagementApi.Controllers
 				?? throw new ActionCannotBeExecutedException(ExceptionMessages.TeamNotFound + $" Id : {request.GuestId}");
 			ValidateTeam(tourney, guestTeam);
 
-			ValidatePlayers(homeTeam, request.HomePlayers);
-			ValidatePlayers(guestTeam, request.GuestPlayers);
+			ValidatePlayers(homeTeam, request.HomePlayersMain);
+			ValidatePlayers(guestTeam, request.GuestPlayersMain);
 
 			DAL.Models.Match match = new DAL.Models.Match
 			{
@@ -188,10 +225,29 @@ namespace FootballManagementApi.Controllers
 				Home = homeTeam,
 				Guest = guestTeam,
 				Status = MatchStatus.Started,
-				Tourney = tourney,
-				Players = homeTeam.Players.Where(p => request.HomePlayers.Contains(p.Id))
-					.Concat(guestTeam.Players.Where(p => request.GuestPlayers.Contains(p.Id))).ToList()
+				Tourney = tourney
 			};
+
+			foreach(DAL.Models.Player player in homeTeam.Players.Where(p => request.HomePlayersMain.Contains(p.Id))
+					.Concat(guestTeam.Players.Where(p => request.GuestPlayersMain.Contains(p.Id))))
+			{
+				match.Players.Add(new DAL.Models.MatchPlayer
+				{
+					Player = player,
+					Status = MatchPlayerStatus.Main
+				});
+			}
+
+			foreach (DAL.Models.Player player in homeTeam.Players.Where(p => request.HomePlayersSpare.Contains(p.Id))
+					.Concat(guestTeam.Players.Where(p => request.GuestPlayersSpare.Contains(p.Id))))
+			{
+				match.Players.Add(new DAL.Models.MatchPlayer
+				{
+					Player = player,
+					Status = MatchPlayerStatus.Spare
+				});
+			}
+
 			match.EndDt = match.StartDt.AddMinutes(90);
 
 			UnitOfWork.GetMatchRepository().Insert(match);

@@ -62,7 +62,8 @@ namespace FootballManagementApi.Controllers
 					Intro = p.Items.FirstOrDefault(i => i.Type == Enums.PostItemType.Text).Text,
 					Title = p.Title,
                     Likes = p.Likes.Count,
-                    Dislikes = p.Dislikes.Count
+                    Dislikes = p.Dislikes.Count,
+					CreateDt = p.CreateDt.ToString(DateTimeFormat)
 				})
 			};
 
@@ -84,6 +85,7 @@ namespace FootballManagementApi.Controllers
 			{
 				Id = post.Id,
 				Title = post.Title,
+				CreateDt = post.CreateDt.ToString(DateTimeFormat),
 				Items = post.Items.Select(i => new GetResponseItem
 				{
 					Id = i.Id,

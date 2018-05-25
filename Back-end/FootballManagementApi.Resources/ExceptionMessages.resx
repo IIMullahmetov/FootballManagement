@@ -162,6 +162,9 @@
   <data name="PasswordsNotMatch" xml:space="preserve">
     <value>Passwords do not match</value>
   </data>
+  <data name="PlayerCanBeOnlyOneComposition" xml:space="preserve">
+    <value>Player can be only in one composition</value>
+  </data>
   <data name="PlayerNotFound" xml:space="preserve">
     <value>Player with the specified identifier does not exist</value>
   </data>

@@ -14,6 +14,7 @@ namespace FootballManagementApi.DAL.Models
 			Goals = new HashSet<Goal>();
 			HomeMathces = new HashSet<Match>();
 			GuestMatches = new HashSet<Match>();
+			Shots = new HashSet<Shot>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -36,5 +37,7 @@ namespace FootballManagementApi.DAL.Models
 		public virtual ICollection<Match> HomeMathces { get; set; }
 
 		public virtual ICollection<Match> GuestMatches { get; set; }
+
+		public virtual ICollection<Shot> Shots { get; set; }
 	}
 }

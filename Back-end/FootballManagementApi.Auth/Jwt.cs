@@ -1,4 +1,5 @@
-﻿using FootballManagementApi.Enums;
+﻿using System;
+using FootballManagementApi.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -20,6 +21,6 @@ namespace FootballManagementApi.Auth
         public LoginType LoginType { get; set; }
 
         [JsonProperty("expireAt")]
-        public int ExpireAt { get; set; }
+        public DateTimeOffset ExpireAt { get; set; }
     }
 }

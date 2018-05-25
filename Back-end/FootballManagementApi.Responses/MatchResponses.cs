@@ -10,7 +10,7 @@ namespace FootballManagementApi.MatchResponses
 	public class GetListResponse : PagingResponse
 	{
 		public GetListResponse(Paging paging) : base(paging) { }
-
+		
 		[JsonProperty("items")]
 		public IEnumerable<GetListResponseItem> Items { get; set; }
 	}
@@ -21,7 +21,7 @@ namespace FootballManagementApi.MatchResponses
 		public int Id { get; set; }
 
 		[JsonProperty("startDt")]
-		public DateTimeOffset StartDt { get; set; }
+		public string StartDt { get; set; }
 
 		[JsonProperty("status")]
 		[JsonConverter(typeof(StringEnumConverter))]
@@ -63,6 +63,10 @@ namespace FootballManagementApi.MatchResponses
 		[JsonProperty("tourneyId", NullValueHandling = NullValueHandling.Ignore)]
 		public int TourneyId { get; set; }
 
+		[JsonProperty("startDt")]
+		public string StartDt { get; set; }
+
+
 		[JsonProperty("home")]
 		public GetResponseTeam Home { get; set; }
 
@@ -87,11 +91,36 @@ namespace FootballManagementApi.MatchResponses
 		[JsonProperty("logotype")]
 		public Guid Logotype { get; set; }
 
+		[JsonProperty("redCards")]
+		public int RedCards { get; set; }
+
+		[JsonProperty("yellowCards")]
+		public int YellowCards { get; set; }
+
+		[JsonProperty("fauls")]
+		public int Fouls { get; set; }
+
+		[JsonProperty("possession")]
+		public double Possession { get; set; }
+
+		[JsonProperty("shots")]
+		public IEnumerable<GetResponseShot> Shots { get; set; }
+
 		[JsonProperty("goals")]
 		public IEnumerable<GetResponseTeamGoal> Goals { get; set; }
 
 		[JsonProperty("players")]
 		public IEnumerable<GetResponsePlayer> Players { get; set; }
+	}
+	
+	public class GetResponseShot
+	{
+		[JsonProperty("count")]
+		public int Count { get; set; }
+
+		[JsonProperty("type")]
+		[JsonConverter(typeof(StringEnumConverter))]
+		public ShotType Type { get; set; }
 	}
 
 	public class GetResponseTeamGoal
@@ -119,9 +148,9 @@ namespace FootballManagementApi.MatchResponses
 		
 		[JsonProperty("number")]
 		public int Number { get; set; }
-
-		[JsonProperty("position")]
+        
+        [JsonProperty("status")]
 		[JsonConverter(typeof(StringEnumConverter))]
-		public Position Position { get; set; }
+        public MatchPlayerStatus Status { get; set; }
 	}
 }

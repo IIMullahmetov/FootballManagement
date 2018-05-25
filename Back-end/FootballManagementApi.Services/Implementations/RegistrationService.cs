@@ -61,8 +61,8 @@ namespace FootballManagementApi.Services.Implementations
                 };
                 _passwordSetter.SetPassword(user, password, confirm);
 				_unitOfWork.GetUserRepository().Insert(user);
-                //TODO отпралять сверстанную страницу
-                await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" +  registration.Guid });
+                string emailBody = MailTemplates.Confirmation.Replace("[Confirmation_Link]", _currentHost + "registration/confirm?guid=" + registration.Guid);
+                await _mailSender.SendAsync(new Letter { Topic = "Registration confirmation", Email = new string[] { user.Email }, Body = emailBody });
             }
 
             if (registrationType == RegistrationType.Google)
@@ -79,8 +79,8 @@ namespace FootballManagementApi.Services.Implementations
                 };
                 registration.Status = RegistrationStatus.Accepted;
                 _unitOfWork.GetUserRepository().Insert(user);
-                //TODO отпралять сверстанную страницу
-                //await _mailSender.SendAsync(new Letter { Topic = "Reg", Email = new string[] { user.Email }, Body = _currentHost + "registration/confirm?guid=" + registration.Guid });
+                string emailBody = MailTemplates.Confirmation.Replace("[Confirmation_Link]", _currentHost + "registration/confirm?guid=" + registration.Guid);
+                await _mailSender.SendAsync(new Letter { Topic = "Registration confirmation", Email = new string[] { user.Email }, Body = emailBody });
             }
 
             return registration;
@@ -109,22 +109,22 @@ namespace FootballManagementApi.Services.Implementations
 
             if (firstName != null)
             {
-                var isName = new Regex(@"^[A-Z][a-z]+$");
+                var isName = new Regex(@"^[a-zа-я]+$");
 
-                if (!isName.IsMatch(firstName))
+                if (!isName.IsMatch(firstName.ToLower()))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidFirstName);
             }
 
             if (lastName != null)
             {
-                var isName = new Regex(@"^[A-Z][a-z]+$");
+                var isName = new Regex(@"^[a-zа-я]+$");
 
-                if (!isName.IsMatch(lastName))
+                if (!isName.IsMatch(lastName.ToLower()))
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidLastName);
             }
 
             if (birthDt != null)
-                if (birthDt >= DateTime.Today.AddYears(-16))
+                if (birthDt >= DateTime.Today)
                     throw new ActionCannotBeExecutedException(ExceptionMessages.InvalidBirthDate);
         }
 
