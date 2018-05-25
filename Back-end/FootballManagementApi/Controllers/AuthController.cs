@@ -28,7 +28,11 @@ namespace FootballManagementApi.Controllers
             _loginService = loginService;
             _registrationService = registrationService;
         }
-		
+		/// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <param name="request">Данные для авторизации пользователя</param>
+        /// <returns></returns>
         [HttpPost]
 		[Route("login")]
 		public async Task<IHttpActionResult> LoginAsync([FromBody]LoginRequest request)
@@ -59,7 +63,11 @@ namespace FootballManagementApi.Controllers
 				Role = user.Role
 			});
         }
-
+        /// <summary>
+        /// Авторизация через google
+        /// </summary>
+        /// <param name="request">Данные пользователя для авторизации через google</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("google")]
         public async Task<IHttpActionResult> GoogleAsync([FromBody]GoogleRequest request)
