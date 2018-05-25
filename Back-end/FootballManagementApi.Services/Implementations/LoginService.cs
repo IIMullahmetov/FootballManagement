@@ -115,7 +115,7 @@ namespace FootballManagementApi.Services.Implementations
             Jwt jwt = new Jwt
             {
                 Email = user.Email,
-                ExpireAt = _authOption.TokenLife,
+                ExpireAt = DateTimeOffset.Now.AddSeconds(_authOption.TokenLife),
                 LoginType = loginType,
                 Id = user.Id,
                 Role = user.Role

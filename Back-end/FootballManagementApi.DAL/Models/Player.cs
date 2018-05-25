@@ -12,7 +12,7 @@ namespace FootballManagementApi.DAL.Models
 		{
 			Goals = new HashSet<Goal>();
 			Assists = new HashSet<Goal>();
-			Matches = new HashSet<Match>();
+			Matches = new HashSet<MatchPlayer>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -40,6 +40,6 @@ namespace FootballManagementApi.DAL.Models
 
 		public virtual ICollection<Goal> Assists { get; set; }
 
-		public virtual ICollection<Match> Matches { get; set; }
+		public virtual ICollection<MatchPlayer> Matches { get; set; }
 	}
 }

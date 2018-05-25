@@ -127,16 +127,24 @@
     <Compile Include="Migrations\201805130954264_DeletedIntroFromPost.Designer.cs">
       <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805162027341_GlobalStructChanging.cs" />
+    <Compile Include="Migrations\201805162027341_GlobalStructChanging.Designer.cs">
+      <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\ComplexTypes\MatchData.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\MatchPlayer.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostItem.cs" />
     <Compile Include="Models\RefreshToken.cs" />
     <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\Shot.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TourneyTeam.cs" />
     <Compile Include="Models\User.cs" />
@@ -147,6 +155,7 @@
     <Compile Include="Models\Tourney.cs" />
     <Compile Include="Specifications\CommentSpecifications.cs" />
     <Compile Include="Specifications\MatchSpecifications.cs" />
+    <Compile Include="Specifications\PlayerSpecifications.cs" />
     <Compile Include="Specifications\PostSpecifications.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
@@ -154,18 +163,6 @@
     <None Include="App.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="App.Debug.config">
-      <DependentUpon>App.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-    </None>
-    <None Include="App.Development.config">
-      <DependentUpon>App.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-    </None>
-    <None Include="App.Release.config">
-      <DependentUpon>App.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -214,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805130954264_DeletedIntroFromPost.resx">
       <DependentUpon>201805130954264_DeletedIntroFromPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162027341_GlobalStructChanging.resx">
+      <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

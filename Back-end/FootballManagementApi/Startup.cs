@@ -45,43 +45,43 @@ namespace FootballManagementApi
 			configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container);
 			
 			app.Use<AuthMiddleware>(new AuthManager(new AuthOption()));
-			Task.Factory.StartNew(MatchStatusChanger);
+			//Task.Factory.StartNew(MatchStatusChanger);
 			app.UseCors(CorsOptions.AllowAll);
 			app.UseWebApi(configuration);
 		}
 
-		private async void MatchStatusChanger()
-		{
-			while (true)
-			{
-				using (IUnitOfWork unitOfWork = new UnitOfWork<Context>())
-				{
-					IMatchRepository repo = unitOfWork.GetMatchRepository();
-					IEnumerable<DAL.Models.Match> matches = await repo.SelectAsync(m => m.Status == Enums.MatchStatus.Pending);
+		//private async void MatchStatusChanger()
+		//{
+		//	while (true)
+		//	{
+		//		using (IUnitOfWork unitOfWork = new UnitOfWork<Context>())
+		//		{
+		//			IMatchRepository repo = unitOfWork.GetMatchRepository();
+		//			IEnumerable<DAL.Models.Match> matches = await repo.SelectAsync(m => m.Status == Enums.MatchStatus.Pending);
 
-					foreach(DAL.Models.Match match in matches)
-					{
-						if (match.StartDt >= DateTimeOffset.Now)
-						{
-							match.Status = Enums.MatchStatus.Started;
-						}
-					}
+		//			foreach(DAL.Models.Match match in matches)
+		//			{
+		//				if (match.StartDt >= DateTimeOffset.Now)
+		//				{
+		//					match.Status = Enums.MatchStatus.Started;
+		//				}
+		//			}
 
-					matches = await repo.SelectAsync(m => m.Status == Enums.MatchStatus.Started);
-					foreach(DAL.Models.Match match in matches)
-					{
-						if (match.EndDt <= DateTimeOffset.Now)
-						{
-							match.Status = Enums.MatchStatus.Finished;
-						}
-					}
+		//			matches = await repo.SelectAsync(m => m.Status == Enums.MatchStatus.Started);
+		//			foreach(DAL.Models.Match match in matches)
+		//			{
+		//				if (match.EndDt <= DateTimeOffset.Now)
+		//				{
+		//					match.Status = Enums.MatchStatus.Finished;
+		//				}
+		//			}
 
-					await unitOfWork.SaveChangesAsync();
+		//			await unitOfWork.SaveChangesAsync();
 
-					Thread.Sleep(60000);
-				}
-			}
-		}
+		//			Thread.Sleep(60000);
+		//		}
+		//	}
+		//}
 
 		private void RegisterInstances()
 		{
