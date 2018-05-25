@@ -129,7 +129,7 @@ public class ChampionshipActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private int COUNT_ITEMS = 3;
+        private int     COUNT_ITEMS = 3;
         private String tabTitles[] = new String[] { "Лента", "Таблица", "Статистика" };
 
 
