@@ -33,6 +33,7 @@ public class Match implements Parcelable {
         this.goalsTeam2 = goalsTeam2;
     }
 
+
     protected Match(Parcel in) {
         team1 = in.readString();
         team2 = in.readString();
@@ -41,6 +42,9 @@ public class Match implements Parcelable {
         nameChampionships = in.readString();
         date = in.readString();
         referee = in.readString();
+        goalsTeam1 = in.readArrayList(null);
+        goalsTeam2 = in.readArrayList(null);
+
     }
 
     public static final Creator<Match> CREATOR = new Creator<Match>() {
@@ -127,19 +131,22 @@ public class Match implements Parcelable {
         this.goalsTeam2 = goalsTeam2;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(team1);
-        dest.writeString(team2);
-        dest.writeString(score1);
-        dest.writeString(score2);
-        dest.writeString(nameChampionships);
-        dest.writeString(date);
-        dest.writeString(referee);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(team1);
+        parcel.writeString(team2);
+        parcel.writeString(score1);
+        parcel.writeString(score2);
+        parcel.writeString(nameChampionships);
+        parcel.writeString(date);
+        parcel.writeString(referee);
+        parcel.writeList(goalsTeam1);
+        parcel.writeList(goalsTeam2);
     }
 }
