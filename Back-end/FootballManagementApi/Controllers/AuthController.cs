@@ -87,16 +87,17 @@ namespace FootballManagementApi.Controllers
             else if (user.Registration.Type.Equals(RegistrationType.Email))
                 throw new ActionCannotBeExecutedException(ExceptionMessages.WrongRegistrationType);    
 
-            if (!user.GoogleToken.Equals(request.GoogleToken))
+            if (user.GoogleToken == null || !user.GoogleToken.Equals(request.GoogleToken))
                 user.GoogleToken = request.GoogleToken;
 
-			(string accessToken, System.Guid guid, User user) result = await _loginService.LoginAsync(LoginType.Google, request.Email);
+            await UnitOfWork.SaveChangesAsync();
+
+            (string accessToken, System.Guid guid, User user) result = await _loginService.LoginAsync(LoginType.Google, request.Email);
             LoginResposne response = new LoginResposne
             {
                 AccessToken = result.accessToken,
                 RefreshToken = result.guid,
 				Role = result.user.Role
-
 			};
 
             await UnitOfWork.SaveChangesAsync();
