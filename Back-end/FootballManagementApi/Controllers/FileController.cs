@@ -102,5 +102,20 @@ namespace FootballManagementApi.Controllers
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             return result;
         }
+
+		[HttpPost]
+		[Route("change_file")]
+		public async Task<IHttpActionResult> HttpActionResult(Guid guid)
+		{
+			Dictionary<string, byte[]> files = await ReadAsMultipartAsync();
+			KeyValuePair<string, byte[]> keyValuePair = files.FirstOrDefault();
+			IFileRepository repo = UnitOfWork.GetFileRepository();
+			File file = await repo.SelectFirstOrDefaultAsync(f => f.Guid == guid);
+			file.Name = keyValuePair.Key;
+			string path = PathHelper.GeneratePath(file.Guid);
+			await _fileManager.WriteFileAsync(keyValuePair.Value, path);
+			await UnitOfWork.SaveChangesAsync();
+			return Ok();
+		}
     }
 }

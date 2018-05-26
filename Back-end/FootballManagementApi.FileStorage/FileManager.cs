@@ -7,19 +7,12 @@ namespace FootballManagementApi.FileStorage
     {
 		public async Task<byte[]> GetFileAsync(string path, int size)
 		{
-			using (FileStream stream = new FileStream(path, FileMode.Open))
-			{
-				byte[] buffer = new byte[size];
-				await stream.ReadAsync(buffer, 0, size);
-				stream.Flush();
-				stream.Close();
-				return buffer;
-			}
+			return File.ReadAllBytes(path);
 		}
 		
 		public async Task WriteFileAsync(byte[] file, string path)
 		{
-			using (FileStream stream = new FileStream(path, FileMode.CreateNew))
+			using (FileStream stream = new FileStream(path, FileMode.Create))
 			{
 				await stream.WriteAsync(file, 0, file.Length);
 				stream.Flush();
