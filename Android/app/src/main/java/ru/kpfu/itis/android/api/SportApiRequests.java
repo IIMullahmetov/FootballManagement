@@ -34,9 +34,7 @@ public interface SportApiRequests {
     Observable<Response<Authorization>> authorization(@Body UserPost user);
 
     @POST("/auth/google")
-    Observable<Response<Authorization>> authorizationWithGoogle(@Query("email") String email, @Query("firstName") String firstName,
-                                                                @Query("lastName") String lastName, @Query("birthday") String birthday,
-                                                                @Query("gender") String gender, @Query("googleToken") String googleToken);
+    Observable<Response<Authorization>> authorizationWithGoogle(@Body UserForRegistration user);
 
     @POST("/registration/register")
     Observable<Response<Void>> registration(@Body UserForRegistration user);

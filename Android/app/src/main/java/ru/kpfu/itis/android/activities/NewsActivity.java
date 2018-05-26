@@ -90,12 +90,13 @@ public class NewsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 });
         btnSend.setOnClickListener(v -> {
-            if(etComment.length()==0) Toast.makeText(this, "Введите текст комментария", Toast.LENGTH_SHORT).show();
-            else{
+            if (etComment.length() == 0)
+                Toast.makeText(this, "Введите текст комментария", Toast.LENGTH_SHORT).show();
+            else {
                 btnSend.setVisibility(View.GONE);
                 Log.d("Token", SharedPreferencesProvider.getInstance(this).getUserTokken());
                 requests.addComments(idNews, new CommentPOST(etComment.getText().toString()),
-                        "Bearer "+ SharedPreferencesProvider.getInstance(this).getUserTokken())
+                        "Bearer " + SharedPreferencesProvider.getInstance(this).getUserTokken())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {
@@ -105,10 +106,14 @@ public class NewsActivity extends AppCompatActivity {
                                 commentAdapter.addComment(response.body());
                                 commentAdapter.notifyDataSetChanged();
                                 Toast.makeText(this, "Добавление комментария успешно", Toast.LENGTH_SHORT).show();
+                                btnSend.setVisibility(View.VISIBLE);
                             } else {
-                                Log.d("Comment add", "THROW " + response.message()+" "+response.code());
+                                btnSend.setVisibility(View.VISIBLE);
+                                Log.d("Comment add", "THROW " + response.message() + " " + response.code());
+                                Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show();
+
+
                             }
-                            btnSend.setVisibility(View.VISIBLE);
                         }, throwable -> {
                             btnSend.setVisibility(View.VISIBLE);
                             setVisibleProgressBar(View.GONE);
@@ -177,7 +182,7 @@ public class NewsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

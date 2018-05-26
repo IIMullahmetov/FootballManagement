@@ -32,6 +32,7 @@ import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.models.User;
+import ru.kpfu.itis.android.models.bodyForRequest.UserForRegistration;
 import ru.kpfu.itis.android.models.bodyForRequest.UserPost;
 import ru.kpfu.itis.android.providers.SharedPreferencesProvider;
 
@@ -153,23 +154,26 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
             SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
             System.out.println("ACCess "+acct.getId());
-            SharedPreferencesProvider.getInstance(context).saveUserTokken(acct.getId());
+//            SharedPreferencesProvider.getInstance(context).saveUserTokken(acct.getId());
             SharedPreferencesProvider.getInstance(context).saveUser(new User(acct.getEmail(),acct.getFamilyName(),
                     acct.getGivenName(), "image"));
-            startMainActivity();
-//            requests.authorizationWithGoogle(acct.getEmail(), acct.getFamilyName(), acct.getGivenName(),
-//                    //TODO birthday and gender
-//                    "17.04.1997", "man", acct.getId())
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(response -> {
-//                        SharedPreferencesProvider.getInstance(this).saveUserTokken(response.body().getAccessToken());
-//                        downloadDataForUser(response.body().getAccessToken());
-//                        Toast.makeText(context, "Вход выполнен успешно!", Toast.LENGTH_SHORT).show();
-//                    }, throwable -> {
-//                        setVisibleProgressBar(View.GONE);
-//                        Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
-//                    });
+//            startMainActivity();
+            requests.authorizationWithGoogle(new UserForRegistration(acct.getEmail(), acct.getFamilyName(), acct.getGivenName(),
+                    //TODO birthday and gender
+                     "man", acct.getId()))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(response -> {
+                        System.out.println("");
+                        System.out.println(response.code());
+                        Log.d("Resonse Token", response.body().getAccessToken());
+                        SharedPreferencesProvider.getInstance(this).saveUserTokken(response.body().getAccessToken());
+                        downloadDataForUser(response.body().getAccessToken());
+                        Toast.makeText(context, "Вход выполнен успешно!", Toast.LENGTH_SHORT).show();
+                    }, throwable -> {
+                        setVisibleProgressBar(View.GONE);
+                        Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         } else {
             Log.d("Google Auth", "Не удалось");
         }
