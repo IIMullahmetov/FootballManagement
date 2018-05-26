@@ -55,7 +55,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        if(SharedPreferencesProvider.getInstance(context).getUserTokken() != null){
+        if (SharedPreferencesProvider.getInstance(context).getUserTokken() != null) {
             startMainActivity();
         }
 
@@ -70,6 +70,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         btn_googleSignIn.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -121,13 +122,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void signIn() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -138,19 +134,21 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         } else {
             Toast.makeText(context, "Не удалось войти", Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressLint("CheckResult")
-    private void handleSignInResult(GoogleSignInResult result) {
-        Log.d("Result google", result.getStatus().getStatusMessage()+ " "+result.getStatus().getStatus());
-        if (result.isSuccess()) {
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+
+
+        if (completedTask.isSuccessful()) {
+            Log.d("Result google", completedTask.getResult().getEmail());
             // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
+            GoogleSignInAccount acct = completedTask.getResult();
             System.out.println("DISPLAY NAME    " + acct.getDisplayName());
 
             SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
@@ -167,9 +165,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         setVisibleProgressBar(View.GONE);
                         Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     });
-        }
-        else{
-            Log.d("Google Auth","Не удалось");
+        } else {
+            Log.d("Google Auth", "Не удалось");
         }
 
     }
@@ -230,6 +227,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d("GOOGLE_AUT_ERROR", "onConnectionFailed:" + connectionResult);
+        Log.d("GOOGLE_AUTH_ERROR", "onConnectionFailed:" + connectionResult);
     }
 }

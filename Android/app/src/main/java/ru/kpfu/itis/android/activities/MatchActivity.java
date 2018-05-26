@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.activities;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,8 @@ import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.MatchPOJO;
+import ru.kpfu.itis.android.utils.GlideApp;
+import ru.kpfu.itis.android.utils.SvgSoftwareLayerSetter;
 
 public class MatchActivity extends AppCompatActivity {
     private RecyclerView rvGoalsTeam1;
@@ -119,7 +122,7 @@ public class MatchActivity extends AppCompatActivity {
     }
 
     public void bind() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Матч");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -156,13 +159,20 @@ public class MatchActivity extends AppCompatActivity {
         goalsAdapter2.setTeamMatch(match.getGuest());
         rvGoalsTeam2.setAdapter(goalsAdapter2);
 
-        Glide.with(this)
+        GlideApp.with(this)
+                .as(PictureDrawable.class)
+                .listener(new SvgSoftwareLayerSetter())
                 .load(SportApiRequests.DOWNLOAD_IMAGE + match.getHome().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
+
                 .into(ivTeam1);
-        Glide.with(this)
+
+        GlideApp.with(this)
+                .as(PictureDrawable.class)
+                .listener(new SvgSoftwareLayerSetter())
                 .load(SportApiRequests.DOWNLOAD_IMAGE+match.getGuest().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
+
                 .into(ivTeam2);
     }
 
