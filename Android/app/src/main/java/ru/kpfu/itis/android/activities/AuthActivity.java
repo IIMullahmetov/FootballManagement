@@ -158,23 +158,24 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferencesProvider.getInstance(context).saveUser(new User(acct.getEmail(),acct.getFamilyName(),
                     acct.getGivenName(), "image"));
 //            startMainActivity();
+            setVisibleProgressBar(View.VISIBLE);
             requests.authorizationWithGoogle(new UserForRegistration(acct.getEmail(), acct.getFamilyName(), acct.getGivenName(),
                     //TODO birthday and gender
                      "man", acct.getId()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
-                        System.out.println("");
-                        System.out.println(response.code());
                         Log.d("Resonse Token", response.body().getAccessToken());
                         SharedPreferencesProvider.getInstance(this).saveUserTokken(response.body().getAccessToken());
                         downloadDataForUser(response.body().getAccessToken());
                         Toast.makeText(context, "Вход выполнен успешно!", Toast.LENGTH_SHORT).show();
+                        setVisibleProgressBar(View.GONE);
                     }, throwable -> {
                         setVisibleProgressBar(View.GONE);
                         Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         } else {
+            setVisibleProgressBar(View.GONE);
             Log.d("Google Auth", "Не удалось");
         }
 
