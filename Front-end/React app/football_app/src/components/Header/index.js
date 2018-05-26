@@ -57,7 +57,7 @@ class Header extends React.Component<{
         <div className="container">
           <div className="row">
             <div className="col-md-2 logo_div">
-              <Link to='/'><img src="https://www.soccer.ru/sites/all/themes/newtheme/images/soccer-logo-690.svg" className="img-responsive"/></Link>
+              <Link to='/'><h3 style={{color: 'white', marginBottom: '20px'}}>Football World</h3></Link>
             </div> 
             {!loginStatus &&
               <div>

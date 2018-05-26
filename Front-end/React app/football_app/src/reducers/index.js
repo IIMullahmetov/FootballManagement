@@ -20,6 +20,7 @@ import player from './player';
 import team from './team';
 import profile from './profile';
 import post from './post';
+import comment from './comment';
 
 
 export default combineReducers({
@@ -29,6 +30,7 @@ export default combineReducers({
   team,
   profile,
   post,
+  comment,
   ...modals,
   /*statistic,
   counters,

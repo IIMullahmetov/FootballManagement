@@ -3,8 +3,10 @@ import { commentA} from 'actions';
 
 const initialState: {
   commentList: Array<Object>, 
+  comment: string
 } = {  
   commentList: [],
+  comment: ''
 };
 
 export default createReducer(
@@ -14,7 +16,11 @@ export default createReducer(
       ...state,      
       commentList: [],
     }),
-    [commentA.commentPendingSuccess]: (state, { commentList }) => ({ ...state, commentList }),  
+    [commentA.commentListPendingSuccess]: (state, { commentList }) => ({ ...state, commentList }), 
+   [commentA.set]: (state, { event }) =>
+      ( {...state, [event.dataset.prop]: event.value } : state),
+      
+},
 
   initialState,
 );

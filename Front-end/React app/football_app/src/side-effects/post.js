@@ -33,6 +33,9 @@ function* getPostList() {
   }
 }
 
+
+
+
 export default function* watchFetchPost(): Object { 
   yield takeLatest(postA.postPending.getType(), getPost);
   yield takeLatest(postA.postListPending.getType(), getPostList);

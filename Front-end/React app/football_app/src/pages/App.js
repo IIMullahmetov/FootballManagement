@@ -11,12 +11,14 @@ import MatchPage from './match_page';
 import ProfilePage from './profile_page';
 import PostPage from './post_page';
 import TeamPage from './team_page';
+import PlayerPage from './player_page';
+import AddPostPage from './add_post_page';
 
 // import Permission from 'components/Permission';
 
 
 
-import './app.css';
+import './App.css';
 
 // const User = Permission(['user', 'operator', 'admin']);
 // const Opertor = Permission(['oprator', 'admin']);
@@ -32,9 +34,10 @@ const App = ({ store }: { store: Object }) => (
             <Route exact path="/" component={Main} />
             <Route path="/match/:matchId" component={MatchPage} />
             <Route path="/profile" component={ProfilePage} />
-            <Route path="/post/:postId" component={PostPage} />
+            <Route exact path="/post/:postId" component={PostPage} />
             <Route path="/team/:teamId" component={TeamPage} />
-          
+            <Route path="/player/:playerId" component={PlayerPage} />
+            <Route exact path="/create_post" component={AddPostPage} />          
           </Switch>
           <Route path="/" component={Footer} />       
         </div>         

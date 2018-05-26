@@ -6,7 +6,7 @@ export default {
   	 agent()
   	 	.get(`/match/get/${matchId}`),
   	 	
- 	getList:  (): Object => agent().get('/match/get_list'),
+ 	getList:  (size): Object => agent().get('/match/get_list').query({ size: size }),
 
   	
 };

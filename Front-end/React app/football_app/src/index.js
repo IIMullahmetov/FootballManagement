@@ -17,7 +17,7 @@ import moment from 'moment';
 
 import sagas from './side-effects';
 import rootReducer from './reducers';
-import App from './pages/app';
+import App from './pages/App';
 
 import 'jquery/src/jquery';
 import 'bootstrap/dist/js/bootstrap.min.js';

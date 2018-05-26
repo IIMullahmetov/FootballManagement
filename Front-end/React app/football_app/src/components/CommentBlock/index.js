@@ -2,66 +2,110 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { commentA } from 'actions';
+
+import { InputText, Button } from 'components/elements';
+
 //import { sidebarA, homeA, modalsA } from '../../actions';
 import './style.css';
 
 
+const mapDispatchToProps = dispatch => ({
+  getCommentList: (postId) => dispatch(commentA.commentListPending(postId)),
+  addComment: (postId, comment) => dispatch(commentA.commentAddPending(postId, comment)),
+   set: ({ target: { value, dataset } }) => dispatch(commentA.set({ value, dataset })),
+});
 
-/*const mapDispatchToProps = dispatch => ({
-  removeChoosen: address => dispatch(sidebarA.removeChoosen(address)),
-  logout: push => dispatch(homeA.logoutPending(push)),
-  confirm: () =>
-    dispatch(modalsA.open('confirm', { text: 'Вы уверены что хотите выйти?', answer: { type: 'logout' } })),
-});*/
+const mapStateToProps = ({ comment: { commentList, comment } }) => ({
+  commentList,
+  commentText: comment,
+});
+
 
 class CommentBlock extends React.Component<{   
-  comments: Array<Object>,       
+  commentList: Array<Object>,  
+  getCommentList: Function,
+  addComment: Function,
+  postId: number, 
+  set: Function, 
+  commentText: string,   
 
 }> {
+    constructor(props) {
+        super(props);
+        this.props.getCommentList(this.props.postId);
+      }
+
+    shouldComponentUpdate(nextProps, nextState) {
+      if(this.props.postId != nextProps.postId) {
+        return true;
+      }
+
+      return false;
+    }
+
+    componentWillUpdate(nextProps) {
+      nextProps.getCommentList(nextProps.postId);
+    }
+
+
+ 
+
+
 
   render() {
+    const postId = this.props.postId;
+    const commentText = this.props.commentText;
+    console.log(postId);
+    console.log(commentText);
+
+    console.log(this.props.commentList);
+
+
     return(
         <div className="col-md-12 comments_block">
           <h4 className="comments_h4">Комментарии</h4>
-          <h5>4 комментария</h5>
+          <h5>{this.props.commentList.length} комментария</h5>
           <br/>
-          <textarea name="cmnt_txt_area" className="form-control cmnt_txt_area" id="" cols="30" rows="3" placeholder="Что думаете о происходящем?"></textarea>
-          <button className="btn btn-lg send_cmnt_btn">
-            Отправить
-          </button>
+          <br/>
+          <InputText
+              withoutAlert
+              data-prop="comment"
+              onChange={this.props.set}
+              width={500}
+              height={50}
+              
+              placeholder="Что думаете о происходящем"
+            />
+          
+          <Button style={{
+                marginTop: '30px',
+                marginLeft: '30px',
+                padding: '20px',
+                paddingLeft: '30px',
+                paddingRight: '30px',
+                fontSize: '14px',
+                backgroundColor: '#0fc272',
+              }}
+              width={500}
+              height={200} 
+              handler={() => this.props.addComment(this.props.commentText, postId) } className="btn btn-lg send_cmnt_btn"
+              text="Отправить"
+              />           
+            
           <ul className="comments_list list-unstyled">
-            <li>
+           {this.props.commentList.map((commentItem) => {
+            return(
+              <li>
               <img src="img/comment_ava.png" alt="" className="img-responsive comment_ava"/>
-              <h4>Толя Хлопуня</h4>            
+              <h4>{commentItem.firstName}</h4>            
               <p class="comment_time">
                 22.03.2017 15:51
               </p>  
-              <p>Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Товарищи!</p>
-            </li>
-            <li>
-              <img src="img/comment_ava.png" alt="" className="img-responsive comment_ava"/>
-              <h4>Толя Хлопуня</h4>            
-              <p className="comment_time">
-                22.03.2017 15:51
-              </p>  
-              <p>Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Товарищи!</p>
-            </li>
-            <li>
-              <img src="img/comment_ava.png" alt="" className="img-responsive comment_ava"/>
-              <h4>Толя Хлопуня</h4>            
-              <p className="comment_time">
-                22.03.2017 15:51
-              </p>  
-              <p>Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Товарищи!</p>
-            </li>
-            <li>
-              <img src="img/comment_ava.png" alt="" className="img-responsive comment_ava"/>
-              <h4>Толя Хлопуня</h4>            
-              <p className="comment_time">
-                22.03.2017 15:51
-              </p>  
-              <p>Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Товарищи!</p>
-            </li>
+              <p>{commentItem.comment}</p>
+            </li>);
+            })}
+           
           </ul>
         </div>
         
@@ -73,4 +117,4 @@ class CommentBlock extends React.Component<{
   
 
 
-export default connect()(CommentBlock);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBlock);

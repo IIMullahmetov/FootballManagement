@@ -9,6 +9,8 @@ export default {
   postListPendingSuccess: createAction('post list pending success', (postList) => ({ postList  })),
  postListPendingError: createAction('post list pending error', (error: Object) => ({ error })),  
 
+ addTextInput: createAction('add text input'),
+
 
 
 };

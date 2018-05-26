@@ -30,7 +30,7 @@ const Post_block = ({
     <h3 style={{color: '#0fc272', fontWeight: 'bold'}}>{title}</h3>
     {posts.map((post) => { const imgUrl = 'http://footballmanagement.azurewebsites.net/file/download?guid=' + post.image;
     const postUrl = '/post/' + post.id;
-    return (<li><p style={{color: 'black', fontSize: '14px'}}><img src={imgUrl} className='img-responsive'  style={{float: 'left', margin: '7px 7px 7px 0', width: '100px'}}/><Link to={postUrl} style={{fontSize: '18px', fontWeight: 'bold', color: 'black'}}>{post.title}</Link><br/>{post.intro} </p>
+    return (<li style={{padding: '5px'}}><p style={{color: 'black', fontSize: '14px'}}><img src={imgUrl} className='img-responsive'  style={{float: 'left', margin: '7px 7px 7px 0', width: '100px'}}/><Link to={postUrl} style={{fontSize: '18px', fontWeight: 'bold', color: 'black'}}>{post.title}</Link><br/>{post.intro} </p>
      </li>);})}        
   </ul>
 );

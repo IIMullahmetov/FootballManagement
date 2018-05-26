@@ -25,24 +25,20 @@ class Post extends React.Component<{
 
 }> {
 
+	
 
 
-	 componentDidMount() {	 
-		 
+	 componentDidMount() {	 		 
     	this.props.getPost(this.props.postId);  
-
     	console.log(this.props);
-
   	}
-  
 
-  
 
+
+ 
   render() { 
 
   	const postObject = this.props.postItem;
-
-
 
   	console.log(postObject);
 
@@ -50,8 +46,8 @@ class Post extends React.Component<{
   		const imgSrc = 'http://footballmanagement.azurewebsites.net/file/download?guid=';
   		
   		return (  			
-  			 <div className="col-md-10 col-md-offset-1 post">
-		        <h5 className="post_time">{postObject.createDt}</h5>
+  			 <div className="col-md-12 post">
+		        <h6 className="post_time" style={{color: 'gray'}}>{postObject.createDt}</h6>
 		        <h2 className="post_name">{postObject.title}</h2>
 		        <span className="news_intro">
 		        {postObject.intro} 
@@ -59,7 +55,7 @@ class Post extends React.Component<{
 		        <p className='news_body'>
 					{ postObject.items.map((item) => {
 						if(item.type === 'text')  return  <p>{item.text}</p>;
-						if(item.type === 'image') return <img src={imgSrc+item.guid} className="img-responsive"/>;						
+						if(item.type === 'image') return <img src={imgSrc+item.guid} className="img-responsive"/>;				
 								                
 		                  
 		                  })

@@ -6,9 +6,9 @@ import { match } from 'api';
 
 function* getLastMatchesList() {
   try {
-    const  { body }: { body: Object } = yield call(match.getList);  
-
-    const lastMatchesList = body.items;
+    const { body }: { body: Object } = yield call(match.getList, 12);  
+    
+    const lastMatchesList = body.items;  
 
     yield put(matchA.matchListPendingSuccess(lastMatchesList));
   } catch (error) {

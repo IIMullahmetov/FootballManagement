@@ -19,13 +19,13 @@ const MatchShort = ({
   homeTeam: Object,
   guestTeam: Object,
  }) => (
-  <div className="col-md-5 match_intro_div">
+  <div className="col-md-3 match_intro_div">
     <div className="row">
                 <div className="col-md-12 match_intro_header">
                   <Link to={`/match/${matchId}`}>Статистика</Link>
                 </div>
                 <div className="col-md-3 match_intro_goals">                  
-                  <h2>{homeTeam.goals} : {guestTeam.goals}</h2>
+                  <h4>{homeTeam.goals} : {guestTeam.goals}</h4>
                 </div>
                 <div className="col-md-8 match_intro_info">
                    <p>

@@ -27,11 +27,18 @@ class PostPage extends React.Component<{
   getPostList: Function,
 }> { 
 
-  componentDidMount() {    
+  constructor(props) {
+    super(props);
     this.props.getPostList();
   }
 
-  render() {    
+  
+
+
+  render() {  
+
+  console.log(this.props.postList);  
+   
     return (
     	<main>
     	<div className="container">
@@ -40,7 +47,7 @@ class PostPage extends React.Component<{
     				<Post 
         				postId={this.props.match.params.postId}
       				/>
-              <CommentBlock />
+              <CommentBlock postId={this.props.match.params.postId}/>
 
     			</div>
           <div className="col-md-4  last_posts">

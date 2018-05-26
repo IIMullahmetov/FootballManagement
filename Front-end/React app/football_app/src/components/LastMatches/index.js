@@ -57,7 +57,7 @@ class LastMatches extends  React.Component<{
   return (
           <div className="col-md-12">
             <div className="row"> 
-            <h1>Последние матчи</h1>            
+            <h2 style={{marginLeft: '35px'}}>Последние матчи</h2>            
               { this.props.lastMatchesList.map((match) => 
                 <MatchShort
                   matchId={match.id}

@@ -1,7 +1,7 @@
 import agent from 'utils/agent';
 
 export default {
- 	getList:  (): Object => agent().get('/post/get_list'),
+ 	getList:  (isMain): Object => agent().get('/post/get_list').query(isMain),
 
   	getPost: (postId): Object =>
   	 agent()

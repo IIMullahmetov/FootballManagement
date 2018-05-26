@@ -1,10 +1,10 @@
 import agent from 'utils/agent';
 
 export default {
-  upload: (): ({{ user }: { user: { email: string, password: string } }): Object =>
+  upload: (): ({files }): Object =>
     agent()
       .post('/file/upload')
-      .send(user), 
+      .attach(files[0].name, files[0]), 
 
   download: (): Object => agent().get('/file/download')
 };

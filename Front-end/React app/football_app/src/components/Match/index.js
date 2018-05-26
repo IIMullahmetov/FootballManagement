@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // import { Route } from 'react-router-dom';
 import { matchA} from 'actions';
 import {withRouter} from 'react-router';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 
@@ -75,9 +76,7 @@ class Match extends React.Component<{
 			    </div>
 			    <div className="col-md-2 f_team_gols_block">
 			      <h1 className="gols_count">{matchObject.home.goals.length}</h1>
-			      <ul className="list-unstyled">
-			        <li>Унаи Бустинста 6’</li>
-			      </ul>
+			      
 			    </div> 
 			    <div className="col-md-4 match_info_block">
 			      <p className="match_time">{matchObject.startDt}</p>      
@@ -87,12 +86,10 @@ class Match extends React.Component<{
 			    </div>    
 			    <div className="col-md-2 s_team_gols_block">
 			      <h1 className="gols_count">{matchObject.guest.goals.length}</h1>
-			      <ul className="list-unstyled">
-			        <li>Лукас 11’</li>
-			      </ul>
+			      
 			    </div>    
 			     <div className="col-md-2 s_team_logo_block">
-			      <img src="img/s_team_logo.png" className="img-responsive f_team_logo" />
+			      <img src={guestTeamLogoUrl} className="img-responsive f_team_logo" />
 			    </div>
 			   </div>
 			    
@@ -174,24 +171,29 @@ class Match extends React.Component<{
 			        </tr>
 			      </thead>  
 			      {players.map((playerItem) => {
+
 			      	if(playerItem.homePlayer && playerItem.guestPlayer) {
+			      		const homePlayerUrl = '/player/' + playerItem.homePlayer.id;
+			      		const guestPlayerUrl = '/player/' + playerItem.guestPlayer.id;
 			      		return(  <tr>			      		
-			        			<td>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</td>
-			        			<td>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</td>
+			        			<td><Link to={homePlayerUrl}>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</Link></td>
+			        			<td><Link to={guestPlayerUrl}>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</Link></td>
 			      				</tr>
 			     			 );
 			      	} else{
 						if(playerItem.homePlayer) {
+							const homePlayerUrl = '/player/' + playerItem.homePlayer.id;
 			      		return(  <tr>	
 
-			        			<td>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</td>
+			        			<td><Link to={homePlayerUrl}>{playerItem.homePlayer.number} {playerItem.homePlayer.firstName} {playerItem.homePlayer.lastName}</Link></td>
 			        			<td></td>
 			      				</tr>
 			     			 );
 			      	} else{
+			      		const guestPlayerUrl = '/player/' + playerItem.guestPlayer.id;
 						return(  <tr>			      		
 			        			<td></td>
-			        			<td>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</td>
+			        			<td><Link to={guestPlayerUrl}>{playerItem.guestPlayer.number} {playerItem.guestPlayer.firstName}{playerItem.guestPlayer.lastName}</Link></td>
 			      				</tr>
 			     			 );
 			      	}

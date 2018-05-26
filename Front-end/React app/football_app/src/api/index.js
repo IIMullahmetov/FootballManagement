@@ -5,6 +5,7 @@ import player from './player';
 import team from './team';
 import profile from './profile';
 import post from './post';
+import comment from './comment';
 
 
 export { auth };
@@ -14,3 +15,4 @@ export { player };
 export { team };
 export { profile };
 export { post };
+export { comment };

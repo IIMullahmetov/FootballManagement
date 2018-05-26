@@ -42,6 +42,8 @@ class Main extends React.Component<{
 
     if(this.props.postList[0] && this.props) {
       const mainPost = this.props.postList[0];
+      const mainPostImg = 'http://footballmanagement.azurewebsites.net/file/download?guid=' + mainPost.image;
+      console.log(mainPostImg);
 
       console.log(mainPost);
       return (
@@ -50,7 +52,7 @@ class Main extends React.Component<{
        <LastMatches />
        <div className="col-md-12" >
       
-         <div className="jumbotron" style={{background: 'url(http://footballmanagement.azurewebsites.net/file/download?guid=1b8df587-24ed-4ed5-b350-20994e724266) 100% 100% no-repeat', backgroundSize: 'cover'}}>
+         <div className="jumbotron" style={{background: 'url('+ mainPostImg + ') 100% 100% no-repeat', backgroundSize: 'cover'}}>
          
           <p style={{color: 'white', fontWeight: 'bold', marginTop: '200px'}}>{mainPost.title}</p>
           <p><Link to={`/post/${mainPost.id}`} className="btn btn-primary btn-lg" style={{backgroundColor: '#0fc272'}} role="button" >Узнать больше</Link></p>
