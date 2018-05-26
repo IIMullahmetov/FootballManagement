@@ -1,5 +1,6 @@
 package ru.kpfu.itis.android.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
-import ru.kpfu.itis.android.models.UserForRegistration;
+import ru.kpfu.itis.android.models.bodyForRequest.UserForRegistration;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
                         null)).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(response -> {
+                            Log.d("REGISTR CODE", response.code()+ " "+response.message());
                             if (response.code() == 200) {
-                                response.body();
-                                Toast.makeText(context, "Регистрация успешна!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Подтвердите ваш email, письмо было выслано на почту", Toast.LENGTH_LONG).show();
                                 finish();
                             } else {
                                 setVisibleProgressBar(View.GONE);
@@ -76,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }, throwable -> {
                             setVisibleProgressBar(View.GONE);
+                            Log.d("REGISTER", "THROW "+throwable.getMessage());
                             Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         });
             }

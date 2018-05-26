@@ -1,5 +1,8 @@
 package ru.kpfu.itis.android.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,22 +10,40 @@ import java.io.Serializable;
  */
 
 public class News implements Serializable {
-    private String photo;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("title")
+    @Expose
     private String title;
-    private String content;
+    @SerializedName("intro")
+    @Expose
+    private String intro;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("likes")
+    @Expose
+    private Integer likes;
+    @SerializedName("dislikes")
+    @Expose
+    private Integer dislikes;
+    @SerializedName("createDt")
+    @Expose
+    private String createDt;
 
-    public News(String photo, String title, String content) {
-        this.photo = photo;
+    public News(String title, String intro, String image) {
         this.title = title;
-        this.content = content;
+        this.intro = intro;
+        this.image = image;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -33,11 +54,43 @@ public class News implements Serializable {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getIntro() {
+        return intro;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Integer getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(Integer dislikes) {
+        this.dislikes = dislikes;
+    }
+
+    public String getCreateDt() {
+        return createDt;
+    }
+
+    public void setCreateDt(String createDt) {
+        this.createDt = createDt;
     }
 }

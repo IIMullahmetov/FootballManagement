@@ -25,15 +25,18 @@ import ru.kpfu.itis.android.adapters.TableAdapter;
 import ru.kpfu.itis.android.models.Championship;
 import ru.kpfu.itis.android.models.News;
 import ru.kpfu.itis.android.models.Table;
+import ru.kpfu.itis.android.models.TableChampionship;
 import ru.kpfu.itis.android.models.TableItem;
 
 public class TableChampionshipFragment extends Fragment {
     private RecyclerView rvTable;
     private TableAdapter tableAdapter;
     private Context context;
+    private List<TableChampionship> tableChampionships;
 
-    public static TableChampionshipFragment newInstance(Context context) {
+    public static TableChampionshipFragment newInstance(Context context, List<TableChampionship> tableChampionships) {
         TableChampionshipFragment tableChampionshipFragment = new TableChampionshipFragment();
+        tableChampionshipFragment.setTableChampionships(tableChampionships);
         tableChampionshipFragment.setContext(context);
         return tableChampionshipFragment;
     }
@@ -53,11 +56,15 @@ public class TableChampionshipFragment extends Fragment {
         tableAdapter = new TableAdapter(context);
         List<TableItem> tables = new ArrayList<>();
 
-        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
-        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
-        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
-        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
-
+        for (TableChampionship tableChampionship:tableChampionships){
+            //Todo вместо голов очки
+            tables.add(new TableItem(tableChampionship.getImage(), tableChampionship.getName(), "6",
+                    "6", "0", "0", String.valueOf(tableChampionship.getGoals())));
+        }
+//        tables.add(new TableItem("-", "ЦСКАxzczx", "6", "6", "0", "0", "18"));
+//        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
+//        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
+//        tables.add(new TableItem("-", "ЦСКА", "6", "6", "0", "0", "18"));
 
         tableAdapter.setTable(tables);
         rvTable.setAdapter(tableAdapter);
@@ -79,5 +86,9 @@ public class TableChampionshipFragment extends Fragment {
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public void setTableChampionships(List<TableChampionship> tableChampionships) {
+        this.tableChampionships = tableChampionships;
     }
 }

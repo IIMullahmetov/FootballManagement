@@ -1,4 +1,4 @@
-package ru.kpfu.itis.android.models;
+package ru.kpfu.itis.android.models.bodyForRequest;
 
 import java.io.Serializable;
 

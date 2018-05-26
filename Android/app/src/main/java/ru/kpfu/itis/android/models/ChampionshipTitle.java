@@ -4,12 +4,14 @@ import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
 import java.util.List;
 
-public class ChampionshipTitle extends ExpandableGroup<Match> {
+import ru.kpfu.itis.android.models.modelForList.MatchBodyInList;
+
+public class ChampionshipTitle extends ExpandableGroup<MatchBodyInList> {
 
     private String title;
-    List<Match> list;
+    List<MatchBodyInList> list;
 
-    public ChampionshipTitle(String title, List<Match> items) {
+    public ChampionshipTitle(String title, List<MatchBodyInList> items) {
         super(title, items);
         this.title = title;
         list = items;

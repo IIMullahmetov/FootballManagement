@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -24,6 +25,7 @@ import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.fragments.ChampionshipsFragment;
 import ru.kpfu.itis.android.fragments.FeedFragment;
 import ru.kpfu.itis.android.fragments.MatchesFragment;
+import ru.kpfu.itis.android.providers.SharedPreferencesProvider;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     SharedPreferences sharedPref;
     ImageView imageView;
+    TextView tvName;
+    TextView tvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +52,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        imageView = navigationView.getHeaderView(0).findViewById(R.id.profile_photo);
-
-
+        tvName.setText(SharedPreferencesProvider.getInstance(this).getUser().getFirstName()+" "+
+        SharedPreferencesProvider.getInstance(this).getUser().getLastName());
+        tvEmail.setText(SharedPreferencesProvider.getInstance(this).getUser().getEmail());
     }
 
     private void bind() {
         toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        imageView = navigationView.getHeaderView(0).findViewById(R.id.profile_photo);
         toolbar.setTitle(R.string.feed);
         setSupportActionBar(toolbar);
+        tvName = navigationView.getHeaderView(0).findViewById(R.id.nav_nickname);
+        tvEmail = navigationView.getHeaderView(0).findViewById(R.id.nav_email);
     }
 
     @Override

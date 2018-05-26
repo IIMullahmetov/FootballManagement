@@ -35,14 +35,17 @@ import java.net.URI;
 import java.util.ArrayList;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.providers.SharedPreferencesProvider;
 
 public class SettingsActivity extends AppCompatActivity {
 
     Button addAvatar;
     Button changeName;
+    Button btnExit;
     Activity context = this;
     ImageView avatar;
     Uri mCropImageUri;
+    TextView tvName;
 
 
     @Override
@@ -73,7 +76,20 @@ public class SettingsActivity extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(arrayAdapter);
 
+        btnExit = findViewById(R.id.exit);
         avatar = findViewById(R.id.avatar);
+        tvName = findViewById(R.id.nickname);
+        tvName.setText(SharedPreferencesProvider.getInstance(this).getUser().getFirstName()+" "
+                +SharedPreferencesProvider.getInstance(this).getUser().getLastName());
+
+        btnExit.setOnClickListener(view -> {
+            SharedPreferencesProvider.getInstance(this).deleteUserTokken();
+            SharedPreferencesProvider.getInstance(this).deleteUser();
+            Intent intent = new Intent(SettingsActivity.this, AuthActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
 
         if (!sharedPref.getString("profile", "").equals("")) {
             mCropImageUri = Uri.parse(sharedPref.getString("profile", ""));

@@ -24,6 +24,7 @@ import ru.kpfu.itis.android.activities.MatchActivity;
 import ru.kpfu.itis.android.models.Championship;
 import ru.kpfu.itis.android.models.ChampionshipTitle;
 import ru.kpfu.itis.android.models.Match;
+import ru.kpfu.itis.android.models.modelForList.MatchBodyInList;
 
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
@@ -57,10 +58,10 @@ public class MatchesAdapter extends ExpandableRecyclerViewAdapter<MatchesAdapter
 
     @Override
     public void onBindChildViewHolder(MatchesViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-        final Match match = ((ChampionshipTitle) group).getItems().get(childIndex);
-        holder.tvNameTeam1.setText(match.getTeam1());
-        holder.tvNameTeam2.setText(match.getTeam2());
-        holder.tvDate.setText(match.getDate());
+        final MatchBodyInList match = ((ChampionshipTitle) group).getItems().get(childIndex);
+        holder.tvNameTeam1.setText(match.getHome().getName());
+        holder.tvNameTeam2.setText(match.getGuest().getName());
+        holder.tvDate.setText(match.getStartDt());
 
         holder.itemView.setOnClickListener(view -> {
             if(matchListener!=null){
@@ -137,6 +138,10 @@ public class MatchesAdapter extends ExpandableRecyclerViewAdapter<MatchesAdapter
 }
 
     public interface MatchListener{
-        void onMatchClick(Match match);
+        void onMatchClick(MatchBodyInList match);
+    }
+
+    public void setMatchList(List<ChampionshipTitle> matchList) {
+        this.matchList = matchList;
     }
 }
