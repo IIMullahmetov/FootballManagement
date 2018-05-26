@@ -28,6 +28,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpGet]
 		[Route("match/get_list")]
+		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetListResponse))]
 		public async Task<IHttpActionResult> GetListAsync([FromUri]MatchStatus? status = null, [FromUri]int page = 0, [FromUri]int size = 10)
 		{
 			IMatchRepository repo = UnitOfWork.GetMatchRepository();
@@ -38,7 +39,7 @@ namespace FootballManagementApi.Controllers
 				Skip = page * size
 			};
 			StatusSpecification specification = new StatusSpecification(status);
-			IEnumerable<DAL.Models.Match> result = await repo.SelectAsync(specification = specification, options: options);
+			IEnumerable<DAL.Models.Match> result = await repo.SelectAsync(specification: specification, options: options);
 			int count = await repo.CountAsync(specification: specification);
 
 			Paging paging = new Paging(count: count, page: page, size: size);

@@ -44,6 +44,13 @@ namespace FootballManagementApi.Controllers
             return Ok(response);
 		}
 
+		[HttpPost]
+		[Route("sign_out")]
+		public Task<IHttpActionResult> SignOutAsync()
+		{
+			return Task.FromResult(Ok());
+		}
+
         //TODO Доделать
         [HttpPost]
         [Route("refresh_token")]
@@ -89,5 +96,8 @@ namespace FootballManagementApi.Controllers
             await UnitOfWork.SaveChangesAsync();
             return Ok(response);
         }
+
+
+
     }
 }

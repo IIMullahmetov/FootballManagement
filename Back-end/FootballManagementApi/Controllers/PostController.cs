@@ -92,6 +92,7 @@ namespace FootballManagementApi.Controllers
 		[HttpPost]
 		[Route("create")]
 		[Auth.Authorize(Enums.Role.Admin)]
+		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(CreateResponse))]
 		public async Task<IHttpActionResult> CreateAsync([FromBody]CreateRequest request)
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();

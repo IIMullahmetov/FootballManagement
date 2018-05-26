@@ -11,6 +11,7 @@ using FootballManagementApi.PostCommentResponses;
 using FootballManagementApi.Requests.PostCommentRequests;
 using FootballManagementApi.Resources;
 using FootballManagementApi.Responses;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -22,6 +23,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpGet]
 		[Route("post/{id}/comment/get_list")]
+		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(GetListResponse))]
 		public async Task<IHttpActionResult> GetListAsync([FromUri]int id, [FromUri]int page = 0, [FromUri]int size = 10)
 		{
 			Post post = await UnitOfWork.GetPostRepository().SelectFirstOrDefaultAsync(p => p.Id == id && p.Status == Enums.PostStatus.Published)
@@ -57,6 +59,7 @@ namespace FootballManagementApi.Controllers
 
 		[HttpPost]
 		[Route("post/{id}/comment/add")]
+		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(AddResponse))]
 		public async Task<IHttpActionResult> AddAsync([FromUri]int id, [FromBody]AddRequest request)
 		{
 			User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();

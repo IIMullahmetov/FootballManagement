@@ -11,6 +11,7 @@ using FootballManagementApi.GlobalExceptionHandler.Exceptions;
 using FootballManagementApi.ProfileRequests;
 using FootballManagementApi.ProfileResponses;
 using FootballManagementApi.Services;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
@@ -27,6 +28,7 @@ namespace FootballManagementApi.Controllers
         [HttpGet]
         [Route("get")]
         [Auth.Authorize]
+		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetResponse))]
         public async Task<IHttpActionResult> GetAsync()
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
@@ -87,24 +89,24 @@ namespace FootballManagementApi.Controllers
         }
 
 
-		[HttpPost]
-		[Route("do_shit")]
+		//[HttpPost]
+		//[Route("do_shit")]
 		
-		public async Task<IHttpActionResult> DoShitAsync([FromBody]DoShitRequest request)
-		{
-			User user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == request.Email);
+		//public async Task<IHttpActionResult> DoShitAsync([FromBody]DoShitRequest request)
+		//{
+		//	User user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(u => u.Email == request.Email);
 
-			_profileService.ChangePassword(user, request.Password, request.Password);
+		//	_profileService.ChangePassword(user, request.Password, request.Password);
 
-			await UnitOfWork.SaveChangesAsync();
-			return Ok();
-		}
+		//	await UnitOfWork.SaveChangesAsync();
+		//	return Ok();
+		//}
 
-		public class DoShitRequest
-		{
-			public string Email { get; set; }
+		//public class DoShitRequest
+		//{
+		//	public string Email { get; set; }
 
-			public string Password { get; set; }
-		}
+		//	public string Password { get; set; }
+		//}
 	}
 }
