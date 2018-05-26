@@ -103,7 +103,6 @@ namespace FootballManagementApi.Controllers
 				AccessToken = result.accessToken,
 				RefreshToken = result.guid,
 				Role = result.user.Role
-
 			};
 
 			await UnitOfWork.SaveChangesAsync();
