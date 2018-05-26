@@ -20,7 +20,13 @@ namespace FootballManagementApi.Controllers
 		public PostCommentController(IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
 		}
-
+        /// <summary>
+        /// получение списка комментариев поста
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <param name="page">номер странцы</param>
+        /// <param name="size">размер страницы</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("post/{id}/comment/get_list")]
 		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(GetListResponse))]
@@ -56,7 +62,12 @@ namespace FootballManagementApi.Controllers
 			return Ok(response);
 		}
 
-
+        /// <summary>
+        /// Добавление комментарив к посту
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <param name="request">данные о комментарии</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("post/{id}/comment/add")]
 		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(AddResponse))]
@@ -79,7 +90,12 @@ namespace FootballManagementApi.Controllers
 
 			return Ok(new AddResponse { Id = comment.Id });
 		}
-
+        /// <summary>
+        /// Удаление комментариев к посту
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <param name="request">данные о комментарии</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("post/{id}/comment/delete")]
 		public async Task<IHttpActionResult> DeleteAsync([FromUri]int id, [FromBody]DeleteRequest request)

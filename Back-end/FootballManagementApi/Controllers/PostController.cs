@@ -22,7 +22,13 @@ namespace FootballManagementApi.Controllers
 		public PostController(IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
 		}
-
+        /// <summary>
+        /// получение списка постов
+        /// </summary>
+        /// <param name="page">номер страницы</param>
+        /// <param name="size">размер страницы</param>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("get_list")]
 		[SwaggerResponse(200, Type = typeof(GetListResponse))]
@@ -63,7 +69,11 @@ namespace FootballManagementApi.Controllers
 
 			return Ok(response);
 		}
-
+        /// <summary>
+        /// Получение поста по идентификатору
+        /// </summary>
+        /// <param name="id">идентификатор поста</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("get/{id:int}")]
 		[SwaggerResponse(200, Type = typeof(GetResponse))]
@@ -88,8 +98,12 @@ namespace FootballManagementApi.Controllers
 			};
 			return Ok(response);
 		}
-
-		[HttpPost]
+	    /// <summary>
+	    /// создание поста
+	    /// </summary>
+	    /// <param name="request">данные поста</param>
+	    /// <returns></returns>
+        [HttpPost]
 		[Route("create")]
 		[Auth.Authorize(Enums.Role.Admin)]
 		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(CreateResponse))]
@@ -119,8 +133,12 @@ namespace FootballManagementApi.Controllers
 				Id = post.Id
 			});
 		}
-
-		[HttpPost]
+	    /// <summary>
+	    /// изменение поста
+	    /// </summary>
+	    /// <param name="request">данные поста</param>
+	    /// <returns></returns>
+        [HttpPost]
 		[Route("edit")]
 		[Auth.Authorize(Enums.Role.Admin)]
 		public async Task<IHttpActionResult> EditAsync([FromBody]EditRequest request)
@@ -140,7 +158,11 @@ namespace FootballManagementApi.Controllers
 
 			return Ok();
 		}
-
+        /// <summary>
+        /// удаление поста
+        /// </summary>
+        /// <param name="request">данные поста</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("delete")]
 		[Auth.Authorize(Enums.Role.Admin)]

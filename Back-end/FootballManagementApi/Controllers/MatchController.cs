@@ -25,7 +25,13 @@ namespace FootballManagementApi.Controllers
 		public MatchController(IUnitOfWork unitOfWork) : base(unitOfWork)
 		{
 		}
-
+        /// <summary>
+        /// Получение списка матчей
+        /// </summary>
+        /// <param name="status">статус матча</param>
+        /// <param name="page">номер странцы</param>
+        /// <param name="size">размер страницы</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("match/get_list")]
 		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetListResponse))]
@@ -73,7 +79,11 @@ namespace FootballManagementApi.Controllers
 			};
 			return Ok(response);
 		}
-
+        /// <summary>
+        /// Получение матча по идентификатору
+        /// </summary>
+        /// <param name="id">идентификатор матча</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("match/get/{id:int}")]
 		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetResponse))]		
@@ -156,7 +166,12 @@ namespace FootballManagementApi.Controllers
 
 			return Ok(response);
 		}
-
+        /// <summary>
+        /// Добавление матча в турнир
+        /// </summary>
+        /// <param name="id">идентификатор турнира</param>
+        /// <param name="request">данные о матче</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("tourney/{id:int}/match/create")]
 		public async Task<IHttpActionResult> CreateAsync([FromUri]int id, [FromBody]CreateRequest request)
@@ -262,6 +277,12 @@ namespace FootballManagementApi.Controllers
 			}
 		}
 
+        /// <summary>
+        /// добавление кол-во голов к матчу
+        /// </summary>
+        /// <param name="id">идентификатор матча</param>
+        /// <param name="request">данные о голах за матч</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("match/{id:int}/score")]
 		[Auth.Authorize(Role.Admin)]
