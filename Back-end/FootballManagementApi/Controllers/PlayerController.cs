@@ -23,8 +23,12 @@ namespace FootballManagementApi.Controllers
 		{
 
 		}
-
-		[HttpGet]
+	    /// <summary>
+	    /// получение информации об игроке по идентификатору
+	    /// </summary>
+	    /// <param name="id">идентификатор игрока</param>
+	    /// <returns></returns>
+        [HttpGet]
 		[Route("player/get/{id:int}")]
 		public async Task<IHttpActionResult> GetAsync(int id)
 		{
@@ -47,7 +51,15 @@ namespace FootballManagementApi.Controllers
 
 			return Ok(response);
 		}
-
+        /// <summary>
+        /// Получение статистики игрока в турнире
+        /// </summary>
+        /// <param name="id">идентификатор игрока</param>
+        /// <param name="page">номер страницы</param>
+        /// <param name="size">размер страницы</param>
+        /// <param name="tourneyId">идентификатор турнира</param>
+        /// <param name="season">сезон</param>
+        /// <returns></returns>
 		[HttpGet]
 		[Route("player/{id:int}/match/get_list")]
 		[SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(MatchGetListResponse))]

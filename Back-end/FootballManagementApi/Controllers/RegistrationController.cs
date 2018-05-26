@@ -21,7 +21,11 @@ namespace FootballManagementApi.Controllers
         {
             _registrationService = registrationService;
         }
-
+        /// <summary>
+        /// регистрация пользователя
+        /// </summary>
+        /// <param name="request">данные пользователя</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("register")]
         public async Task<IHttpActionResult> RegisterAsync([FromBody]RegisterRequest request)
@@ -32,7 +36,11 @@ namespace FootballManagementApi.Controllers
             await UnitOfWork.SaveChangesAsync();
             return Ok();
         }
-
+        /// <summary>
+        /// регистрация админа
+        /// </summary>
+        /// <param name="request">данные админа</param>
+        /// <returns></returns>
 		public async Task<IHttpActionResult> RegisterAdminAsync([FromBody]RegisterRequest request)
 		{
 			Registration registration = await _registrationService.RegisterAsync(registrationType: Enums.RegistrationType.Email, email: request.Email, password: request.Password, confirm: request.ConfirmPassword, firstName: request.FirstName, lastName: request.LastName, birthDt: request.BirthDay, gender: request.Gender, role: Enums.Role.Admin);

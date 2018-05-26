@@ -22,38 +22,47 @@ namespace FootballManagementApi.Controllers
 	{
 		public TourneyController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
+        /// <summary>
+        /// Получение списка турниров
+        /// </summary>
+        /// <param name="page">номер страницы</param>
+        /// <param name="size">размер страницы</param>
+        /// <returns></returns>
+	    [HttpGet]
+	    [Route("tourney/get_list")]
+	    [SwaggerResponse(200, Type = typeof(GetListResponse))]
+	    public async Task<IHttpActionResult> GetListAsync([FromUri] int page = 0, [FromUri] int size = 10)
+	    {
+	        SelectOptions<Tourney> options = new SelectOptions<Tourney>
+	        {
+	            OrderBy = p => p.OrderByDescending(t => t.Id),
+	            Take = size,
+	            Skip = page * size
+	        };
 
-		[HttpGet]
-		[Route("tourney/get_list")]
-		[SwaggerResponse(200, Type = typeof(GetListResponse))]
-		public async Task<IHttpActionResult> GetListAsync([FromUri]int page = 0, [FromUri]int size = 10)
-		{
-			SelectOptions<Tourney> options = new SelectOptions<Tourney>
-			{
-				OrderBy = p => p.OrderByDescending(t => t.Id),
-				Take = size,
-				Skip = page * size
-			};
+	        IEnumerable<Tourney> results = await UnitOfWork.GetTourneyRepository().SelectAllAsync(options: options);
 
-			IEnumerable<Tourney> results = await UnitOfWork.GetTourneyRepository().SelectAllAsync(options: options);
+	        Paging paging = new Paging(count: results.Count(), page: page, size: size);
 
-			Paging paging = new Paging(count: results.Count(), page: page, size: size);
+	        GetListResponse response = new GetListResponse(paging)
+	        {
+	            Items = results.Select(t => new GetListItem
+	            {
+	                Id = t.Id,
+	                Name = t.Name,
+	                EndDt = t.EndDt,
+	                StartDt = t.StartDt
+	            })
+	        };
 
-			GetListResponse response = new GetListResponse(paging)
-			{
-				Items = results.Select(t => new GetListItem
-				{
-			    		Id = t.Id,
-					Name = t.Name,
-					EndDt = t.EndDt,
-					StartDt = t.StartDt
-				})
-			};
-
-			return Ok(response);
-		}
-
-		[HttpGet]
+	        return Ok(response);
+	    }
+        /// <summary>
+        /// Получение турнира по идентификатору
+        /// </summary>
+        /// <param name="id">Идентификатор турнира</param>
+        /// <returns></returns>
+	    [HttpGet]
 		[Route("tourney/get/{id:int}")]
 		[SwaggerResponse(200, Type = typeof(GetResponse))]
 		public async Task<IHttpActionResult> GetAsync([FromUri]int id)
@@ -78,7 +87,12 @@ namespace FootballManagementApi.Controllers
 			};
 			return Ok(response);
 		}
-		
+		/// <summary>
+        /// Добавление команд к турниру с правами админа
+        /// </summary>
+        /// <param name="id">Идентификатор турнира</param>
+        /// <param name="request">Команды</param>
+        /// <returns></returns>
 		[HttpPost]
 		[Route("tourney/{id:int}/add_teams")]
 		[Auth.Authorize(role: Role.Admin)]
@@ -173,7 +187,12 @@ namespace FootballManagementApi.Controllers
 		//	return Ok();
 		//}
 
-
+            /// <summary>
+            /// Подсчет очков команды в турнире
+            /// </summary>
+            /// <param name="team">команда</param>
+            /// <param name="tourney">тунир</param>
+            /// <returns></returns>
 		private int GetScoreOntourney(Team team, Tourney tourney)
 		{
 		    int score = 0;
