@@ -109,29 +109,5 @@ namespace FootballManagementApi.Controllers
 			await UnitOfWork.SaveChangesAsync();
 			return Ok(response);
 		}
-
-		[HttpPost]
-		[Route("dodo")]
-		public async Task DodOAsync()
-		{
-			IEnumerable<File> files = await UnitOfWork.GetFileRepository().SelectAsync(f => f.Name.EndsWith(".svg"));
-
-			foreach (File file in files)
-			{
-				try
-				{
-					string path = PathHelper.GeneratePath(file.Guid);
-					SvgDocument svg = SvgDocument.Open(path);
-					System.Drawing.Bitmap res = svg.Draw();
-					res.Save(path, ImageFormat.Png);
-					file.Name = file.Name.Replace(".svg", ".png");
-					await UnitOfWork.SaveChangesAsync();
-				}
-				catch
-				{
-
-				}
-			}
-		}
 	}
 }
