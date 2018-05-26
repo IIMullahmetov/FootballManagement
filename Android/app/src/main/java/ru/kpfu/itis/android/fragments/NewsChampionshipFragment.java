@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.adapters.NewsAdapter;
 import ru.kpfu.itis.android.models.Championship;
+import ru.kpfu.itis.android.models.modelForList.ChampionshipInList;
 
 /**
  * Created by hlopu on 24.04.2018.
@@ -39,7 +40,7 @@ public class NewsChampionshipFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Championship championship = (Championship) ((Activity) context).getIntent().getSerializableExtra("CHAMPIONSHIP");
+        ChampionshipInList championship = (ChampionshipInList) ((Activity) context).getIntent().getSerializableExtra("CHAMPIONSHIP");
         rvNews = view.findViewById(R.id.rv_news_championship);
         rvNews.setLayoutManager(new LinearLayoutManager(context));
         NewsAdapter newsAdapter = new NewsAdapter(context);

@@ -14,6 +14,7 @@ import java.util.List;
 
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.models.Championship;
+import ru.kpfu.itis.android.models.modelForList.ChampionshipInList;
 
 /**
  * Created by hlopu on 08.04.2018.
@@ -21,7 +22,7 @@ import ru.kpfu.itis.android.models.Championship;
 
 public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapter.ChampionshipViewHolder> {
     private Context context;
-    private List<Championship> championships;
+    private List<ChampionshipInList> championships;
     private ChampionshipListener championshipListener;
 
     public ChampionshipAdapter(Context context) {
@@ -38,9 +39,10 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ChampionshipViewHolder holder, int position) {
-        final Championship championship = championships.get(position);
+        final ChampionshipInList championship = championships.get(position);
         holder.tvName.setText(championship.getName());
-        holder.imageView.setImageResource(championship.getIcon());
+        //TODO подгрузка иконок с сервера, там нет пока
+        holder.imageView.setImageResource(R.drawable.europe);
         holder.itemView.setOnClickListener(v -> {
             championshipListener.onClickListener(championship);
         });
@@ -63,12 +65,12 @@ public class ChampionshipAdapter extends RecyclerView.Adapter<ChampionshipAdapte
         }
     }
 
-    public void setChampionships(List<Championship> championships) {
+    public void setChampionships(List<ChampionshipInList> championships) {
         this.championships = championships;
     }
 
     public interface ChampionshipListener {
-        void onClickListener(Championship championship);
+        void onClickListener(ChampionshipInList championship);
     }
 
     public void setChampionshipListener(ChampionshipListener championshipListener) {

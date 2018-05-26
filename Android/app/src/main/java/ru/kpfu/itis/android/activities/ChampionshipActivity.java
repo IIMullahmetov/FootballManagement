@@ -1,5 +1,6 @@
 package ru.kpfu.itis.android.activities;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -12,30 +13,40 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.w3c.dom.Text;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.api.SportApi;
+import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.fragments.NewsChampionshipFragment;
 import ru.kpfu.itis.android.fragments.StatsChampionshipFragment;
 import ru.kpfu.itis.android.fragments.TableChampionshipFragment;
 import ru.kpfu.itis.android.models.Championship;
+import ru.kpfu.itis.android.models.modelForList.ChampionshipInList;
 
 public class ChampionshipActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private ImageView imgToolbar;
     private TextView tvNameChampionship;
     private Toolbar toolbar;
+    private Championship detailChampionship;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -50,13 +61,15 @@ public class ChampionshipActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private ProgressBar progressBar;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_championships);
         bind();
-        Championship championship = (Championship) getIntent().getSerializableExtra("CHAMPIONSHIP");
+        ChampionshipInList championship = (ChampionshipInList) getIntent().getSerializableExtra("CHAMPIONSHIP");
 //        appBarLayout.setBackgroundResource(R.drawable.uefa);
         TextView text = new TextView(this);
         text.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
@@ -80,6 +93,25 @@ public class ChampionshipActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        setVisibleProgressBar(View.VISIBLE);
+        SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
+        requests.getChampionship(championship.getId()).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response->{
+                    if (response.code() == 200) {
+                        detailChampionship = response.body();
+                    } else if (response.code() == 400) {
+                        Log.d("get chmp", "CODE " + response.code());
+                        Toast.makeText(this, "Не удалось загрузить", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d("get chmp", "Code " + response.code());
+                    }
+                    setVisibleProgressBar(View.GONE);
+                }, throwable -> {
+                    setVisibleProgressBar(View.GONE);
+                    Log.d("Get chmp", "THROW " + throwable.getMessage());
+                    Toast.makeText(this, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void bind() {
@@ -87,6 +119,7 @@ public class ChampionshipActivity extends AppCompatActivity {
         imgToolbar = findViewById(R.id.imgToolbar);
         tvNameChampionship = findViewById(R.id.tv_toolbar_name_championship);
         toolbar = findViewById(R.id.toolbar);
+        progressBar = findViewById(R.id.pb_championships);
     }
 
     /**
@@ -129,8 +162,8 @@ public class ChampionshipActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private int     COUNT_ITEMS = 3;
-        private String tabTitles[] = new String[] { "Лента", "Таблица", "Статистика" };
+        private int COUNT_ITEMS = 3;
+        private String tabTitles[] = new String[]{"Лента", "Таблица", "Статистика"};
 
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -143,7 +176,7 @@ public class ChampionshipActivity extends AppCompatActivity {
                 case 0:
                     return NewsChampionshipFragment.newInstance(ChampionshipActivity.this);
                 case 1:
-                    return TableChampionshipFragment.newInstance(ChampionshipActivity.this);
+                    return TableChampionshipFragment.newInstance(ChampionshipActivity.this, detailChampionship.getItems());
                 case 2:
                     return StatsChampionshipFragment.newInstansce(ChampionshipActivity.this);
                 default:
@@ -172,5 +205,18 @@ public class ChampionshipActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setVisibleProgressBar(int visibility) {
+        switch (visibility) {
+            case View.VISIBLE:
+                progressBar.setVisibility(visibility);
+                mViewPager.setVisibility(View.GONE);
+                break;
+            case View.GONE:
+                progressBar.setVisibility(visibility);
+                mViewPager.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }

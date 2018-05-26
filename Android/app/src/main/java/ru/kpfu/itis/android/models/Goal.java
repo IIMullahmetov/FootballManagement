@@ -1,5 +1,8 @@
 package ru.kpfu.itis.android.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,37 +10,37 @@ import java.io.Serializable;
  */
 
 public class Goal implements Serializable {
-    private String NameBombardir;
-    private String NameAssistant;
-    private String Time;
+    @SerializedName("goalDt")
+    @Expose
+    private String goalDt;
+    @SerializedName("authorId")
+    @Expose
+    private Integer authorId;
+    @SerializedName("assistantId")
+    @Expose
+    private Integer assistantId;
 
-    public Goal(String NameBombardir, String NameAssistant, String Time) {
-        this.NameBombardir = NameBombardir;
-        this.NameAssistant = NameAssistant;
-        this.Time = Time;
+    public String getGoalDt() {
+        return goalDt;
     }
 
-    public String getNameBombardir() {
-        return NameBombardir;
+    public void setGoalDt(String goalDt) {
+        this.goalDt = goalDt;
     }
 
-    public void setNameBombardir(String NameBombardir) {
-        this.NameBombardir = NameBombardir;
+    public Integer getAuthorId() {
+        return authorId;
     }
 
-    public String getNameAssistant() {
-        return NameAssistant;
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
     }
 
-    public void setNameAssistant(String NameAssistant) {
-        this.NameAssistant = NameAssistant;
+    public Integer getAssistantId() {
+        return assistantId;
     }
 
-    public String getTime() {
-        return Time;
-    }
-
-    public void setTime(String Time) {
-        this.Time = Time;
+    public void setAssistantId(Integer assistantId) {
+        this.assistantId = assistantId;
     }
 }

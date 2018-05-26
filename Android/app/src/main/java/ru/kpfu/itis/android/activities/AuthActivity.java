@@ -3,6 +3,7 @@ package ru.kpfu.itis.android.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +11,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,11 +31,10 @@ import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
-import ru.kpfu.itis.android.models.UserPost;
+import ru.kpfu.itis.android.models.bodyForRequest.UserPost;
 import ru.kpfu.itis.android.providers.SharedPreferencesProvider;
-import ru.kpfu.itis.android.service.ApiService;
 
-public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
+public class AuthActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     Context context = this;
     public static int RC_SIGN_IN = 101;
@@ -40,6 +43,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     SignInButton btn_googleSignIn;
     private ProgressBar pbAuth;
     private TextInputEditText etEmail;
+    private GoogleApiClient mGoogleApiClient;
+
     private TextInputEditText etPassword;
     private ConstraintLayout cLayout;
 
@@ -111,14 +116,18 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 setVisibleProgressBar(View.VISIBLE);
                 signIn();
                 setVisibleProgressBar(View.GONE);
-
                 break;
-
         }
     }
 
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -129,42 +138,40 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
         } else {
             Toast.makeText(context, "Не удалось войти", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Log.d("ACCOUNT", account.getEmail());
+    @SuppressLint("CheckResult")
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d("Result google", result.getStatus().getStatusMessage()+ " "+result.getStatus().getStatus());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            System.out.println("DISPLAY NAME    " + acct.getDisplayName());
+
             SportApiRequests requests = SportApi.getInstance().getmSportApiRequests();
-            System.out.println(account.getEmail() + " " + account.getIdToken());
-            requests.authorizationWithGoogle(account.getEmail(), account.getFamilyName(), account.getGivenName(),
+            requests.authorizationWithGoogle(acct.getEmail(), acct.getFamilyName(), acct.getGivenName(),
                     //TODO birthday and gender
-                    "17.04.1997", "man", account.getIdToken())
+                    "17.04.1997", "man", acct.getId())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(user -> {
-                        Intent intent = new Intent(context, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                    .subscribe(response -> {
+                        SharedPreferencesProvider.getInstance(this).saveUserTokken(response.body().getAccessToken());
+                        downloadDataForUser(response.body().getAccessToken());
                         Toast.makeText(context, "Вход выполнен успешно!", Toast.LENGTH_SHORT).show();
                     }, throwable -> {
                         setVisibleProgressBar(View.GONE);
                         Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     });
-
-            // Signed in successfully, show authenticated UI.
-//            updateUI(account);
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("ERROR", "signInResult:failed code=" + e.getStatusCode());
-//            updateUI(null);
         }
+        else{
+            Log.d("Google Auth","Не удалось");
+        }
+
     }
 
     private void checkAccount() {
@@ -219,5 +226,10 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(context, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d("GOOGLE_AUT_ERROR", "onConnectionFailed:" + connectionResult);
     }
 }

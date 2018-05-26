@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.models.TableItem;
 
 /**
@@ -40,7 +41,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
     @Override
     public void onBindViewHolder(@NonNull TableAdapter.TableViewHolder holder, int position) {
         final TableItem tableItem = tables.get(position);
-        Glide.with(context).load(R.drawable.real_madrid)
+        Glide.with(context).load(SportApiRequests.DOWNLOAD_IMAGE+tableItem.getIcon())
                 .apply(RequestOptions.fitCenterTransform())
                 .into(holder.ivLogo);
 

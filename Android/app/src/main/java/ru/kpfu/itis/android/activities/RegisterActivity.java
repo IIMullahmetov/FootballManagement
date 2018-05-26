@@ -17,12 +17,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
-import ru.kpfu.itis.android.models.UserForRegistration;
+import ru.kpfu.itis.android.models.bodyForRequest.UserForRegistration;
 
 public class RegisterActivity extends AppCompatActivity {
 

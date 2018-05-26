@@ -3,6 +3,7 @@ package ru.kpfu.itis.android.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import java.util.List;
 import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.models.Goal;
 import ru.kpfu.itis.android.models.Match;
+import ru.kpfu.itis.android.models.PlayerPOJO;
+import ru.kpfu.itis.android.models.TeamMatch;
 
 /**
  * Created by hlopu on 23.04.2018.
@@ -21,6 +24,7 @@ import ru.kpfu.itis.android.models.Match;
 
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHolder> {
     private List<Goal> goalList;
+    private TeamMatch teamMatch;
     private Context context;
 
     public GoalsAdapter(Context context) {
@@ -38,9 +42,22 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
     @Override
     public void onBindViewHolder(@NonNull GoalViewHolder holder, int position) {
         final Goal goal = goalList.get(position);
-        holder.tvTime.setText(goal.getTime());
-        holder.tvBombardir.setText(goal.getNameBombardir());
-        holder.tvAssistant.setText(goal.getNameAssistant());
+        String dateGoal = goal.getGoalDt().substring(14, 16);
+        System.out.println("DATE GOAL " + " " + dateGoal);
+        //TOdo хардкод
+        holder.tvTime.setText(dateGoal + "'");
+        Log.d("DATE GOAL", goal.getGoalDt());
+        holder.tvBombardir.setText(teamMatch.getPlayers().get(position).getFirstName() + " " + teamMatch.getPlayers().get(position).getLastName());
+        holder.tvAssistant.setText(teamMatch.getPlayers().get(position+5).getFirstName() + " " + teamMatch.getPlayers().get(position+5).getLastName());
+
+//        for (PlayerPOJO player : teamMatch.getPlayers()) {
+//            if(player.getId().equals(goal.getAuthorId())) {
+//                holder.tvBombardir.setText(player.getFirstName()+" "+player.getLastName());
+//                Log.d("BOMBARDIR", player.getFirstName()+" "+player.getLastName());
+//            } else if(player.getId().equals(goal.getAssistantId())){
+//                holder.tvAssistant.setText(player.getFirstName()+" "+player.getLastName());
+//            }
+//        }
     }
 
     @Override
@@ -63,5 +80,13 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
 
     public void setGoalList(List<Goal> goalList) {
         this.goalList = goalList;
+    }
+
+    public TeamMatch getTeamMatch() {
+        return teamMatch;
+    }
+
+    public void setTeamMatch(TeamMatch teamMatch) {
+        this.teamMatch = teamMatch;
     }
 }
