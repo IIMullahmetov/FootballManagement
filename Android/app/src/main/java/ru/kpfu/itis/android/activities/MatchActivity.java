@@ -27,10 +27,7 @@ import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.adapters.GoalsAdapter;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
-import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.MatchPOJO;
-import ru.kpfu.itis.android.utils.GlideApp;
-import ru.kpfu.itis.android.utils.SvgSoftwareLayerSetter;
 
 public class MatchActivity extends AppCompatActivity {
     private RecyclerView rvGoalsTeam1;
@@ -159,17 +156,13 @@ public class MatchActivity extends AppCompatActivity {
         goalsAdapter2.setTeamMatch(match.getGuest());
         rvGoalsTeam2.setAdapter(goalsAdapter2);
 
-        GlideApp.with(this)
-                .as(PictureDrawable.class)
-                .listener(new SvgSoftwareLayerSetter())
+        System.out.println(SportApiRequests.DOWNLOAD_IMAGE+match.getHome().getLogotype());
+        Glide.with(this)
                 .load(SportApiRequests.DOWNLOAD_IMAGE + match.getHome().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
-
                 .into(ivTeam1);
 
-        GlideApp.with(this)
-                .as(PictureDrawable.class)
-                .listener(new SvgSoftwareLayerSetter())
+        Glide.with(this)
                 .load(SportApiRequests.DOWNLOAD_IMAGE+match.getGuest().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
 

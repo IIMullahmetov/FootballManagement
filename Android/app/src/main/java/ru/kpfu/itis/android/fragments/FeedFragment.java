@@ -84,7 +84,6 @@ public class FeedFragment extends Fragment {
                 }, throwable -> {
                     setVisibleProgressBar(View.GONE);
                     Log.d("Get Posts", "THROW " + throwable.getMessage());
-                    Toast.makeText(context, "Throw " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
         rvNews.setAdapter(newsAdapter);

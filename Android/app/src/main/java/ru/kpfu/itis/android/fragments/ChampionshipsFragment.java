@@ -83,8 +83,8 @@ public class ChampionshipsFragment extends Fragment {
 
         List<Championship> chmpshps = new ArrayList<>();
         List<News> news = new ArrayList<>();
-        news.add(new News("Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST", "url"));
-        news.add(new News("Делаем ставки, господа!", "TEXT TEST TEXT TEST", String.valueOf(R.drawable.real)));
+        news.add(new News("Выиграет ли Реал третий кубок Лиги Чемпионов подряд?", "TEXT TEST TEXT TEST", "1b8df587-24ed-4ed5-b350-20994e724266"));
+        news.add(new News("Делаем ставки, господа!", "TEXT TEST TEXT TEST","fe94aaf1-7d35-44ab-ae33-dbfc612c5377"));
 //        chmpshps.add(new Championship("РФПЛ", R.drawable.russia, news));
 //        chmpshps.add(new Championship("UEFA", R.drawable.europe, news));
 //        chmpshps.add(new Championship("Euro", R.drawable.europe, news));
