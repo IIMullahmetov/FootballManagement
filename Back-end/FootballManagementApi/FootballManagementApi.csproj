@@ -197,6 +197,8 @@
     <Compile Include="AuthOption.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogCommentController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />

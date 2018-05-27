@@ -51,5 +51,7 @@ namespace FootballManagementApi.DAL
 		public IFileRepository GetFileRepository() => new FileRepository(Context);
 
         public IRegistrationRepository GetRegistrationRepository() => new RegistrationRepository(Context);
-    }
+
+		public IBlogRepository GetBlogRepository() => new BlogRepository(Context);
+	}
 }

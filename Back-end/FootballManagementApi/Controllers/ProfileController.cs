@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using FootballManagementApi.DAL;
@@ -15,35 +11,31 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace FootballManagementApi.Controllers
 {
-    
-    public class ProfileController : BaseController
+	public class ProfileController : BaseController
     {
         private IProfileService _profileService;
-        
-        public ProfileController(IUnitOfWork unitOfWork, IProfileService profileService) : base(unitOfWork)
-        {
-            _profileService = profileService;
-        }
 
-        /// <summary>
-        /// получение профиля профиля пользователя
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
+		public ProfileController(IUnitOfWork unitOfWork, IProfileService profileService) : base(unitOfWork) => _profileService = profileService;
+
+		/// <summary>
+		/// получение профиля профиля пользователя
+		/// </summary>
+		/// <returns></returns>
+		[HttpGet]
         [Route("get")]
         [Auth.Authorize]
 		[SwaggerResponse(HttpStatusCode.OK, Type = typeof(GetResponse))]
         public async Task<IHttpActionResult> GetAsync()
         {
             User user = await GetCurrentUserAsync() ?? throw new ActionForbiddenException();
-            GetResponse response = new GetResponse
-            {
-                Email = user.Email,
-                FirstName = user.FirstName,
-                Image = user.Image,
-                LastName = user.LastName,
-                Gender = user.Gender,
-				RegistrationDt = user.Registration.CreateDt
+			GetResponse response = new GetResponse
+			{
+				Email = user.Email,
+				FirstName = user.FirstName,
+				Image = user.Image,
+				LastName = user.LastName,
+				Gender = user.Gender,
+				RegistrationDt = user.Registration.CreateDt.ToString(DateTimeFormat)
             };
             return Ok(response);
         }

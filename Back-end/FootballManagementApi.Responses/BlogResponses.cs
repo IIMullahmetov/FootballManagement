@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using FootballManagementApi.Enums;
+﻿using FootballManagementApi.Enums;
 using FootballManagementApi.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FootballManagementApi.PostResponses
+namespace FootballManagementApi.BlogResponses
 {
 	public class GetListResponse : PagingResponse
 	{
@@ -32,11 +35,11 @@ namespace FootballManagementApi.PostResponses
 		[JsonProperty("image")]
 		public Guid? Image { get; set; }
 
-        [JsonProperty("likes")]
-        public int Likes { get; set; }
+		[JsonProperty("likes")]
+		public int Likes { get; set; }
 
-        [JsonProperty("dislikes")]
-        public int Dislikes { get; set; }
+		[JsonProperty("dislikes")]
+		public int Dislikes { get; set; }
 
 		[JsonProperty("createDt")]
 		public string CreateDt { get; set; }
@@ -64,7 +67,7 @@ namespace FootballManagementApi.PostResponses
 
 		[JsonProperty("type")]
 		[JsonConverter(typeof(StringEnumConverter))]
-		public PostItemType Type { get; set; }
+		public BlogItemType Type { get; set; }
 
 		[JsonProperty("guid", NullValueHandling = NullValueHandling.Ignore)]
 		public Guid? Guid { get; set; }

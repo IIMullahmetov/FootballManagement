@@ -88,14 +88,19 @@ namespace FootballManagementApi.Controllers
 			user = await UnitOfWork.GetUserRepository().SelectFirstOrDefaultAsync(r => r.Email == request.Email);
 			if (user == null)
 			{
-				Registration registration = await _registrationService.RegisterAsync(registrationType: RegistrationType.Google, email: request.Email, firstName: request.FirstName, lastName: request.LastName, birthDt: request.BirthDay, gender: request.Gender);
+				Registration registration = await _registrationService.RegisterAsync(registrationType: RegistrationType.Google, email: request.Email, firstName: request.FirstName, lastName: request.LastName, gender: request.Gender, googleToken: request.GoogleToken);
 				user = registration.User;
+				await UnitOfWork.SaveChangesAsync();
 			}
 			else if (user.Registration.Type.Equals(RegistrationType.Email))
+			{
 				throw new ActionCannotBeExecutedException(ExceptionMessages.WrongRegistrationType);
+			}
 
 			if (!user.GoogleToken.Equals(request.GoogleToken))
+			{
 				user.GoogleToken = request.GoogleToken;
+			}
 
 			(string accessToken, System.Guid guid, User user) result = await _loginService.LoginAsync(LoginType.Google, request.Email);
 			LoginResposne response = new LoginResposne

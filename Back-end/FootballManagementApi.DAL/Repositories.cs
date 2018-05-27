@@ -23,4 +23,6 @@ namespace FootballManagementApi.DAL.Repositories
     public interface IFileRepository : IGenericRepository<File> { }
 
     public interface IRegistrationRepository : IGenericRepository<Registration> { }
+
+	public interface IBlogRepository : IGenericRepository<Blog> { }
 }

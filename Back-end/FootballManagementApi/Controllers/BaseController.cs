@@ -51,10 +51,10 @@ namespace FootballManagementApi.Controllers
 
         protected async Task<Dictionary<string, byte[]>> ReadAsMultipartAsync()
         {
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
+            //if (!Request.Content.IsMimeMultipartContent())
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            //}
             HttpRequest httpRequest = HttpContext.Current.Request;
             Dictionary<string, byte[]> files = new Dictionary<string, byte[]>();
 

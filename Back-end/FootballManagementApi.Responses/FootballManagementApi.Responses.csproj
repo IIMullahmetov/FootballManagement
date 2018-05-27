@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthResponse.cs" />
+    <Compile Include="BlogResponses.cs" />
     <Compile Include="FileResponses.cs" />
     <Compile Include="MatchResponses.cs" />
     <Compile Include="PlayerResponses.cs" />

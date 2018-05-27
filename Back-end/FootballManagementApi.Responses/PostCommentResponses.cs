@@ -9,6 +9,18 @@ namespace FootballManagementApi.PostCommentResponses
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
+
+		[JsonProperty("comment")]
+		public string Comment { get; set; }
+
+		[JsonProperty("firstName")]
+		public string FirstName { get; set; }
+
+		[JsonProperty("userId")]
+		public int UserId { get; set; }
+
+		[JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
+		public Guid? Image { get; set; }
 	}
 
 	public class GetListResponse : PagingResponse

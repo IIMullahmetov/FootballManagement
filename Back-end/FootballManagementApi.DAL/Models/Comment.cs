@@ -22,9 +22,14 @@ namespace FootballManagementApi.DAL.Models
 		[ForeignKey(nameof(UserId))]
 		public virtual User User { get; set; }
 
-		public int PostId { get; set; }
+		public int? PostId { get; set; }
 
 		[ForeignKey(nameof(PostId))]
 		public virtual Post Post { get; set; }
+
+		public int? BlogId { get; set; }
+
+		[ForeignKey(nameof(BlogId))]
+		public virtual Blog Blog { get; set; }
 	}
 }

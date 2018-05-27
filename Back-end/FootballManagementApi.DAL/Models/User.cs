@@ -14,8 +14,11 @@ namespace FootballManagementApi.DAL.Models
 			Posts = new HashSet<Post>();
 			Files = new HashSet<File>();
             RefreshTokens = new HashSet<RefreshToken>();
-            Dislikes = new HashSet<Post>();
-            Likes = new HashSet<Post>();
+            PostDislikes = new HashSet<Post>();
+            PostLikes = new HashSet<Post>();
+			BlogLikes = new HashSet<Blog>();
+			BlogDislikes = new HashSet<Blog>();
+			Blogs = new HashSet<Blog>();
 		}
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -51,8 +54,14 @@ namespace FootballManagementApi.DAL.Models
 
         public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
 
-        public virtual ICollection<Post> Dislikes { get; set; }
+        public virtual ICollection<Post> PostDislikes { get; set; }
 
-        public virtual ICollection<Post> Likes { get; set; }
+        public virtual ICollection<Post> PostLikes { get; set; }
+
+		public virtual ICollection<Blog> Blogs { get; set; }
+
+		public virtual ICollection<Blog> BlogLikes { get; set; }
+
+		public virtual ICollection<Blog> BlogDislikes { get; set; }
 	}
 }

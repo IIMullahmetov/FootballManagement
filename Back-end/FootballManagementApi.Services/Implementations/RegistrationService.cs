@@ -34,7 +34,7 @@ namespace FootballManagementApi.Services.Implementations
         }
 
         public async Task<Registration> RegisterAsync(RegistrationType registrationType, string email = null, string password = null, string confirm = null, string firstName = null,
-             string lastName = null, DateTime? birthDt = null, Gender? gender = null, Role role = Role.User)
+             string lastName = null, DateTime? birthDt = null, Gender? gender = null, Role role = Role.User, string googleToken = null)
         {
             ValidateData(email, firstName, lastName, birthDt);
 
@@ -76,11 +76,11 @@ namespace FootballManagementApi.Services.Implementations
                     Registration = registration,
                     Status = UserStatus.Active,
                     Email = email,
+					GoogleToken = googleToken
                 };
                 registration.Status = RegistrationStatus.Accepted;
                 _unitOfWork.GetUserRepository().Insert(user);
                 string emailBody = MailTemplates.Confirmation.Replace("[Confirmation_Link]", _currentHost + "registration/confirm?guid=" + registration.Guid);
-                await _mailSender.SendAsync(new Letter { Topic = "Registration confirmation", Email = new string[] { user.Email }, Body = emailBody });
             }
 
             return registration;

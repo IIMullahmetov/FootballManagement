@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogItemType.cs" />
     <Compile Include="CardType.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="Gender.cs" />

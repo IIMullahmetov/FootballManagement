@@ -58,6 +58,7 @@ namespace FootballManagementApi.Controllers
 				Items = list.Select(p => new GetListReponseItem
 				{
 					Id = p.Id,
+					IsMain = Random.Next(0, 1) == 0,
 					Image = p.Items.FirstOrDefault(i => i.Type == Enums.PostItemType.Image).Guid,
 					Intro = p.Items.FirstOrDefault(i => i.Type == Enums.PostItemType.Text).Text,
 					Title = p.Title,

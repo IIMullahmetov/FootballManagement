@@ -28,15 +28,28 @@ namespace FootballManagementApi.DAL
 			
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Post>());
 			modelBuilder.Entity<Post>().HasMany(p => p.Items).WithRequired(i => i.Post).WillCascadeOnDelete(false);
-			modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithRequired(c => c.Post).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Post>().HasMany(p => p.Likes).WithMany(u => u.Likes).Map(p =>
+			modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithOptional(c => c.Post).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Post>().HasMany(p => p.Likes).WithMany(u => u.PostLikes).Map(p =>
             {
                 p.ToTable("PostLikes");
             });
-            modelBuilder.Entity<Post>().HasMany(p => p.Dislikes).WithMany(p => p.Dislikes).Map(p =>
+            modelBuilder.Entity<Post>().HasMany(p => p.Dislikes).WithMany(p => p.PostDislikes).Map(p =>
             {
                 p.ToTable("PostDislikes");
             });
+
+			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Blog>());
+			modelBuilder.Configurations.Add(new EntityTypeConfiguration<BlogItem>());
+			modelBuilder.Entity<Blog>().HasMany(b => b.Items).WithRequired(i => i.Blog).WillCascadeOnDelete(false);
+			modelBuilder.Entity<Blog>().HasMany(b => b.Comments).WithOptional(c => c.Blog).WillCascadeOnDelete(false);
+			modelBuilder.Entity<Blog>().HasMany(b => b.Likes).WithMany(u => u.BlogLikes).Map(l =>
+			{
+				l.ToTable("BlogLikes");
+			});
+			modelBuilder.Entity<Blog>().HasMany(b => b.Dislikes).WithMany(u => u.BlogDislikes).Map(d =>
+			{
+				d.ToTable("BlogDislikes");
+			});
 
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PostItem>());
 
@@ -55,6 +68,8 @@ namespace FootballManagementApi.DAL
 
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<User>());
 			modelBuilder.Entity<User>().HasMany(u => u.Posts).WithRequired(p => p.User).WillCascadeOnDelete(false);
+			modelBuilder.Entity<User>().HasMany(u => u.Comments).WithRequired(c => c.User).WillCascadeOnDelete(false);
+			modelBuilder.Entity<User>().HasMany(u => u.Blogs).WithRequired(b => b.User).WillCascadeOnDelete(false);
 			modelBuilder.Entity<User>().HasMany(u => u.Comments).WithRequired(c => c.User).WillCascadeOnDelete(false);
             //modelBuilder.Entity<User>().HasOptional(u => u.Registration).WithOptionalPrincipal(r => r.User);
             

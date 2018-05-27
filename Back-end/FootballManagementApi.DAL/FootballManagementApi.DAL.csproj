@@ -131,7 +131,13 @@
     <Compile Include="Migrations\201805162027341_GlobalStructChanging.Designer.cs">
       <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805271448352_AddedBlog.cs" />
+    <Compile Include="Migrations\201805271448352_AddedBlog.Designer.cs">
+      <DependentUpon>201805271448352_AddedBlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogItem.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ComplexTypes\MatchData.cs" />
@@ -153,6 +159,7 @@
     <Compile Include="SelectOptions.cs" />
     <Compile Include="Specification.cs" />
     <Compile Include="Models\Tourney.cs" />
+    <Compile Include="Specifications\BlogCommentSpecifications.cs" />
     <Compile Include="Specifications\CommentSpecifications.cs" />
     <Compile Include="Specifications\MatchSpecifications.cs" />
     <Compile Include="Specifications\PlayerSpecifications.cs" />
@@ -214,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805162027341_GlobalStructChanging.resx">
       <DependentUpon>201805162027341_GlobalStructChanging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805271448352_AddedBlog.resx">
+      <DependentUpon>201805271448352_AddedBlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

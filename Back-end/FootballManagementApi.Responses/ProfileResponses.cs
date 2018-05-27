@@ -23,6 +23,6 @@ namespace FootballManagementApi.ProfileResponses
         public Guid? Image { get; set; }
 
 		[JsonProperty("registrationDt")]
-		public DateTimeOffset RegistrationDt { get; set; }
+		public string RegistrationDt { get; set; }
     }
 }

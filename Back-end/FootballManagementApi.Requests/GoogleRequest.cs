@@ -17,11 +17,7 @@ namespace FootballManagementApi.RegistrationRequests
         [JsonProperty("lastName")]
         [JsonRequired]
         public string LastName { get; set; }
-
-        [JsonProperty("birthDay")]
-        [JsonRequired]
-        public DateTime BirthDay { get; set; }
-
+		
         [JsonProperty("gender")]
         public Gender? Gender { get; set; }
 

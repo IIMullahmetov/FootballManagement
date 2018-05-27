@@ -11,12 +11,6 @@ namespace FootballManagementApi.Requests.PostRequests
 		[JsonProperty("title")]
 		public string Title { get; set; }
 
-		[JsonProperty("intro")]
-		public string Intro { get; set; }
-
-		[JsonProperty("image")]
-		public Guid? Image { get; set; }
-
 		[JsonProperty("items")]
 		public IEnumerable<PostRequestItem> Items { get; set; }
 	}

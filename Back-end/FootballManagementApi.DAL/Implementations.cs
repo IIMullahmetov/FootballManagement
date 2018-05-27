@@ -58,4 +58,9 @@ namespace FootballManagementApi.DAL.Implementations
     {
         internal RegistrationRepository(DbContext context) : base(context) { }
     }
+
+	internal class BlogRepository : GenericRepository<Blog>, IBlogRepository
+	{
+		internal BlogRepository(DbContext context) : base(context) { }
+	}
 }
