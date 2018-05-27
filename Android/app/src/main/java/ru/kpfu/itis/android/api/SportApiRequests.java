@@ -12,6 +12,8 @@ import ru.kpfu.itis.android.models.Authorization;
 import ru.kpfu.itis.android.models.Championship;
 import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.MatchPOJO;
+import ru.kpfu.itis.android.models.PlayerDetail;
+import ru.kpfu.itis.android.models.TeamDetail;
 import ru.kpfu.itis.android.models.modelForList.ChampionshipInList;
 import ru.kpfu.itis.android.models.modelForList.ElementList;
 import ru.kpfu.itis.android.models.News;
@@ -66,5 +68,15 @@ public interface SportApiRequests {
     @POST("/post/{id}/comment/add")
     Observable<Response<Comment>> addComments(@Path("id") int id, @Body CommentPOST comment, @Header("Authorization") String token);
 
+    @POST("/edit")
+    Observable<Response<Void>> changeUsername(@Body UserForRegistration user, @Header("Authorization") String token);
 
+    @POST("/change_password")
+    Observable<Response<Void>> changePassword(@Body UserForRegistration user, @Header("Authorization") String token);
+
+    @GET("/team/get/{id}")
+    Observable<Response<TeamDetail>> getTeam(@Path("id") int id);
+
+    @GET("/player/get/{id}")
+    Observable<Response<PlayerDetail>> getPlayer(@Path("id") int id);
 }

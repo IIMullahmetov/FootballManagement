@@ -57,7 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_info" />
 
-
     <Button
         android:id="@+id/change_password"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -100,65 +99,65 @@
         app:layout_constraintTop_toBottomOf="@+id/add_avatar"/>
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Настройки языка"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_avatar" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="Настройки языка"-->
+        <!--android:textSize="14sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.1"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/add_avatar" />-->
 
 
 
-    <Spinner
+    <!--<Spinner-->
 
-        android:id="@+id/spinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <!--android:id="@+id/spinner"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-    <Button
-        android:id="@+id/share"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#ffffff"
-        android:gravity="start|center_vertical"
-        android:paddingStart="32dp"
-        android:text="Поделиться"
-        android:textAllCaps="false"
-        android:textColor="#7c7c7c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+    <!--<Button-->
+        <!--android:id="@+id/share"-->
+        <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:background="#ffffff"-->
+        <!--android:gravity="start|center_vertical"-->
+        <!--android:paddingStart="32dp"-->
+        <!--android:text="Поделиться"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="#7c7c7c"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="1.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/spinner" />-->
 
-    <Button
-        android:id="@+id/about"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="#ffffff"
-        android:gravity="start|center_vertical"
-        android:paddingStart="32dp"
-        android:text="О нас"
-        android:textAllCaps="false"
-        android:textColor="#7c7c7c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/share" />
+    <!--<Button-->
+        <!--android:id="@+id/about"-->
+        <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="2dp"-->
+        <!--android:background="#ffffff"-->
+        <!--android:gravity="start|center_vertical"-->
+        <!--android:paddingStart="32dp"-->
+        <!--android:text="О нас"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="#7c7c7c"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/share" />-->
 
     <Button
         android:id="@+id/exit"
@@ -176,9 +175,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/change_password" />
 
 
 </android.support.constraint.ConstraintLayout>

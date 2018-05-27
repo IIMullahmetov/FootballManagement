@@ -5,8 +5,7 @@ package ru.kpfu.itis.android.models;
  */
 public class TableItem {
 
-
-
+    private int id;
     private String icon;
 
     private String teamName;
@@ -21,8 +20,8 @@ public class TableItem {
 
     private String points;
 
-    public TableItem(String icon, String teamName, String games, String wins, String draws, String losses, String points) {
-
+    public TableItem(int id, String icon, String teamName, String games, String wins, String draws, String losses, String points) {
+        this.id = id;
         this.icon = icon;
         this.teamName = teamName;
         this.games = games;
@@ -30,6 +29,14 @@ public class TableItem {
         this.draws = draws;
         this.losses = losses;
         this.points = points;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIcon() {

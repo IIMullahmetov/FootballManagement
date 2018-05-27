@@ -36,7 +36,9 @@
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.NewsActivity"></activity>
+        <activity android:name=".activities.NewsActivity" />
+        <activity android:name=".activities.TeamActivity" />
+        <activity android:name=".activities.PlayerActivity"></activity>
     </application>
 
 </manifest>
