@@ -34,4 +34,15 @@ public class UserForRegistration implements Serializable {
         this.confirmPassword = confirmPassword;
         this.birthDay = birthDay;
     }
+
+    public UserForRegistration(String firstName, String lastName, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
+
+    public UserForRegistration(String password, String confirmPassword) {
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 }

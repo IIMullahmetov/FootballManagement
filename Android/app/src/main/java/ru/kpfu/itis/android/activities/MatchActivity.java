@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -177,25 +178,35 @@ public class MatchActivity extends AppCompatActivity {
         goalsAdapter2.setTeamMatch(match.getGuest());
         rvGoalsTeam2.setAdapter(goalsAdapter2);
 
-        System.out.println(SportApiRequests.DOWNLOAD_IMAGE+match.getHome().getLogotype());
+        System.out.println(SportApiRequests.DOWNLOAD_IMAGE + match.getHome().getLogotype());
         Glide.with(this)
                 .load(SportApiRequests.DOWNLOAD_IMAGE + match.getHome().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
                 .into(ivTeam1);
 
         Glide.with(this)
-                .load(SportApiRequests.DOWNLOAD_IMAGE+match.getGuest().getLogotype())
+                .load(SportApiRequests.DOWNLOAD_IMAGE + match.getGuest().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
                 .into(ivTeam2);
-        tvTeam1RedCards.setText("Красные карточки: "+match.getHome().getRedCards());
-        tvTeam1YellowCards.setText("Желтые карточки: "+match.getHome().getYellowCards());
-        tvTeam1Possession.setText("Владение: "+match.getHome().getPossession()+"%");
-        tvTeam1Foals.setText("Нарушения: "+match.getHome().getFauls());
-        tvTeam2RedCards.setText("Красные карточки: "+match.getGuest().getRedCards());
-        tvTeam2YellowCards.setText("Желтые карточки: "+match.getGuest().getYellowCards());
-        tvTeam2Possession.setText("Владение: "+match.getGuest().getPossession()+"%");
-        tvTeam2Foals.setText("Нарушения: "+match.getGuest().getFauls());
+        tvTeam1RedCards.setText("Красные карточки: " + match.getHome().getRedCards());
+        tvTeam1YellowCards.setText("Желтые карточки: " + match.getHome().getYellowCards());
+        tvTeam1Possession.setText("Владение: " + match.getHome().getPossession() + "%");
+        tvTeam1Foals.setText("Нарушения: " + match.getHome().getFauls());
+        tvTeam2RedCards.setText("Красные карточки: " + match.getGuest().getRedCards());
+        tvTeam2YellowCards.setText("Желтые карточки: " + match.getGuest().getYellowCards());
+        tvTeam2Possession.setText("Владение: " + match.getGuest().getPossession() + "%");
+        tvTeam2Foals.setText("Нарушения: " + match.getGuest().getFauls());
 
+        ivTeam1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TeamActivity.class);
+            intent.putExtra("ID_TEAM", match.getHome().getId());
+            startActivity(intent);
+        });
+        ivTeam2.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TeamActivity.class);
+            intent.putExtra("ID_TEAM", match.getGuest().getId());
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -203,7 +214,7 @@ public class MatchActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

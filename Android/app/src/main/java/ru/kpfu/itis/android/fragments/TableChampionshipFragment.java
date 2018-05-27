@@ -58,7 +58,7 @@ public class TableChampionshipFragment extends Fragment {
 
         for (TableChampionship tableChampionship:tableChampionships){
             //Todo вместо голов очки
-            tables.add(new TableItem(tableChampionship.getImage(), tableChampionship.getName(), "6",
+            tables.add(new TableItem(tableChampionship.getId(), tableChampionship.getImage(), tableChampionship.getName(), "6",
                     "6", "0", "0", String.valueOf(tableChampionship.getGoals())));
         }
 //        tables.add(new TableItem("-", "ЦСКАxzczx", "6", "6", "0", "0", "18"));

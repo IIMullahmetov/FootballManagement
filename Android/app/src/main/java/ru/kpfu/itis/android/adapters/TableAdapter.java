@@ -1,6 +1,7 @@
 package ru.kpfu.itis.android.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ru.kpfu.itis.android.R;
+import ru.kpfu.itis.android.activities.TeamActivity;
 import ru.kpfu.itis.android.api.SportApiRequests;
 import ru.kpfu.itis.android.models.TableItem;
 
@@ -41,7 +43,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
     @Override
     public void onBindViewHolder(@NonNull TableAdapter.TableViewHolder holder, int position) {
         final TableItem tableItem = tables.get(position);
-        Glide.with(context).load(SportApiRequests.DOWNLOAD_IMAGE+tableItem.getIcon())
+        Glide.with(context).load(SportApiRequests.DOWNLOAD_IMAGE + tableItem.getIcon())
                 .apply(RequestOptions.fitCenterTransform())
                 .into(holder.ivLogo);
 
@@ -52,6 +54,11 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
         holder.tvDraws.setText(tableItem.getDraws());
         holder.tvLosses.setText(tableItem.getLosses());
         holder.tvPoints.setText(tableItem.getPoints());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TeamActivity.class);
+            intent.putExtra("ID_TEAM", tableItem.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
