@@ -32,6 +32,13 @@ public class User implements Serializable {
     @Expose
     private String message;
 
+    public User(String email, String firstName, String lastName, String image) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.image = image;
+    }
+
     public String getEmail() {
         return email;
     }

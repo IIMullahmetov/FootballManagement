@@ -3,6 +3,7 @@
     package="ru.kpfu.itis.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +35,8 @@
             android:label="@string/title_activity_championships"
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.RegisterActivity"></activity>
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.NewsActivity"></activity>
     </application>
 
 </manifest>

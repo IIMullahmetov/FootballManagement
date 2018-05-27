@@ -27,10 +27,7 @@ import ru.kpfu.itis.android.R;
 import ru.kpfu.itis.android.adapters.GoalsAdapter;
 import ru.kpfu.itis.android.api.SportApi;
 import ru.kpfu.itis.android.api.SportApiRequests;
-import ru.kpfu.itis.android.models.Match;
 import ru.kpfu.itis.android.models.MatchPOJO;
-import ru.kpfu.itis.android.utils.GlideApp;
-import ru.kpfu.itis.android.utils.SvgSoftwareLayerSetter;
 
 public class MatchActivity extends AppCompatActivity {
     private RecyclerView rvGoalsTeam1;
@@ -45,6 +42,16 @@ public class MatchActivity extends AppCompatActivity {
     private ImageView ivTeam2;
     private ProgressBar progressBar;
     private MatchPOJO matchPOJO;
+    private TextView tvTeam1Shots;
+    private TextView tvTeam1RedCards;
+    private TextView tvTeam1YellowCards;
+    private TextView tvTeam1Possession;
+    private TextView tvTeam1Foals;
+    private TextView tvTeam2Shots;
+    private TextView tvTeam2RedCards;
+    private TextView tvTeam2YellowCards;
+    private TextView tvTeam2Possession;
+    private TextView tvTeam2Foals;
 
     private String nameChmp;
 
@@ -138,6 +145,17 @@ public class MatchActivity extends AppCompatActivity {
         ivTeam1 = findViewById(R.id.iv_match_photo_team1);
         ivTeam2 = findViewById(R.id.iv_match_photo_team2);
         progressBar = findViewById(R.id.pb_match);
+        tvTeam1Shots = findViewById(R.id.tv_team1_shots);
+        tvTeam1RedCards = findViewById(R.id.tv_team1_redcards);
+        tvTeam1YellowCards = findViewById(R.id.tv_team1_yellowcards);
+        tvTeam1Possession = findViewById(R.id.tv_team1_possession);
+        tvTeam1Foals = findViewById(R.id.tv_team1_fauls);
+        tvTeam2Shots = findViewById(R.id.tv_team2_shots);
+        tvTeam2RedCards = findViewById(R.id.tv_team2_redcards);
+        tvTeam2YellowCards = findViewById(R.id.tv_team2_yellowcards);
+        tvTeam2Possession = findViewById(R.id.tv_team2_possession);
+        tvTeam2Foals = findViewById(R.id.tv_team2_fauls);
+
     }
 
     public void fillFields(MatchPOJO match) {
@@ -159,21 +177,25 @@ public class MatchActivity extends AppCompatActivity {
         goalsAdapter2.setTeamMatch(match.getGuest());
         rvGoalsTeam2.setAdapter(goalsAdapter2);
 
-        GlideApp.with(this)
-                .as(PictureDrawable.class)
-                .listener(new SvgSoftwareLayerSetter())
+        System.out.println(SportApiRequests.DOWNLOAD_IMAGE+match.getHome().getLogotype());
+        Glide.with(this)
                 .load(SportApiRequests.DOWNLOAD_IMAGE + match.getHome().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
-
                 .into(ivTeam1);
 
-        GlideApp.with(this)
-                .as(PictureDrawable.class)
-                .listener(new SvgSoftwareLayerSetter())
+        Glide.with(this)
                 .load(SportApiRequests.DOWNLOAD_IMAGE+match.getGuest().getLogotype())
                 .apply(RequestOptions.fitCenterTransform())
-
                 .into(ivTeam2);
+        tvTeam1RedCards.setText("Красные карточки: "+match.getHome().getRedCards());
+        tvTeam1YellowCards.setText("Желтые карточки: "+match.getHome().getYellowCards());
+        tvTeam1Possession.setText("Владение: "+match.getHome().getPossession()+"%");
+        tvTeam1Foals.setText("Нарушения: "+match.getHome().getFauls());
+        tvTeam2RedCards.setText("Красные карточки: "+match.getGuest().getRedCards());
+        tvTeam2YellowCards.setText("Желтые карточки: "+match.getGuest().getYellowCards());
+        tvTeam2Possession.setText("Владение: "+match.getGuest().getPossession()+"%");
+        tvTeam2Foals.setText("Нарушения: "+match.getGuest().getFauls());
+
     }
 
     @Override

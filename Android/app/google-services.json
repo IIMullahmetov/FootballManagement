@@ -1,1 +1,13 @@
-{"installed":{"client_id":"88072522765-1o2t7ih40ill5poqct1faga8t2o8dnc2.apps.googleusercontent.com","project_id":"footballmanagement-205305","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
+{
+  "installed": {
+    "client_id": "88072522765-4v2v9t2l8icq1i89b5179dqvm6cfidt2.apps.googleusercontent.com",
+    "project_id": "footballmanagement-205305",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "redirect_uris": [
+      "urn:ietf:wg:oauth:2.0:oob",
+      "http://localhost"
+    ]
+  }
+}

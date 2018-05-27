@@ -19,6 +19,9 @@ import ru.kpfu.itis.android.models.User;
 import ru.kpfu.itis.android.models.bodyForRequest.UserForRegistration;
 import ru.kpfu.itis.android.models.bodyForRequest.UserPost;
 import ru.kpfu.itis.android.models.modelForList.MatchBodyInList;
+import ru.kpfu.itis.android.models.news.Comment;
+import ru.kpfu.itis.android.models.news.CommentPOST;
+import ru.kpfu.itis.android.models.news.NewsDetail;
 
 /**
  * Created by hlopu on 12.05.2018.
@@ -31,9 +34,7 @@ public interface SportApiRequests {
     Observable<Response<Authorization>> authorization(@Body UserPost user);
 
     @POST("/auth/google")
-    Observable<Response<Authorization>> authorizationWithGoogle(@Query("email") String email, @Query("firstName") String firstName,
-                                                                @Query("lastName") String lastName, @Query("birthday") String birthday,
-                                                                @Query("gender") String gender, @Query("googleToken") String googleToken);
+    Observable<Response<Authorization>> authorizationWithGoogle(@Body UserForRegistration user);
 
     @POST("/registration/register")
     Observable<Response<Void>> registration(@Body UserForRegistration user);
@@ -55,5 +56,15 @@ public interface SportApiRequests {
 
     @GET("/tourney/get/{id}")
     Observable<Response<Championship>> getChampionship(@Path("id") int id);
+
+    @GET("/post/get/{id}")
+    Observable<Response<NewsDetail>> getPost(@Path("id") int id);
+
+    @GET("/post/{id}/comment/get_list")
+    Observable<Response<ElementList<Comment>>> getComments(@Path("id") int id);
+
+    @POST("/post/{id}/comment/add")
+    Observable<Response<Comment>> addComments(@Path("id") int id, @Body CommentPOST comment, @Header("Authorization") String token);
+
 
 }
