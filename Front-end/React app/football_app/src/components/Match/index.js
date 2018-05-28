@@ -56,11 +56,17 @@ class Match extends React.Component<{
 
   		if(matchObject.home.players.length >= matchObject.guest.players.length ) {
   			matchObject.home.players.forEach(function(item, i, arr) {
-  				players.push({homePlayer: item, guestPlayer: matchObject.guest.players[i]});
+  				if(i<11) {
+  					players.push({homePlayer: item, guestPlayer: matchObject.guest.players[i]});
+  				}
+  				
 			});
   		} else{
   			matchObject.guest.players.forEach(function(item, i, arr) {
-  				players.push({guestPlayer: item, homePlayer: matchObject.home.players[i]});
+  				if(i<11) {
+  					players.push({guestPlayer: item, homePlayer: matchObject.home.players[i]});
+  				}
+  				
 			});
   		}
 

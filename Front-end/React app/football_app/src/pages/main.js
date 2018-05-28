@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { Route } from 'react-router-dom';
-import { home, postA} from '../actions';
+import { home, postA, tourneyA} from '../actions';
 import { Link } from 'react-router-dom';
 
-import Tourney_tour from'../components/Tourney_tour';
+import TourneyBlock from'../components/TourneyBlock';
 
 import PostBlock from '../components/PostBlock';
 
@@ -17,13 +17,14 @@ const mapStateToProps = ( { post: { postList } }) => ({
 const mapDispatchToProps = dispatch => ({  
   getLoginData: () => dispatch(home.loginContextPending()),
   getPostList: () => dispatch(postA.postListPending()),
+  getTourneyList: () => dispatch(tourneyA.tourneyListPending()),
 
 });
 
 class Main extends React.Component<{
   getHouses: Function,
   getPostList: Function,
-  getTourneyTours: Function,
+  getTourneyList: Function,
   getLoginData: Function,
   history: Object,
   status: number,
@@ -33,6 +34,7 @@ class Main extends React.Component<{
   componentDidMount() {
     this.props.getLoginData();
     this.props.getPostList();
+    this.props.getTourneyList();
   }
 
  
@@ -59,16 +61,17 @@ class Main extends React.Component<{
           </div>
       </div>
       
-      <div className="col-md-5 ">
+      <div className="col-md-4 ">
         <PostBlock posts={this.props.postList} title='Главные новости'/>
          
          
           </div>
-          <div className="col-md-5 col-md-offset-1">
+          <div className="col-md-4">
         <PostBlock posts={this.props.postList} title='Последние новости'/>
          
          
           </div>
+          <TourneyBlock tourneyList={this.props.tourneyList}/>
          
        </div>
       </main>

@@ -21,6 +21,9 @@ export default {
   registrationPendingSuccess: createAction('registration pending success', (user: Object) => ({ user })),
   registrationPendingError: createAction('registration pending error', (error: Object) => ({ error })),
 
+  
+
+
 
   unauthorized: createAction('unauthorized', error => ({ error })),
 };

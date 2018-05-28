@@ -9,7 +9,8 @@ import deviceInfo from './device-info';
 import housesConfig from './houses-config';*/
 
 import login from './login';
-import registration from './registration'
+import registration from './registration';
+import profileEdit from './profileEdit';
 
 /*export default {
   sms,
@@ -26,5 +27,6 @@ import registration from './registration'
 
 export default { 
 	login,
-	registration
+	registration,
+  profileEdit,
 };

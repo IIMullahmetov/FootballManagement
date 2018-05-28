@@ -6,6 +6,8 @@ import team from './team';
 import profile from './profile';
 import post from './post';
 import comment from './comment';
+import file from './file';
+import tourney from './tourney';
 
 
 export { auth };
@@ -16,3 +18,5 @@ export { team };
 export { profile };
 export { post };
 export { comment };
+export { file };
+export { tourney };

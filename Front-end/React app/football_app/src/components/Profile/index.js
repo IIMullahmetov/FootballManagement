@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import { Route } from 'react-router-dom';
 import { profileA} from 'actions';
 import {withRouter} from 'react-router';
+import ProfileEdit from 'components/modals/ProfileEdit';
+import ProfileEditButton from 'components/buttons/ProfileEditButton';
 
 import './style.css';
 
@@ -66,16 +68,19 @@ class Profile extends React.Component<{
 
 
       <div className="col-md-10 profile-info col-md-offset-1 panel panel-default">
-          <button className="btn btn-lg">Редактировать</button>
+         
 
           <p> <span>Дата регистрации:</span>  {profileObject.registrationDt}</p>
           <p> <span>Пол:</span>   {profileObject.gender===0 ? 'Мужской': 'Женский'}</p>
           <p> <span>Email:</span> {profileObject.email}</p>
           <p> <span>Страна:</span>  Россия</p>
           <p> <span>Город:</span> Альметьевск </p>
+
+          <div  className="col-md-3 col-md-offset-8"><ProfileEditButton /></div>
          
       </div>
   </div>
+  <ProfileEdit />
 </main>
 	);
 

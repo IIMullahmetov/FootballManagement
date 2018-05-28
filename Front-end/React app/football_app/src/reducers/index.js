@@ -21,6 +21,7 @@ import team from './team';
 import profile from './profile';
 import post from './post';
 import comment from './comment';
+import tourney from './tourney';
 
 
 export default combineReducers({
@@ -31,6 +32,7 @@ export default combineReducers({
   profile,
   post,
   comment,
+  tourney,
   ...modals,
   /*statistic,
   counters,

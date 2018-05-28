@@ -7,10 +7,12 @@ const initialState: {
     postItem: Object, 
     postList: Array<Object>,
     addPostInputs: Array<Object>,
+    error: Boolean,
 } = {    
     postItem: {},
     postList:[],
     addPostInputs: [],
+    error: false,
 };
 
 export default createReducer(
@@ -30,7 +32,7 @@ export default createReducer(
 
     [postA.addTextInput]: (state) => ({
        ...state,
-        addPostInputs: [...state.addPostInputs, (<input type="text" placeholder="Title" size="40" />)],     
+        addPostInputs: [...state.addPostInputs, (<input type="text"  style={{marginBottom: '20px'}} className="from-control" placeholder="Title" size="40" />)],     
     }),
 
 

@@ -4,7 +4,9 @@ export default {
 
 	getPlayer: (playerId): Object =>
   	 agent()
-  	 	.get(`/player/get/${playerId}`),  	 	
+  	 	.get(`/player/get/${playerId}`),  
+
+  	 	 	
  
 
   	

@@ -8,6 +8,7 @@ import profileA from './profile';
 import postA from './post';
 import fileA from './file';
 import commentA from './comment';
+import tourneyA from './tourney';
 
 export { modalsA };
 export { home };
@@ -18,3 +19,4 @@ export { profileA };
 export { postA };
 export { fileA };
 export { commentA };
+export { tourneyA };

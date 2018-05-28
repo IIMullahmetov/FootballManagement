@@ -9,6 +9,8 @@ import watchFetchTeam from './team';
 import watchFetchProfile from './profile';
 import watchFetchPost from './post';
 import watchFetchComment from './comment';
+import watchFetchFile from './file';
+import watchFetchTourney from './tourney';
 
 export default function* sagas() {
   yield all([
@@ -20,6 +22,8 @@ export default function* sagas() {
     fork(watchFetchProfile),
     fork(watchFetchPost),
     fork(watchFetchComment),
+    fork(watchFetchFile),
+    fork(watchFetchTourney),
  
   ]);
 }
